@@ -1,4 +1,5 @@
-# hey-9 *the four-legged social network*
+# hey-9 
+*the four-legged social network*
 
 ### Team members:
 
