@@ -1,7 +1,7 @@
 # hey-9
 the four-legged social network
 
-Team members:
+## Team members:
 
 Wyeth Jackson - https://github.com/wyethjackson
 
