@@ -1,6 +1,8 @@
 # hey-9 
 *the four-legged social network*
 
+Hey-9 exists to elevate the social situation of our beloved counterparts.
+
 ### Team members:
 
 Wyeth Jackson - https://github.com/wyethjackson
