@@ -1,4 +1,4 @@
-# hey-9 
+# hey-9
 *the four-legged social network*
 
 Hey-9 exists to elevate the social situation of our beloved counterparts.
@@ -7,10 +7,10 @@ Hey-9 exists to elevate the social situation of our beloved counterparts.
 
 Wyeth Jackson - https://github.com/wyethjackson
 
-Chris - https://github.com/cMzeta 
+Chris - https://github.com/cMzeta
 
 Alexis Moody - https://github.com/amoody2108
 
-Larissa Pittinger - https://github.com/mslarissaaa/
+Larissa Pittenger - https://github.com/mslarissaaa/
 
 Rodica Trifan - https://github.com/trodicaro/
