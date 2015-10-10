@@ -17,6 +17,6 @@ Larissa Pittenger - https://github.com/mslarissaaa/
 
 Rodica Trifan - https://github.com/trodicaro/
 
-Schema: 
+### Schema: 
 
 ![Schema](database_schema5.png)
