@@ -1,0 +1,12 @@
+<h1>What up</h1>
+
+<!-- <input name="file" type="file" id="fileupload" 
+   class="cloudinary-fileupload" data-cloudinary-field="image_id" 
+   data-form-data="data" ></input> -->
+
+  <%= form_tag("/", :method => :post) do  %>
+  <%= cl_image_upload_tag(:image_id) %>
+    
+<% end %>
+
+<%= cl_image_tag(@model.image_id, :crop => :fill, :width => 120, :height => 80) %>
