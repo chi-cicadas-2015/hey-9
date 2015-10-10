@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/chi-cicadas-2015/hey-9.svg?branch=master)](https://travis-ci.org/chi-cicadas-2015/hey-9)
+
 # hey-9
 *the four-legged social network*
 
