@@ -2,12 +2,33 @@
 <html>
 <head>
   <title>Hey9</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+  </script>
   <%= stylesheet_link_tag    'application', media: 'all' %>
+
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+   <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 70%;
+      }
+    </style>
+
 </head>
 <body data-env="<%= Rails.env %>">
+<button type="submit" id="location">
+	Get Location
+</button>
+  <div id="map"></div>
+    <script>
 
+    </script>
+ 
 <%= yield %>
 
 </body>

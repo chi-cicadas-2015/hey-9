@@ -14,24 +14,30 @@
 //= require jquery_ujs
 //= require_tree .
 
-$(document).ready(function() {
-	var railsEnv = $('body').data('env')
+
+var railsEnv = $('body').data('env')
+var myLatlng
+$(document).ready(function(){
 	$("#location").on("click", function(){
-		$.ajax(
-			url: "https://www.googleapis.com/geolocation/v1/geolocate?key=" + railsEnv,
-			type: "POST",
-			success: function(response) {
-				console.log(reponse)
-			})
-	})
-	// window.onload = function() {
-	//   var startPos;
-	//   var geoSuccess = function(position) {
-	//     startPos = position;
-	//     document.getElementById('startLat').innerHTML = startPos.coords.latitude;
-	//     document.getElementById('startLon').innerHTML = startPos.coords.longitude;
-	//   };
-	//   navigator.geolocation.getCurrentPosition(geoSuccess);
-	// };
+		$.ajax({
+				method: "POST",
+				url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk",
+				success: function(response) {
+					myLatlng = {lat: response.location.lat, lng: response.location.lng}
+					console.log(myLatlng)
+				} 
+	  	})
+
+  	})
 
 })
+	
+
+//  function initMap() {
+//   // var myLatlng = {lat: -25.363, lng: 131.044};
+
+
+// }
+
+ 
+
