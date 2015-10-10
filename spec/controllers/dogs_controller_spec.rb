@@ -8,6 +8,7 @@ describe DogsController do
     }
     it 'should render the new dog page' do
       get :new, {user_id: @user.id}
+      expect(response).to render_template(:new)
     end
   end
 

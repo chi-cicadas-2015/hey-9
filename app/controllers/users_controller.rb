@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       session[user_id] = @user.id
-      redirect_to "/users/#{@user.id}"
+      redirect_to "/dogs/new"
     else
       render :new
     end
@@ -21,6 +21,9 @@ class UsersController < ApplicationController
       else
         redirect_to "/sessions/new"
       end
+    end
+    if @user.dogs == nil
+      redirect_to "/dogs/new"
     end
   end
 
