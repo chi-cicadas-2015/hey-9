@@ -9,13 +9,12 @@ class User < ActiveRecord::Base
   has_many :comments, foreign_key: "commenter_id"
   has_many :messages, foreign_key: "author_id"
 
-  belongs_to  :neighborhood
 
   has_secure_password
 
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :location, :neighborhood_id, :receive_notices)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :location, :receive_notices)
   end
 end

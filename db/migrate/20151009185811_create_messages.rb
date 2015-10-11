@@ -1,10 +1,11 @@
 class CreateMessages < ActiveRecord::Migration
   def change
     create_table :messages do |t|
-      t.integer :author_id
-      t.string :messageable_type
-      t.integer  :messageable_id
-      t.string  :content
+      t.integer :author_id, null: false
+      t.string :messageable_type, null: false
+      t.integer  :messageable_id, null: false
+      t.string  :content, null: false
+      t.json :location
       t.timestamps null: false
     end
   end
