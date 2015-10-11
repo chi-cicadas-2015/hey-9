@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20151009222242) do
   end
 
   create_table "dogs", force: :cascade do |t|
+    t.string   "name",        null: false
     t.integer  "owner_id",    null: false
     t.string   "bio"
     t.string   "profile_img"

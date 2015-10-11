@@ -25,10 +25,8 @@
 	Get Location
 </button>
   <div id="map"></div>
-    <script>
+<%= debug(params) if Rails.env.development? %>
 
-    </script>
- 
 <%= yield %>
 
 </body>
