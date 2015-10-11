@@ -22,9 +22,6 @@ class UsersController < ApplicationController
         redirect_to "/sessions/new"
       end
     end
-    if @user.dogs == nil
-      redirect_to "/dogs/new"
-    end
   end
 
   def edit

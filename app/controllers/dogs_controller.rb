@@ -51,8 +51,6 @@ class DogsController < ApplicationController
     @dog = Dog.find_by(id: params[:id])
     if @user.id != session[:user_id]
       redirect_to "/"
-    elsif @user.dogs.length == 1
-      redirect_to "/users/#{@user.id}/dogs/@dog.id"
     else
       @dog.destroy
       redirect_to "/users/#{@user.id}"
