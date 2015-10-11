@@ -1,46 +1,54 @@
 class DogsController < ApplicationController
   def index
-
-  end
-
-  def new
-    if params[:id] != session[:user_id]
-      if session[:user_id] != nil
-        redirect_to "/users/#{session[:user_id]}/dogs/new"
+     if session[:user_id] != nil
+        @user = User.find(session[:user_id])
+        @dogs = @user.dogs
       else
         redirect_to "/sessions/new"
       end
-    end
-    @dog = Dog.new
+  end
+
+  def new
+      if session[:user_id] == nil
+        redirect_to "/sessions/new"
+      end
+      @user = User.find_by(id: session[:user_id])
   end
 
   def create
-    @user = User.find_by(id: params[:id])
-    @dog = Dog.new(name: params[:dog][:name], owner_id: @user.id, bio: params[:dog][:bio], profile_img: params[:dog][:profile_img])
+    @user = User.find_by(id: session[:user_id])
+    @dog = Dog.create!(dog_params)
     if @dog.save
-      redirect_to "/users/#{@user.id}/dogs/{@dog.id}"
+      redirect_to "/dogs/{@dog.id}"
     else
       render :new
     end
   end
 
-  def edit
-    if params[:id] != session[:user_id]
+  def show
       if session[:user_id] != nil
-        redirect_to "/users/#{session[:user_id]}"
+        @dog = Dog.find(params[:id])
       else
         redirect_to "/sessions/new"
       end
-    end
-    @user = User.find(session[:user_id])
-    @dog = Dog.find(params[:id])
+  end
+
+  def edit
+      if session[:user_id] != nil
+      @user = User.find(session[:user_id])
+      @dog = Dog.find(params[:id])
+        redirect_to "/dogs/#{@dog.id}/edit"
+      else
+        redirect_to "/sessions/new"
+      end
+
   end
 
   def update
     @user = User.find(session[:user_id])
     @dog = User.find(params[:id])
     if @dog.update_attributes(dog_params)
-      redirect_to "/users/@user.id/dogs/@dog.id"
+      redirect_to "/dogs/#{@dog.id}"
     else
       render :edit
     end
@@ -60,6 +68,6 @@ class DogsController < ApplicationController
   private
 
   def dog_params
-    params.require(:dog).permit(:name, :bio, :profile_img)
+    params.require(:dog).permit(:name, :bio, :profile_img, :owner_id)
   end
 end

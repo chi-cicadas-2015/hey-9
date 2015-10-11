@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(username: params[:user][:username], email: params[:user][:email], password: params[:user][:password])
+    @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
       redirect_to "/dogs/new"

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, except: :delete do
-    resources :dogs, only: [:create, :delete]
+    resources :dogs, only: [:index, :create, :delete]
   end
 
   resources :messages, only: [:new, :create, :show, :index] do
