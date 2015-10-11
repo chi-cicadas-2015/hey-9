@@ -12,4 +12,10 @@ class User < ActiveRecord::Base
   belongs_to  :neighborhood
 
   has_secure_password
+
+
+  private
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :location, :neighborhood_id, :receive_notices)
+  end
 end
