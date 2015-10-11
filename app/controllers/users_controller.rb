@@ -25,14 +25,15 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if params[:id] != session[:user_id]
+    if params[:id].to_i != session[:user_id]
       if session[:user_id]
         redirect_to "/users/#{session[:user_id]}/edit"
       else
         redirect_to "/sessions/new"
       end
+    else
+      @user = User.find_by(id: params[:id])
     end
-    @user = User.find_by(id: params[:id])
   end
 
   def update

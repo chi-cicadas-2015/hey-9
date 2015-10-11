@@ -5,8 +5,10 @@ describe DogsController do
     before{
       @user = User.create!(username:"wyeth", email: "wyteh@wyeth", password: "123")
       @dog = Dog.create!(name: "cutiepie", owner_id: @user.id)
+
     }
     it 'should render the new dog page' do
+       session[:user_id] = @user.id
       get :new, {user_id: @user.id}
       expect(response).to render_template(:new)
     end
@@ -16,8 +18,10 @@ describe DogsController do
     before{
       @user = User.create!(username:"wyeth", email: "wyteh@wyeth", password: "123")
       @dog = Dog.create!(name: "cutiepie", owner_id: @user.id)
+
     }
     it 'should render the dog\'s profile page' do
+       session[:user_id] = @user.id
       get :show, {id: @dog.id, user_id: @user.id}
       expect(response).to render_template(:show)
     end
@@ -40,29 +44,10 @@ describe DogsController do
       @dog = Dog.create!(name: "cutiepie", owner_id: @user.id)
     }
     it 'should render the edit dog page' do
-      get :edit, {user_id: @user.id, id: @dog.id}
+      session[:user_id] = @user.id
+      get :edit, {id: @dog.id}
       expect(response).to render_template(:edit)
     end
   end
 
-  describe "PUT #update" do
-    before{
-    @user = FactoryGirl.create(:user)
-    FactoryGirl.attributes_for(:user, username: "wyeth", email: "wyeth@wyeth", password: "123")
-    @dog = FactoryGirl.create(:dog, user: @user)
-    @dog_attributes = FactoryGirl.attributes_for(:dog, :user_id => @user.id, :name => "cutiepie")
-    @dog_update_attributes = FactoryGirl.attributes_for(:dog, :name => "Kira", :user_id => @user.id)
-  }
-    it 'should update the dog\'s information' do
-        put :update, {
-        :user_id => @user.id,
-        :id => @dog.id,
-        :dog => @dog_update_attributes
-        }
-    end
-  end
-
-  describe "POST add_connection" do
-
-  end
 end

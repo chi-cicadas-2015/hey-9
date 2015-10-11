@@ -35,9 +35,8 @@ class DogsController < ApplicationController
 
   def edit
       if session[:user_id] != nil
-      @user = User.find(session[:user_id])
-      @dog = Dog.find(params[:id])
-        redirect_to "/dogs/#{@dog.id}/edit"
+        @user = User.find(session[:user_id])
+        @dog = Dog.find(params[:id])
       else
         redirect_to "/sessions/new"
       end
