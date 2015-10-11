@@ -3,7 +3,7 @@ require 'rails_helper'
 describe User do
   context "validations" do
     it "should create a new user" do
-      user_params = { username: "Mitch", email: "mitch@email.com", password: "password", password_confirmation: "password" }
+      user_params = { username: "Mitch", email: "mitch@email.com", password: "password", password_confirmation: "password",location: {:latitude=> 41.878114,:longitude=> -87.629798}}
       expect { User.create(user_params) }.to change(User, :count).by(1)
     end
 
@@ -18,18 +18,14 @@ describe User do
 
   context "associations" do
     before {
-        @neighborhood = Neighborhood.create!(description: "Rogers Park")
-
-        @user = User.create!(username: "Wyeth", email: "wyeth@wyeth", password: "123", neighborhood: @neighborhood)
-        @event = Event.create!(creator: @user)
-        @comment = Comment.create!(commenter: @user, commentable_type: "Event", commentable: @event)
+        @user = User.create!(username: "Wyeth", email: "wyeth@wyeth", password: "123",location: {:latitude=> 41.878114,:longitude=> -87.629798})
+        @event = Event.create!(creator: @user, event_start: DateTime.now, event_end: DateTime.now, location: "123 N Main St, Chicago, IL 60660", description:"Let's go to the park!")
+        @comment = Comment.create!(commenter: @user, commentable_type: "Event", commentable: @event, content: "I aM aNNNN INeternt commeNT")
 
         @direct_conversation = DirectConversation.create!(subject: "what up")
-        @conversing = Conversing.create!(user: @user, direct_conversation: @direct_conversation)
-        @conversation_message = Message.create!(author: @user, messageable_type: "DirectConversation", messageable: @direct_conversation)
+        @private_message = PrivateMessage.create!(user: @user, conversation: @direct_conversation, content: "I LOVE DOGS")
 
-        @message_board = MessageBoard.create!(neighborhood: @neighborhood)
-        @board_message = Message.create!(author: @user, messageable_type: "MessageBoard", messageable: @message_board)
+        @message = Message.create!(author: @user,location: {:latitude=> 41.878114,:longitude=> -87.629798}, content: "I LOVE DOGS")
 
         @dog = Dog.create!(owner: @user, name: "Leila")
     }
@@ -46,20 +42,16 @@ describe User do
       expect(@user.comments).to eq([@comment])
     end
 
-    it 'should return the messages related to this user' do
-      expect(@user.messages).to eq([@conversation_message, @board_message])
+    it 'should return the public messages related to this user' do
+      expect(@user.messages).to eq([@message])
     end
 
-    it "should return the conversings related to this user" do
-      expect(@user.conversings).to eq([@conversing])
+    it "should return the private messages related to this user" do
+      expect(@user.private_messages).to eq([@private_message])
     end
 
     it "should return the direct conversations related to this user" do
       expect(@user.direct_conversations).to eq([@direct_conversation])
-    end
-
-    it "should return the neighborhood related to this user" do
-      expect(@user.neighborhood).to eq(@neighborhood)
     end
 
     it "should have a vaild factory" do
