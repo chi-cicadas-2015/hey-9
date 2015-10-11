@@ -19,4 +19,4 @@ Rodica Trifan - https://github.com/trodicaro
 
 ### Schema:
 
-![Schema](database_schema6.png)
+![Schema](database_schema7.png)
