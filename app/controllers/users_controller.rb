@@ -4,9 +4,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(username: params[:user][:username], email: params[:user][:email], password: params[:user][:password])
     if @user.save
-      session[user_id] = @user.id
+      session[:user_id] = @user.id
       redirect_to "/dogs/new"
     else
       render :new
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.update(params[:user])
+    @user = User.update(email: params[:user][:email], username: params[:user][:username], password: params[:user][:password])
     if @user.save
         redirect_to "/users/#{@user.id}"
     else
