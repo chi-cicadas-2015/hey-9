@@ -4,6 +4,8 @@ require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'capybara/rspec'
+require 'coveralls'
+Coveralls.wear!
 
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
