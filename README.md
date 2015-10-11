@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/chi-cicadas-2015/hey-9.svg?branch=master)](https://travis-ci.org/chi-cicadas-2015/hey-9)
-
-[![Coverage Status](https://coveralls.io/repos/chi-cicadas-2015/hey-9/badge.svg?branch=master&service=github)](https://coveralls.io/github/chi-cicadas-2015/hey-9?branch=master)
+[![Build Status](https://travis-ci.org/chi-cicadas-2015/hey-9.svg?branch=master)](https://travis-ci.org/chi-cicadas-2015/hey-9) [![Coverage Status](https://coveralls.io/repos/chi-cicadas-2015/hey-9/badge.svg?branch=master&service=github)](https://coveralls.io/github/chi-cicadas-2015/hey-9?branch=master)
 
 # hey-9
 *the four-legged social network*
