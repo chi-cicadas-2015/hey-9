@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20151011175749) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "creator_id",  null: false
-    t.string   "location",    null: false
+    t.string   "location"
     t.datetime "event_start", null: false
     t.datetime "event_end",   null: false
     t.text     "description", null: false
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20151011175749) do
     t.string   "username",        null: false
     t.string   "email",           null: false
     t.string   "password_digest", null: false
-    t.json     "location",        null: false
+    t.json     "location"
     t.boolean  "receive_notices"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
