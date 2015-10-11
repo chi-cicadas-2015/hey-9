@@ -56,7 +56,7 @@ describe DogsController do
     it 'should update the dog\'s information' do
         put :update, {
         :user_id => @user.id,
-        :id => @dog.id
+        :id => @dog.id,
         :dog => @dog_update_attributes
         }
     end

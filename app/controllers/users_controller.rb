@@ -28,19 +28,19 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(id: params[:id])
-    if @user.id != session[:user_id]
+    if params[:id] != session[:user_id]
       if session[:user_id]
         redirect_to "/users/#{session[:user_id]}/edit"
       else
         redirect_to "/sessions/new"
       end
     end
+    @user = User.find_by(id: params[:id])
   end
 
   def update
-    @user = User.update(email: params[:user][:email], username: params[:user][:username], password: params[:user][:password])
-    if @user.save
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
         redirect_to "/users/#{@user.id}"
     else
       render :edit
@@ -49,12 +49,18 @@ class UsersController < ApplicationController
 
   def delete
     @user = User.find_by(id: params[:id])
-    if @user != session[:user_id]
+    if @user.id != session[:user_id]
       redirect_to "/"
     else
       @user.destroy
       session.clear
       redirect_to "/"
     end
+  end
+
+  private
+
+  def user_params
+      params.require(:user).permit(:username, :email, :password)
   end
 end
