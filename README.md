@@ -13,10 +13,10 @@ Chris - https://github.com/cMzeta
 
 Alexis Moody - https://github.com/amoody2108
 
-Larissa Pittenger - https://github.com/mslarissaaa/
+Larissa Pittenger - https://github.com/mslarissaaa
 
-Rodica Trifan - https://github.com/trodicaro/
+Rodica Trifan - https://github.com/trodicaro
 
-### Schema: 
+### Schema:
 
-![Schema](database_schema5.png)
+![Schema](database_schema6.png)
