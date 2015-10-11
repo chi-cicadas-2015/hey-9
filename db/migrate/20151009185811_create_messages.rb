@@ -1,5 +1,6 @@
 class CreateMessages < ActiveRecord::Migration
   def change
+    enable_extension 'json'
     create_table :messages do |t|
       t.integer :author_id, null: false
       t.string :messageable_type, null: false
