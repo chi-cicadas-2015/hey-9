@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 gem 'travis', '~> 1.8.0'
@@ -36,7 +35,10 @@ gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug'
-  gem 'rspec-rails', '~> 3.0.0'
+  # gem 'rspec-rails', '~> 3.0.0'
+  %w[rspec rspec-core rspec-expectations rspec-mocks rspec-support].each do |lib|
+    gem lib, :git => "git://github.com/rspec/#{lib}.git", :branch => 'master'
+  end
   gem 'factory_girl_rails'
   gem 'faker'
   # gem 'shoulda-matchers'
