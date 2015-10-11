@@ -23,5 +23,9 @@ describe Event do
         expect(@event.creator).to eq(@user1)
     end
 
+    it "should have a vaild factory" do
+      expect(build(:event)).to be_valid
+    end
+
   end
 end
