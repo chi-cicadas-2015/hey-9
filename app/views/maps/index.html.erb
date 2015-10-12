@@ -1,0 +1,40 @@
+<div  id="map" name="<%= @location_array %>">
+</div>
+
+
+    <script type="text/javascript">
+    String.prototype.insertAt=function(index, string) {
+  return this.substr(0, index) + string + this.substr(index);
+      }
+       var map;
+      var coordinates = $("#map").attr('name');
+      var count = 0
+      var latOrLng
+
+      var array = coordinates.split(",");
+
+      var lat = array[0].slice(1)
+      var lng = array[1].slice(0)
+      lng = lng.slice(1,(lng.length))
+
+      lat = parseFloat(lat);
+      lng = parseFloat(lng);
+      console.log(lat);
+      console.log(lng);
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: lat, lng: lng},
+    zoom: 15
+  });
+  var marker = new google.maps.Marker({
+    map: map,
+    position: {lat: lat, lng: lng},
+    title: 'Hello World!'
+  });
+}
+
+
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs&callback=initMap">
+    </script>
