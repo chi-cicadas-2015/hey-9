@@ -1,1 +1,23 @@
-<h1> Welcome <%= @user.username %></h1>
+
+<div class="container">
+  <div class="valign-wrapper">
+    <div class="row valign">
+      <div class="col s12 m4 l4">
+        <a><img src="http://www.dog-names-and-more.com/dog-names-fb.jpg" class="circle hoverable"/></a>
+      </div>
+      <div class="col s12 m4 l4">
+        <a><img src="http://www.dog-names-and-more.com/dog-names-fb.jpg"class="circle hoverable"/></a>
+      </div>
+      <div class="col s12 m4 l4">
+        <img src="http://www.dog-names-and-more.com/dog-names-fb.jpg" class="circle hoverable"/>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="location_sync">
+  <form id = "location">
+  <input type="hidden" name="user_id" value="<%= @user.id %>">
+  <input type="submit" value="Sync Location" >
+</form>
+</div>
+>>>>>>> master
