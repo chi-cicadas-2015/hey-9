@@ -7,7 +7,7 @@
             <li><%= comment.content %></li>
           <% end %>
           <% if @current_user %>
-          <%= link_to "Add Comment", new_message_comment_path, id: 'new-comment', remote: true %>
+          <%= link_to "Add Comment", message_commentable_index_path, id: 'new-comment', remote: true %>
           <% end %>
           <div id="task-form"></div>
         </ul>
