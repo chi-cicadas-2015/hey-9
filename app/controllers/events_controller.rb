@@ -4,7 +4,20 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.all
+    @user = User.find_by(id: current_user.id)
+    @events = []
+    if @user.lat && @user.lng
+      p @user
+      @location = gen_neighborhood
+      @users = User.within(2, :origin => location_get).all
+      @users.each do |user|
+        user.events.each do |event|
+          @events << event
+        end
+      end
+       @events.sort!{|a,b| a.created_at <=> b.created_at}
+    end
+    p @events
   end
 
   def new
