@@ -138,9 +138,9 @@ messages = 25.times.map do
   Message.create!(author: users.sample, lat: 41.878114, lng: -87.629798, :content => potential_messages.sample)
 end
 
-messages = 25.times.map do
-  Message.create!(author: users.sample, lat: 0, lng: 0, :content => potential_messages.sample)
-end
+# messages = 25.times.map do
+#   Message.create!(author: users.sample, lat: 0, lng: 0, :content => potential_messages.sample)
+# end
 
 messages.each do |message|
   rand(0..6).times do
