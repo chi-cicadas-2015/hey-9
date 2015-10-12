@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   include ApplicationHelper
   def new
+    if current_user
+      redirect_to "/users/#{current_user.id}"
+    end
     @user = User.new
   end
 
@@ -15,14 +18,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    if !session[:user_id]
+    if session[:user_id] == nil
        redirect_to "/sessions/new"
+    else
+      @user = current_user
+      if @user.id != params[:id].to_i
+          redirect_to "/users/#{@user.id}"
+      end
     end
-    @user = current_user
-    if @user.id != params[:id].to_i
-        redirect_to "/users/#{@user.id}"
-    end
-
 
   end
 
