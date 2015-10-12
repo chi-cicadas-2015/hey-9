@@ -19,7 +19,7 @@ describe Dog do
       end
 
       it "returns the followers of the dog" do
-        expect(Dog.followers(@dog1.id)).to eq([@dog2])
+        expect(@dog1.followers).to eq([@dog2])
       end
 
       it "returns the dogs the dog is following" do
