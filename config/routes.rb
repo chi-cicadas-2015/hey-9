@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     # resources :commentable, only: [:create]
   end
 
-
+  resources :maps
 
 
   # concern :commentable do
