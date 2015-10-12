@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20151011175749) do
     t.string   "username",        null: false
     t.string   "email",           null: false
     t.string   "password_digest", null: false
-    t.json     "location",        null: false
+    t.json     "location"
     t.boolean  "receive_notices"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
