@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <%= form_for(:dog, :html => {:class => "col s12"}) do |f| %>
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.label :name %>
+          <%= f.text_field :name, :placeholder => dog.name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.label :bio %>
+          <%= f.text_area :bio, :placeholder => dog.bio, :class => "materialize-textarea" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.label :profile_img %>
+          <%= f.text_field :profile_img, :placeholder => dog.profile_img %>
+        </div>
+      </div>
+      <%= f.hidden_field :owner_id, :value => @user.id %>
+      <%= f.submit(:class => "btn", :value => "Edit")%>
+    <% end %>
+  </div>
+</div>

@@ -2,20 +2,28 @@
   <h1><%= dog.name %></h1>
   <div class="row">
     <div class="col s4">
-      <img class="circle responsive-img" src="http://www.dog-names-and-more.com/dog-names-fb.jpg">
+      <img class="circle responsive-img" src="<%= dog.profile_img%>">
     </div>
     <div class="col s8">
-      <ul class="collapsible" data-collapsible="expandable">
+      <ul class="collapsible" data-collapsible="accordion">
       <li>
-        <div class="collapsible-header"><%= dog.name %>'s Friends</div>
-        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+        <div class="collapsible-header">Dogs <%= dog.name %> Follows</div>
+        <div class="collapsible-body">
+          <div class="collection">
+            <% dog.followings.each do |friend| %>
+              <a href="/dogs/<%= friend.id %>" class="collection-item"><%=friend.name%></a>
+            <% end %>
+          </div>
+        </div>
       </li>
       <li>
-        <div class="collapsible-header">Edit </div>
-        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+        <div class="collapsible-header">Edit <%= dog.name %></div>
+        <div class="collapsible-body">
+          <%= render partial: "edit", locals: {dog: dog} %>
+        </div>
       </li>
       <li>
-        <div class="collapsible-header">Third</div>
+        <div class="collapsible-header">Say Goodbye To <%= dog.name %></div>
         <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
       </li>
     </ul>
