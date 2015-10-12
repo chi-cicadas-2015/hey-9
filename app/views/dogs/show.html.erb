@@ -6,7 +6,9 @@
         <img src="<%= @dog.profile_img %>" class="circle responsive-img valign">
       </div>
       <% if check_friend_status?(@dog) == false %>
-        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+        <% if @dog.owner_id != current_user.id %>
+          <a class="btn-floating btn-large waves-effect waves-light red" id="add-friend" name="<%= @dog.id %>"><i class="material-icons">add</i></a>
+        <% end %>
       <% end %>
     </div>
   </div>
