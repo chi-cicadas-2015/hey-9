@@ -27,7 +27,7 @@ class DogsController < ApplicationController
 
   def show
       if session[:user_id] != nil
-        @dog = Dog.find_by(owner_id: params[:id])
+        @dog = Dog.find(params[:id])
       else
         redirect_to "/sessions/new"
       end

@@ -9,11 +9,16 @@
       <li>
         <div class="collapsible-header">Dogs <%= dog.name %> Follows</div>
         <div class="collapsible-body">
-          <div class="collection">
+          <ul class="collection">
             <% dog.followings.each do |friend| %>
-              <a href="/dogs/<%= friend.id %>" class="collection-item"><%=friend.name%></a>
+              <li class="collection-item avatar">
+                <a href="/dogs/<%= friend.id %>">
+                  <img src="<%= friend.profile_img %>" alt="" class="circle">
+                  <span class="title"><%=friend.name%></span>
+                </a>
+              </li>
             <% end %>
-          </div>
+          </ul>
         </div>
       </li>
       <li>
@@ -23,7 +28,7 @@
         </div>
       </li>
       <li>
-        <div class="collapsible-header">Say Goodbye To <%= dog.name %></div>
+        <div class="collapsible-header">Remove <%= dog.name %> From Pack</div>
         <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
       </li>
     </ul>

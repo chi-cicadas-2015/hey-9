@@ -1,4 +1,5 @@
 <div class="container">
+  <h1 class="center"><%= @user.username %>'s Pack</h1>
   <% @dogs.each do |dog|%>
     <%= render partial: "profile", locals: {dog: dog} %>
   <% end %>
