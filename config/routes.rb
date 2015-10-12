@@ -4,20 +4,21 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  concern :commentable do
-    resources :comments
-  end
+  # concern :commentable do
+  #   resources :comments
+  # end
 
   resources :users, except: :delete do
     resources :dogs, only: [:index, :create, :delete]
   end
 
   resources :messages, only: [:new, :create, :show, :index] do
-    resources :commentable, only: [:create]
+    resources :comments, module: :messages
+    # resources :commentable, only: [:create]
   end
 
   resources :direct_conversations, only: [:index, :show, :new, :create] do
-    resources :messages, only: [:create]
+    resources :private_messages, only: [:create]
   end
 
   resources :dogs, except: [:create, :delete] do
@@ -25,7 +26,8 @@ Rails.application.routes.draw do
   end
 
   resources :events do
-    resources :commentable, only: [:create]
+    resources :comments, module: :events
+    # resources :commentable, only: [:create]
   end
 
 

@@ -37,7 +37,7 @@ class MessagesController < ApplicationController
 
   def set_message
     if current_user
-      @message = Event.find(params[:id])
+      @message = Message.find(params[:id])
     end
   end
 
