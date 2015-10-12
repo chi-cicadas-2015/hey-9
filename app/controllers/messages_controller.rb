@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   before_action :require_login
 
   def index
-    @current_user = current_user
+    # @current_user = current_user
     @messages = Message.all
   end
 
