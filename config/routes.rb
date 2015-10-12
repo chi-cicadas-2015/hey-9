@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :private_messages, only: [:create]
   end
 
-  resources :dogs, except: [:create, :delete] do
+  resources :dogs, except: [:create, :edit, :delete] do
     resources :dog_connections, only: [:new, :create, :delete]
   end
 
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     # resources :commentable, only: [:create]
   end
 
-
+  resources :maps
 
 
   # concern :commentable do

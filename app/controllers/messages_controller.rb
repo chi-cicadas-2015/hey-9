@@ -27,10 +27,12 @@ class MessagesController < ApplicationController
   end
 
   def create
-  	@message= Message.new(params)
-  	@message.author_id = current_user.id
-    if @message.save
-    end
+  	@message = Message.new message_params
+  	@message.author = current_user
+    @message.lat = current_user.lat
+    @message.lng = current_user.lng
+    @message.save if @message
+    redirect_to :back, notice: "Your message was successfully posted."
   end
 
   private
@@ -39,6 +41,10 @@ class MessagesController < ApplicationController
     if current_user
       @message = Message.find(params[:id])
     end
+  end
+
+  def message_params
+    params.require(:message).permit(:content)
   end
 
 end
