@@ -37,11 +37,20 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-        redirect_to "/users/#{@user.id}"
+     @user = User.find(params[:id])
+    if request.xhr?
+      lat = params[:location][:lat]
+      lng = params[:location][:lng]
+      @user.update_attributes(lng: lng, lat: lat)
+      p @user.lng
+      render :show
+
     else
-      render :edit
+      if @user.update_attributes(user_params)
+          redirect_to "/users/#{@user.id}"
+      else
+        render :edit
+      end
     end
   end
 

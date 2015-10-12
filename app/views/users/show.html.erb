@@ -1,1 +1,8 @@
 <h1> Welcome <%= @user.username %></h1>
+<form id = "location">
+  <input type="hidden" name="user_id" value="<%= @user.id %>">
+  <input type="submit" value="Sync Location" >
+</form>
+<button id="location" type="submit">
+Sync Location
+</button>

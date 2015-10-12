@@ -14,7 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'activerecord-postgis-adapter'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
@@ -28,17 +28,17 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'simplecov', :require => false, :group => :test
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+gem 'geokit-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  # gem 'byebug'
-  # gem 'rspec-rails', '~> 3.0.0'
-  %w[rspec rspec-core rspec-expectations rspec-mocks rspec-support].each do |lib|
-    gem lib, :git => "git://github.com/rspec/#{lib}.git", :branch => 'master'
-  end
+  gem 'byebug'
+  gem 'rspec-rails', '~> 3.0.0'
+  # %w[rspec rspec-core rspec-expectations rspec-mocks rspec-support].each do |lib|
+  #   gem lib, :git => "git://github.com/rspec/#{lib}.git", :branch => 'master'
+  # end
   gem 'factory_girl_rails'
   gem 'faker'
   # gem 'shoulda-matchers'

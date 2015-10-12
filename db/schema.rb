@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20151011175749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
 
   create_table "comments", force: :cascade do |t|
     t.string   "commentable_type", null: false
@@ -87,7 +86,8 @@ ActiveRecord::Schema.define(version: 20151011175749) do
     t.string   "username",        null: false
     t.string   "email",           null: false
     t.string   "password_digest", null: false
-    t.json     "location",        null: false
+    t.string   "lat"
+    t.string   "lng"
     t.boolean  "receive_notices"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
