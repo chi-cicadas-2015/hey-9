@@ -25,8 +25,6 @@ $(document).ready(function(){
 			url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk",
 			success: function(response) {
         var id = $('input[type=hidden]').val()
-
-        console.log(response)
         $.ajax({
           method: "PUT",
           url: "/users/" + id.toString(),

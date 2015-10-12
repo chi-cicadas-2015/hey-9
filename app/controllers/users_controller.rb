@@ -23,19 +23,7 @@ class UsersController < ApplicationController
         redirect_to "/users/#{@user.id}"
     end
 
-    if @user.lat && @user.lng
-      @messages = []
-      @location = gen_neighborhood
-      @users = User.within(2, :origin => location_get).all
-      @users.each do |user|
-        user.messages.each do |message|
-          @messages << message
-        end
-      end
-      @messages.sort!{|a,b| a.created_at <=> b.created_at}
-      @messages
-      render :show
-    end
+
   end
 
   def edit
@@ -52,7 +40,6 @@ class UsersController < ApplicationController
 
   def update
      @user = User.find(params[:id])
-     p "*********#{@user.lat}"
      @current_user = current_user
     if request.xhr?
       lat = params[:location][:lat]
@@ -60,8 +47,7 @@ class UsersController < ApplicationController
       lat = lat.to_f
       lng = lng.to_f
       @user.update_attributes(lng: lng, lat: lat)
-
-
+      p @user.lat
       render :show
     else
       if @user.update_attributes(user_params)
