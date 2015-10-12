@@ -22,5 +22,9 @@ describe Event do
         expect(@event.comments).to eq([@comment])
     end
 
+    it "should have a vaild factory" do
+      expect(build(:event)).to be_valid
+    end
+
   end
 end
