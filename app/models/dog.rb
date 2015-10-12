@@ -9,8 +9,8 @@ class Dog < ActiveRecord::Base
 
   belongs_to  :owner, class_name: :User
 
-  def self.followers(dog_id)
-    followed = Dog.find_by_id(dog_id)
+  def followers
+    followed = Dog.find_by_id(self.id)
     connections = DogConnection.where(:following => followed)
     connections.collect{|connection| connection.dog}
   end
