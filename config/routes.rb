@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get "/" => 'home#index'
 
   resources :sessions, only: [:new, :create, :destroy]
@@ -6,9 +7,9 @@ Rails.application.routes.draw do
   concern :commentable do
     resources :comments
   end
-  
+
   resources :users, except: :delete do
-    resources :dogs, only: [:create, :delete]
+    resources :dogs, only: [:index, :create, :delete]
   end
 
   resources :messages, only: [:new, :create, :show, :index] do
@@ -16,9 +17,9 @@ Rails.application.routes.draw do
   end
 
   resources :direct_conversations, only: [:index, :show, :new, :create] do
-    resources :messages, only: [:create]  
+    resources :messages, only: [:create]
   end
-  
+
   resources :dogs, except: [:create, :delete] do
     resources :dog_connections, only: [:new, :create, :delete]
   end
@@ -33,9 +34,9 @@ Rails.application.routes.draw do
   # concern :commentable do
   #   resources :comments, shallow: true, except: [:show, :index]
   # end
-  
+
   # concern :messageable do
-  #   resources :messages 
+  #   resources :messages
   # end
 
   # resources :users do
@@ -50,17 +51,20 @@ Rails.application.routes.draw do
 
   # end
 
-  # resources :message_board, concerns: :messageable 
-   
+  # resources :message_board, concerns: :messageable
+
 
 
   # get 'users/new' => 'users#new'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+
   # root 'home#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

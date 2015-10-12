@@ -12,4 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require materialize/css
+ *= require materialize/font/material-design-icons
+ *= require materialize/font/roboto
+ *= require materialize/js
  */
