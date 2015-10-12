@@ -1,15 +1,21 @@
-
 <div class="container">
   <div class="valign-wrapper">
     <div class="row valign">
       <div class="col s12 m4 l4">
-        <a><img src="http://www.dog-names-and-more.com/dog-names-fb.jpg" class="circle hoverable"/></a>
+        <a href="/users/<%= @user.id %>/dogs"><img src="http://www.dog-names-and-more.com/dog-names-fb.jpg" class="circle hoverable"/></a>
+        <p class="center">Dog Portal</p>
       </div>
       <div class="col s12 m4 l4">
-        <a><img src="http://www.dog-names-and-more.com/dog-names-fb.jpg"class="circle hoverable"/></a>
+        <a class="portal"href="#" data-activates="dropdown1"><img src="http://www.dog-names-and-more.com/dog-names-fb.jpg"class="circle hoverable"/></a>
+        <p class="center">Owner Portal</p>
+        <ul class="center">
+          <li><a href="/messages">Messages</a></li>
+          <li><a href="/events">Events</a></li>
+        </ul>
       </div>
       <div class="col s12 m4 l4">
         <img src="http://www.dog-names-and-more.com/dog-names-fb.jpg" class="circle hoverable"/>
+        <p class="center">Resources</p>
       </div>
     </div>
   </div>
