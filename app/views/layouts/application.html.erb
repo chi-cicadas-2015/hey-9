@@ -16,7 +16,12 @@
 </head>
 <body>
      <nav class="black">
+        <div class="row">
       <a href="/" class="brand-logo right">Hey-9</a>
+      <% if current_user != nil %>
+        <%= form_for :session, url: session_path(session), method: "delete" do |f| %>
+        <%= f.submit value: "Logout", :class => "col s1 offset-s6 white-text btn-flat" %>
+        <% end %>
         <ul id="slide-out" class="side-nav">
           <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
@@ -82,6 +87,8 @@
           </ul>
         </ul>
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+      <% end %>
+        </div>
     </nav>
 
 <%= yield %>
