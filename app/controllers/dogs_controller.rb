@@ -19,7 +19,7 @@ class DogsController < ApplicationController
     @user = User.find_by(id: session[:user_id])
     @dog = Dog.create!(dog_params)
     if @dog.save
-      redirect_to "/dogs/{@dog.id}"
+      redirect_to "/dogs/#{@dog.id}"
     else
       render :new
     end
@@ -27,7 +27,7 @@ class DogsController < ApplicationController
 
   def show
       if session[:user_id] != nil
-        @dog = Dog.find(params[:id])
+        @dog = Dog.find_by(owner_id: params[:id])
       else
         redirect_to "/sessions/new"
       end
