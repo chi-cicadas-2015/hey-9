@@ -1,4 +1,7 @@
 <div class="container">
   <h1 class="center">Your Local Feed</h1>
   <%= render partial: "message", collection: @messages %>
+  <% if @current_user %>
+    <%= render partial: "messages/form" %>
+  <% end %>
 </div>
