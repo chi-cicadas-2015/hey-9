@@ -1,0 +1,12 @@
+<h1>Messages#new</h1>
+<%= form_for(:message, url: new_message_path) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :bio %>
+  <%= f.text_field :bio %>
+  <%= f.label :profile_img %>
+  <%= f.text_field :profile_img %>
+  <%= f.hidden_field :author_id, :value => @user.id %>
+  <%= f.hidden_field :location, :value =>  %>
+  <%= f.submit %>
+<% end %>
