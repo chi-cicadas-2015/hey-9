@@ -68,7 +68,8 @@ ActiveRecord::Schema.define(version: 20151011175749) do
 
   create_table "messages", force: :cascade do |t|
     t.integer  "author_id",  null: false
-    t.json     "location"
+    t.float    "lat"
+    t.float    "lng"
     t.text     "content",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -86,8 +87,8 @@ ActiveRecord::Schema.define(version: 20151011175749) do
     t.string   "username",        null: false
     t.string   "email",           null: false
     t.string   "password_digest", null: false
-    t.string   "lat"
-    t.string   "lng"
+    t.float    "lat"
+    t.float    "lng"
     t.boolean  "receive_notices"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false

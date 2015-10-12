@@ -15,17 +15,16 @@
 //= require_tree .
 
 
-// var railsEnv = $('body').data('env')
+var railsEnv = $('body').data('env')
+console.log(railsEnv)
 // var myLatlng
 $(document).ready(function(){
   $("#location").on("submit", function(event){
     event.preventDefault();
 		$.ajax({
 				method: "POST",
-				url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk",
+				url: "https://www.googleapis.com/geolocation/v1/geolocate?key=",
 				success: function(response) {
-          console.log(response.location)
-          // var data = response;
           var id = $('input[type=hidden]').val()
           $.ajax({
             method: "PUT",

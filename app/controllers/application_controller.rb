@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def location_get
-      location = { :lat => current_user.lat, :lng => current_user.lng}
+      location = [current_user.lat, current_user.lng]
   end
 
   def gen_neighborhood

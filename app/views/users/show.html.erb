@@ -1,7 +1,6 @@
 <div class="dashboard">
 <h1> Welcome <%= @user.username %></h1>
 
-<%= @current_user %>
 <form id = "location">
   <input type="hidden" name="user_id" value="<%= @user.id %>">
   <input type="submit" value="Sync Location" >
@@ -10,3 +9,11 @@
 Sync Location
 </button> -->
 </div>
+<% if @messages %>
+<ul>
+<% @messages.each do |message| %>
+ <li><%= message.content %> </li>
+ <% end %>
+</ul>
+<% end %>
+
