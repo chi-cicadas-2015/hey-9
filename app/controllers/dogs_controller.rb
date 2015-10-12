@@ -45,11 +45,12 @@ class DogsController < ApplicationController
 
   def update
     @user = User.find(session[:user_id])
-    @dog = User.find(params[:id])
-    if @dog.update_attributes(dog_params)
+    @dog = Dog.find(params[:id])
+    p params[:dog]
+    if @dog.update(dog_params)
       redirect_to "/dogs/#{@dog.id}"
     else
-      render :edit
+      redirect_to "/users/#{@user.id}/dogs"
     end
   end
 
