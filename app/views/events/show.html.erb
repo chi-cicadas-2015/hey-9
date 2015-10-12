@@ -5,9 +5,10 @@
 
   <div class="section">
    <% if @event.comments %>
-     <ul>
-
-     </ul>
+     <%= render partial: "events/comments", locals: {commentable: @event} %>
    <% end %>
+   <% if @current_user %>
+      <%= render partial: "events/comments_form", locals: {commentable: @event} %>
+    <% end %>
   </div>
 </div>
