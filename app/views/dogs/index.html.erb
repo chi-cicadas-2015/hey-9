@@ -1,1 +1,7 @@
-<h1><%= @dog.name %></h1>
+<div class="container">
+  <h1 class="center"><%= @user.username %>'s Pack</h1>
+  <%= link_to "Add Dog", new_dog_path %>
+  <% @dogs.each do |dog|%>
+    <%= render partial: "profile", locals: {dog: dog} %>
+  <% end %>
+</div>

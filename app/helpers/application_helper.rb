@@ -1,2 +1,30 @@
 module ApplicationHelper
+
+  def set_user_session(user)
+    session[:user_id] = user.id
+  end
+
+  def current_user
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def require_login
+    redirect_to new_session_path unless current_user
+  end
+
+  def check_friend_status?(follow_dog)
+    @user = User.find(current_user.id)
+    @users_dogs = @user.dogs
+    found = false
+
+    @users_dogs.each do |dog|
+      dog.followings.each do |following|
+        if following.id == follow_dog.id
+          found = true
+        end
+      end
+    end
+
+    return found
+  end
 end

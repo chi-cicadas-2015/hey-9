@@ -1,0 +1,38 @@
+<div class="section">
+  <h1><%= dog.name %></h1>
+  <div class="row">
+    <div class="col s4">
+      <img class="circle responsive-img" src="<%= dog.profile_img%>">
+    </div>
+    <div class="col s8">
+      <ul class="collapsible" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header">Dogs <%= dog.name %> Follows</div>
+        <div class="collapsible-body">
+          <ul class="collection">
+            <% dog.followings.each do |friend| %>
+              <li class="collection-item avatar">
+                <a href="/dogs/<%= friend.id %>">
+                  <img src="<%= friend.profile_img %>" alt="" class="circle">
+                  <span class="title"><%=friend.name%></span>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header">Edit <%= dog.name %></div>
+        <div class="collapsible-body">
+          <%= render partial: "edit", locals: {dog: dog} %>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header">Remove <%= dog.name %> From Pack</div>
+        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+      </li>
+    </ul>
+    </div>
+  </div>
+</div>
+<div class="divider"></div>

@@ -1,6 +1,11 @@
-<h1>This is the Event's show page <h1>
+<h1>This is <%= @user.username %>'s Event<h1>
 
-<p>Event time: <%= @event.event_time %></p>
+<%= render partial: "event", locals: {event: @event} %>
 
-<p>Event description: <%= @event.description %> </p>
-
+<div>
+ <% if @event.comments %>
+   <ul>
+     <%= render partial: "comment", collection: @event.comments %>
+   </ul>       
+ <% end %>
+ </div>

@@ -4,6 +4,7 @@
   <title>Hey9</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
   </script>
+
   <%= stylesheet_link_tag 'application', media: 'all' %>
 
   <%= javascript_include_tag 'application' %>
@@ -58,13 +59,13 @@
         <ul class="left hide-on-med-and-down">
           <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dog Portal<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
           <ul id='dropdown1' class='dropdown-content'>
-            <li><a href="/users/1/dogs">Add Dog</a></li>
+            <li><a href="/users/<%= current_user.id %>/dogs">Add Dog</a></li>
             <li><a href="#!">Manage Dog</a></li>
             <li><a href="#!">Closest Dogs</a></li>
           </ul>
           <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Owner Portal<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
           <ul id='dropdown2' class='dropdown-content'>
-            <li><a href="#!">Messages</a></li>
+            <li><a href="/messages">Messages</a></li>
             <li><a href="#!">Create Events</a></li>
           </ul>
           <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Resources<i class="mdi-navigation-arrow-drop-down right"></i></a></li>

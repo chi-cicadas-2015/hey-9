@@ -27,7 +27,7 @@ class DogsController < ApplicationController
 
   def show
       if session[:user_id] != nil
-        @dog = Dog.find_by(owner_id: params[:id])
+        @dog = Dog.find(params[:id])
       else
         redirect_to "/sessions/new"
       end
@@ -40,16 +40,25 @@ class DogsController < ApplicationController
       else
         redirect_to "/sessions/new"
       end
-
   end
 
   def update
     @user = User.find(session[:user_id])
-    @dog = User.find(params[:id])
-    if @dog.update_attributes(dog_params)
-      redirect_to "/dogs/#{@dog.id}"
+    @dog = Dog.find(params[:id])
+    if request.xhr?
+      @dogs = @user.dogs
+      @dogs.each do |dog|
+        dog.followings << @dog
+        @dog.followers << dog
+      end
+      p @dog.followers
     else
-      render :edit
+
+      if @dog.update(dog_params)
+        redirect_to "/dogs/#{@dog.id}"
+      else
+        redirect_to "/users/#{@user.id}/dogs"
+      end
     end
   end
 

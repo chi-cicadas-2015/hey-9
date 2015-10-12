@@ -1,0 +1,28 @@
+  <div class="card">
+    <ul class="collapsible" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header">
+          <h3 class="truncate"><%= message.content%></h3>
+        </div>
+        <div class="collapsible-body">
+          <div class="textarea"><%= message.content %></div>
+          <% if @current_user %>
+            <%= link_to "Add Comment", message_commentable_index_path(message), id: 'new-comment', remote: true %>
+          <% end %>
+          <% if message.comments %>
+            <ul class="collection">
+              <% message.comments.each do |comment| %>
+                <p>
+                  <%= comment.content %> -
+                  <%= comment.commenter.username %>
+                </p>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+

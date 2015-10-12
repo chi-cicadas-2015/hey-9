@@ -1,11 +1,26 @@
-<h1>Dogs#new</h1>
-<%= form_for(:dog, url: user_dogs_path(@user.id)) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :bio %>
-  <%= f.text_field :bio %>
-  <%= f.label :profile_img %>
-  <%= f.text_field :profile_img %>
-  <%= f.hidden_field :owner_id, :value => @user.id %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <%= form_for(:dog, url: user_dogs_path(@user.id), :html => {:class => "col s12"}) do |f| %>
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.label :bio %>
+          <%= f.text_field :bio %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.label :profile_img %>
+          <%= f.text_field :profile_img %>
+        </div>
+      </div>
+      <%= f.hidden_field :owner_id, :value => current_user.id %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
