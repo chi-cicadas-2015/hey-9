@@ -16,7 +16,7 @@
 //= require_tree .
 
 var railsEnv = $('body').data('env')
-console.log(railsEnv)
+// console.log(railsEnv)
 // var myLatlng
 $(document).ready(function(){
   $('.button-collapse').sideNav({edge: "left"});
@@ -32,14 +32,29 @@ $(document).ready(function(){
           url: "/users/" + id.toString(),
           dataType: "json",
           data: response,
-          // success: function(response) {
+          success: function(response) {
 
-          // }
-        });
-			}
-    });
+            }
+          })
+				}
+	  	})
+    })
+
+  $("#add-friend").on("click", function(event){
+    event.preventDefault();
+    console.log($(this).attr('name'))
+
+    $.ajax({
+      method: "PUT",
+      url: "/dogs/" + $(this).attr('name'),
+      success: function(response) {
+
+      }
+    })
+  })
+
   });
-});
+
 
 
 

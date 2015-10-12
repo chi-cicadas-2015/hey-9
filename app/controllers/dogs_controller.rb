@@ -40,17 +40,25 @@ class DogsController < ApplicationController
       else
         redirect_to "/sessions/new"
       end
-
   end
 
   def update
     @user = User.find(session[:user_id])
     @dog = Dog.find(params[:id])
-    p params[:dog]
-    if @dog.update(dog_params)
-      redirect_to "/dogs/#{@dog.id}"
+    if request.xhr?
+      @dogs = @user.dogs
+      @dogs.each do |dog|
+        dog.followings << @dog
+        @dog.followers << dog
+      end
+      p @dog.followers
     else
-      redirect_to "/users/#{@user.id}/dogs"
+
+      if @dog.update(dog_params)
+        redirect_to "/dogs/#{@dog.id}"
+      else
+        redirect_to "/users/#{@user.id}/dogs"
+      end
     end
   end
 
