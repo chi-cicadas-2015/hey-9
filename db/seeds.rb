@@ -32,7 +32,7 @@ potential_messages =
 
 users = User.create!([
   {username: "larissa", email: "larissa@email.com", password: "password",:lat=> 41.878114,:lng => -87.629798, receive_notices: false},
-  {username: "chris", email: "chris@email.com", password: "password", :lat=> 41.878114,:lng=> -87.629798, receive_notices: false},
+  {username: "chris", email: "chris@email.com", password: "password", :lat=> 0,:lng=> 0, receive_notices: false},
   {username: "alexis", email: "alexis@email.com", password: "password", :lat=> 0,:lng=> 0, receive_notices: false},
   {username: "rodica", email: "rodica@email.com", password: "password", :lat=> 0,:lng=> 0, receive_notices: false},
   {username: "wyeth", email: "wyeth@email.com", password: "password", :lat=> 0,:lng=> 0, receive_notices: false}
@@ -123,7 +123,7 @@ events = Event.create!([
   ])
 
 events.each do |event|
-  rand(2..6).times do
+  15.times do
     EventInvitation.create!(event: event, :invitee => dogs.sample)
   end
 end
@@ -132,6 +132,19 @@ events.each do |event|
   rand(0..6).times do
     event.comments.create!(:commenter => users.sample, :content => comments.sample)
   end
+end
+
+
+messages = 5.times.map do
+  Message.create!(author: users.sample, lat: 41.878114, lng: -87.629798, :content => potential_messages.sample)
+end
+
+messages = 5.times.map do
+  Message.create!(author: users.sample, lat: 0, lng: 1, :content => potential_messages.sample)
+end
+
+messages = 5.times.map do
+  Message.create!(author: users.sample, lat: 2, lng: 0, :content => potential_messages.sample)
 end
 
 messages = 5.times.map do
@@ -150,11 +163,11 @@ end
 #   Message.create!(author: users.sample, lat: 0, lng: 0, :content => potential_messages.sample)
 # end
 
-messages.each do |message|
-  rand(0..6).times do
-    message.comments.create!(:commenter => users.sample, :content => comments.sample)
-  end
-end
+# messages.each do |message|
+#   rand(0..6).times do
+#     message.comments.create!(:commenter => users.sample, :content => comments.sample)
+#   end
+# end
 
 direct_conversations = DirectConversation.create!([
   {subject: "walk now?"},
