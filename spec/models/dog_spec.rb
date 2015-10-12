@@ -18,17 +18,9 @@ describe Dog do
         expect(@dog1.owner).to eq(@user1)
       end
 
-      # it "returns the passive connections of the dog" do
-      #   expect(@dog2.passive_connections).to eq([@dog_connection])
-      # end
-
-      # it "returns the active connections of the dog" do
-      #   expect(@dog1.active_connections).to eq([@dog_connection])
-      # end
-
-      # it "returns the followers of the dog" do
-      #   expect(@dog2.followers).to eq([@dog1])
-      # end
+      it "returns the followers of the dog" do
+        expect(@dog1.followers).to eq([@dog2])
+      end
 
       it "returns the dogs the dog is following" do
         expect(@dog1.followings).to eq([@dog2])
