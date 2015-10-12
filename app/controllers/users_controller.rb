@@ -38,13 +38,14 @@ class UsersController < ApplicationController
 
   def update
      @user = User.find(params[:id])
+     @current_user = current_user
     if request.xhr?
       lat = params[:location][:lat]
       lng = params[:location][:lng]
       @user.update_attributes(lng: lng, lat: lat)
       p @user.lng
+      # @neighborhood = gen_neighborhood
       render :show
-
     else
       if @user.update_attributes(user_params)
           redirect_to "/users/#{@user.id}"

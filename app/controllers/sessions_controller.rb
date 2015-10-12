@@ -4,8 +4,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    p params[:session][:email]
-    p params[:session][:password]
     @user = User.find_by(email: params[:session][:email])
     p @user
     if @user != nil

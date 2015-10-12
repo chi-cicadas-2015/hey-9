@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def current_user
-    @user = User.find_by(id: session[:id])
+    @user = User.find_by(id: session[:user_id])
   end
 
   def location_get
@@ -12,6 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
   def gen_neighborhood
-
+    neighborhood = Geokit::Bounds.from_point_and_radius(location_get, 1)
   end
 end

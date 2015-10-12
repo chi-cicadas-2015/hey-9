@@ -1,8 +1,12 @@
+<div class="dashboard">
 <h1> Welcome <%= @user.username %></h1>
+
+<%= @current_user %>
 <form id = "location">
   <input type="hidden" name="user_id" value="<%= @user.id %>">
   <input type="submit" value="Sync Location" >
 </form>
-<button id="location" type="submit">
+<!-- <button id="location" type="submit">
 Sync Location
-</button>
+</button> -->
+</div>
