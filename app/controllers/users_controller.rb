@@ -14,13 +14,18 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id])
+    @user = current_user
     if @user.id != session[:user_id]
       if session[:user_id]
         redirect_to "/users/#{session[:user_id]}"
       else
         redirect_to "/sessions/new"
       end
+    end
+    if @user.lat && @user.lng
+      @location = gen_neighborhood
+      @messages = Message.within(1, :origin => location_get).all
+      render :show
     end
   end
 
@@ -37,11 +42,24 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-        redirect_to "/users/#{@user.id}"
+     @user = User.find(params[:id])
+     @current_user = current_user
+    if request.xhr?
+      lat = params[:location][:lat]
+      lng = params[:location][:lng]
+      lat = lat.to_f
+      lng = lng.to_f
+      @user.update_attributes(lng: lng, lat: lat)
+      @user.lat
+
+      # @neighborhood = gen_neighborhood
+      render :show
     else
-      render :edit
+      if @user.update_attributes(user_params)
+          redirect_to "/users/#{@user.id}"
+      else
+        render :edit
+      end
     end
   end
 

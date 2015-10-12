@@ -31,11 +31,11 @@ potential_messages =
   ]
 
 users = User.create!([
-  {username: "larissa", email: "larissa@email.com", password: "password", location: {:latitude=> 41.878114,:longitude=> -87.629798}, receive_notices: false},
-  {username: "chris", email: "chris@email.com", password: "password", location: {:latitude=> 41.878114,:longitude=> -87.629798}, receive_notices: false},
-  {username: "alexis", email: "alexis@email.com", password: "password", location: {:latitude=> 41.878114,:longitude=> -87.629798}, receive_notices: false},
-  {username: "rodica", email: "rodica@email.com", password: "password", location: {:latitude=> 41.878114,:longitude=> -87.629798}, receive_notices: false},
-  {username: "wyeth", email: "wyeth@email.com", password: "password", location: {:latitude=> 41.878114,:longitude=> -87.629798}, receive_notices: false}
+  {username: "larissa", email: "larissa@email.com", password: "password",:lat=> 41.878114,:lng => -87.629798, receive_notices: false},
+  {username: "chris", email: "chris@email.com", password: "password", :lat=> 41.878114,:lng=> -87.629798, receive_notices: false},
+  {username: "alexis", email: "alexis@email.com", password: "password", :lat=> 41.878114,:lng=> -87.629798, receive_notices: false},
+  {username: "rodica", email: "rodica@email.com", password: "password", :lat=> 41.878114,:lng=> -87.629798, receive_notices: false},
+  {username: "wyeth", email: "wyeth@email.com", password: "password", :lat=> 41.878114,:lng=> -87.629798, receive_notices: false}
   ])
 
 dogs = Dog.create!([
@@ -135,7 +135,11 @@ events.each do |event|
 end
 
 messages = 25.times.map do
-  Message.create!(author: users.sample, location: {:latitude=> 41.878114,:longitude=> -87.629798}, :content => potential_messages.sample)
+  Message.create!(author: users.sample, lat: 41.878114, lng: -87.629798, :content => potential_messages.sample)
+end
+
+messages = 25.times.map do
+  Message.create!(author: users.sample, lat: 0, lng: 0, :content => potential_messages.sample)
 end
 
 messages.each do |message|
