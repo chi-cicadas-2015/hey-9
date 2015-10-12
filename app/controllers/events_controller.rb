@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   include ApplicationHelper
-  before_action :authorize
+  before_action :require_login
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -37,7 +37,8 @@ class EventsController < ApplicationController
   end
 
   def destroy
-
+    @event.destroy
+    redirect_to current_user
   end
 
   private
