@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
   def new
+    if current_user
+      redirect_to "/users/#{current_user.id}"
+    end
     @user = User.new
   end
 
@@ -14,19 +18,15 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
-    if @user.id != session[:user_id]
-      if session[:user_id]
-        redirect_to "/users/#{session[:user_id]}"
-      else
-        redirect_to "/sessions/new"
+    if session[:user_id] == nil
+       redirect_to "/sessions/new"
+    else
+      @user = current_user
+      if @user.id != params[:id].to_i
+          redirect_to "/users/#{@user.id}"
       end
     end
-    if @user.lat && @user.lng
-      @location = gen_neighborhood
-      @messages = Message.within(1, :origin => location_get).all
-      render :show
-    end
+
   end
 
   def edit
@@ -50,9 +50,7 @@ class UsersController < ApplicationController
       lat = lat.to_f
       lng = lng.to_f
       @user.update_attributes(lng: lng, lat: lat)
-      @user.lat
-
-      # @neighborhood = gen_neighborhood
+      p @user.lat
       render :show
     else
       if @user.update_attributes(user_params)

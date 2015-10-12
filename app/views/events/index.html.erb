@@ -1,2 +1,13 @@
-
-<%= render partial: "event", collection: @events %>
+<div class="container">
+  <a href="">Create an Event</a>
+  <div class="section">
+    <h1 class="center">Your Local Events</h1>
+    <div class="row">
+      <%= render partial: "event", collection: @events %>
+    </div>
+  </div>
+  <h1 class="center">Your Pack's Invitations</h1>
+  <div class="row">
+    <%= render partial: "event", collection: dog_events(current_user.dogs) %>
+  </div>
+</div>
