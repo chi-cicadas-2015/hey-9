@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <%= form_for(:session, :html =>{:class => "col s12"}) do |f| %>
+    <%= form_for(:session, url: sessions_path, :html =>{:class => "col s12"}) do |f| %>
       <div class="row">
         <div class="input-field col s6">
           <%= f.text_field :email %>
@@ -17,3 +17,4 @@
     <% end %>
   </div>
 </div>
+
