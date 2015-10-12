@@ -51,7 +51,8 @@ $(document).ready(function(){
     })
   })
   $("#pet-stores").on("click", function(){
-    console.log($(this).attr('name'))
+    console.log("whatup")
+
 
   });
 

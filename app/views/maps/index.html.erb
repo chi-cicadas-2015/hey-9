@@ -6,7 +6,7 @@
     String.prototype.insertAt=function(index, string) {
   return this.substr(0, index) + string + this.substr(index);
       }
-       var map;
+        var map;
       var coordinates = $("#map").attr('name');
       var count = 0
       var latOrLng
@@ -15,12 +15,22 @@
 
       var lat = array[0].slice(1)
       var lng = array[1].slice(0)
-      lng = lng.slice(1,(lng.length))
+      lng = lng.slice(1,(lng.length - 1))
 
-      lat = parseFloat(lat);
-      lng = parseFloat(lng);
-      console.log(lat);
-      console.log(lng);
+//"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=500&keyword=pet&key=AIzaSyCX0zgiH5c-ezhGHS679V2hWO7rQbenKbg"
+  console.log(lng)
+       $.ajax({
+        method: "POST",
+        dataType: 'json',
+        useDefaultXhrHeader: false,
+        url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=5000&keyword=pet&types=pet_store&key=AIzaSyCX0zgiH5c-ezhGHS679V2hWO7rQbenKbg",
+        success: function(response){
+          console.log(response[0])
+        }
+      })
+
+ lat = parseFloat(lat);
+  lng = parseFloat(lng);
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: lat, lng: lng},
