@@ -10,10 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery2
 //= require jquery_ujs
+//= require materialize-sprockets
 //= require_tree .
-
 
 var railsEnv = $('body').data('env')
 console.log(railsEnv)
@@ -39,7 +39,6 @@ $(document).ready(function(){
 	  	})
 })
   	})
-
 
 
 
