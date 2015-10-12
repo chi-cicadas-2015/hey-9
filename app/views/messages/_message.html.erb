@@ -1,0 +1,14 @@
+ <div>
+    <% @message.content%>
+    <% if @current_user %>   
+      <%= link_to "Add Comment", message_commentable_index_path, id: 'new-comment', remote: true %>
+    <% end %>
+ </div>
+
+ <div>
+ <% if @message.comments %>
+   <ul>
+     <%= render partial: "comment", collection: @message.comments %>
+   </ul>       
+ <% end %>
+ </div>
