@@ -54,6 +54,10 @@ describe User do
       expect(@user.direct_conversations).to eq([@direct_conversation])
     end
 
+    it "should have a vaild factory" do
+      expect(build(:user)).to be_valid
+    end
+
   end
 
 end
