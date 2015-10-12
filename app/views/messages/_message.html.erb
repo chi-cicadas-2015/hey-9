@@ -6,23 +6,15 @@
         </div>
         <div class="collapsible-body">
           <div class="textarea"><%= message.content %></div>
-          <% if @current_user %>
-            <%= link_to "Add Comment", message_commentable_index_path(message), id: 'new-comment', remote: true %>
-          <% end %>
           <% if message.comments %>
-            <ul class="collection">
-              <% message.comments.each do |comment| %>
-                <p>
-                  <%= comment.content %> -
-                  <%= comment.commenter.username %>
-                </p>
-              <% end %>
-            </ul>
+            <%= render partial: "comments/comments", locals: {commentable: message} %>
           <% end %>
-        </div>
-      </li>
-    </ul>
-  </div>
+          <% if @current_user %>
+            <%= render partial: "comments/form", locals: {commentable: message} %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
 
 
 
