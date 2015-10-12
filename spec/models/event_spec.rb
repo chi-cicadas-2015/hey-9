@@ -1,7 +1,12 @@
 require 'rails_helper'
 
 describe Event do
-  context "associations" do
+
+  it "should have a vaild factory" do
+      expect(build(:event)).to be_valid
+  end
+
+  describe "associations" do
     before {
       @user1 = User.create!(username: "larissa", email: "larissa@larissa", password: "123",location: {:latitude=> 41.878114,:longitude=> -87.629798})
       @dog2 = Dog.create!(name: "fluffy", owner: @user1)
@@ -22,8 +27,11 @@ describe Event do
         expect(@event.comments).to eq([@comment])
     end
 
-    it "should have a vaild factory" do
-      expect(build(:event)).to be_valid
+    describe "validations" do
+      it { expect(@event).to validate_presence_of(:creator) }
+      it { expect(@event).to validate_presence_of(:event_start) }
+      it { expect(@event).to validate_presence_of(:event_end) }
+      it { expect(@event).to validate_presence_of(:description) }
     end
 
   end

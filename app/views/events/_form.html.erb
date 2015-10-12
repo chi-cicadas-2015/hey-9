@@ -1,0 +1,19 @@
+<div class="event-form-inputs">
+
+  <%= form_for @event do |f| %>
+
+    <% if @event.errors.any? %>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    <% end %>
+
+    <%= f.text_field :location,  placeholder: "123 Main St, Chicago, IL, 60601" %>
+    <%= f.text_field :event_start, placeholder: "MM/DD/YY" %>
+    <%= f.text_field :event_end, placeholder: "MM/DD/YY" %>
+    <%= f.text_area :description, placeholder: "Enter event description here" %>
+    <%= f.submit "Create event" %>
+
+  <% end %>
+
+</div>
