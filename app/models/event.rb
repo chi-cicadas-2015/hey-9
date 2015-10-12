@@ -4,5 +4,5 @@ class Event < ActiveRecord::Base
 
   belongs_to  :creator, class_name: :User
 
-
+  validates :creator, :event_start, :event_end, :description, presence: true
 end

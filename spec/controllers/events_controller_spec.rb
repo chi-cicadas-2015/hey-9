@@ -46,15 +46,15 @@ describe EventsController do
         expect(response).to redirect_to event_path(assigns[:event])
       end
     end
-    # context "with invalid attributes" do
-    #   it "does not update the contact" do
-    #     expect { post :create, event: attributes_for(:event, event_start: nil) }.not_to change(Event, :count)
-    #   end
-    #   it "re-renders the edit template" do
-    #     post :create, event: attributes_for(:event, event_start: nil)
-    #     expect(response).to render_template :new
-    #   end
-    # end
+    context "with invalid attributes" do
+      it "does not update the contact" do
+        expect { post :create, event: attributes_for(:event, event_start: nil) }.not_to change(Event, :count)
+      end
+      it "re-renders the edit template" do
+        post :create, event: attributes_for(:event, event_start: nil)
+        expect(response).to render_template :new
+      end
+    end
   end
 
   describe "GET #edit" do
