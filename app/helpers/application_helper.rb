@@ -27,4 +27,18 @@ module ApplicationHelper
 
     return found
   end
+
+  def dog_events(dog_collection)
+    @events = []
+    dog_collection.each do |dog|
+      dog.event_invitations.each do |event|
+        found_event = Event.find(event.event_id)
+        if found_event
+          @events << found_event
+        end
+      end
+    end
+
+    return @events
+  end
 end
