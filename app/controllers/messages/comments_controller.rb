@@ -1,7 +1,7 @@
 class Messages::CommentsController < CommentsController
   before_action :set_commentable
 
-  private
+
 
   private
 
