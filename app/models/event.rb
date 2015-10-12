@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  acts_as_mappable
+  
   has_many :event_invitations
   has_many :comments, as: :commentable
 

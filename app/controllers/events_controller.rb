@@ -4,10 +4,8 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
+    @events = Event.all
   end
-
-  # def show
-  # end
 
   def new
     @event = Event.new
@@ -24,8 +22,12 @@ class EventsController < ApplicationController
 
   end
 
-  # def edit
-  # end
+  def show
+    @user = User.find_by(id: @event.creator_id)
+  end
+
+  def edit
+  end
 
   def update
     if @event.update(event_params)
@@ -44,7 +46,9 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.find(params[:id])
+    if current_user
+      @event = Event.find(params[:id])
+    end
   end
 
   def event_params
