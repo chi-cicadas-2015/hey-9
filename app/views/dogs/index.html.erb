@@ -1,1 +1,5 @@
-<h1><%= @dog.name %></h1>
+<div class="container">
+  <% @dogs.each do |dog|%>
+    <%= render partial: "profile", locals: {dog: dog} %>
+  <% end %>
+</div>
