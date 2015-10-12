@@ -1,6 +1,14 @@
-<div>
-<p>Event description: <%= event.description %> </p>
-<p>Event start: <%= event.event_start %></p>
-<p>Event end: <%= event.event_end %></p>
-<p> Event location: <%= event.location %> </p>
+<div class="col s4">
+  <a href="/events/<%= event.id %>">
+    <div class="card red">
+      <p class="center">Event description: </p>
+      <p class="center"><%= event.description %> </p>
+      <p class="center">Event start: </p>
+      <p class="center"><%= event.event_start.strftime('%D') %> @ <%= event.event_start.strftime('%r') %></p>
+      <p class="center">Event end: </p>
+      <p class="center"><%= event.event_end.strftime('%D') %> @ <%= event.event_end.strftime('%r') %></p>
+      <p class="center"> Event location: </p>
+      <p class="center"><%= event.location %> </p>
+    </div>
+  </a>
 </div>
