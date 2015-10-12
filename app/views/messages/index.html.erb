@@ -1,16 +1,3 @@
 <div id="message-index">
-  <div id="area-messages">
-    <% @messages.each do |message| %>
-      <h4><%= message.content %></h4>
-        <ul id="comments">
-          <% message.comments.each do |comment| %>
-            <li><%= comment.content %></li>
-          <% end %>
-          <% if @current_user %>
-          <%= link_to "Add Comment", message_commentable_index_path, id: 'new-comment', remote: true %>
-          <% end %>
-          <div id="task-form"></div>
-        </ul>
-    <% end %>
-  </div>
+  <%= render partial: "message", collection: @messages %>
 </div>
