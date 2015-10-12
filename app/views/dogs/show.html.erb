@@ -1,1 +1,38 @@
-<h1>welcome <%= @dog.name %>!</h1>
+<div class="container">
+  <h1 class="center"><%= @dog.name %></h1>
+  <div class="section">
+    <div class="row">
+      <div class="center">
+        <img src="<%= @dog.profile_img %>" class="circle responsive-img valign">
+      </div>
+      <% if check_friend_status?(@dog) == false %>
+        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="card black">
+      <div class="card-content white-text">
+        <span class="card-title">About Me</span>
+        <p><%= @dog.bio %></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="card black">
+      <div class="card-content white-text">
+        <span class="card-title">Dogs <%= @dog.name %> Follows</span>
+        <ul class="collection">
+          <% @dog.followings.each do |friend| %>
+            <li class="collection-item avatar">
+              <a href="/dogs/<%= friend.id %>">
+                <img src="<%= friend.profile_img %>" alt="" class="circle">
+                <span class="title"><%=friend.name%></span>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

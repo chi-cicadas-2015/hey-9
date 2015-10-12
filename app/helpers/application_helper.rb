@@ -12,4 +12,19 @@ module ApplicationHelper
     redirect_to new_session_path unless current_user
   end
 
+  def check_friend_status?(follow_dog)
+    @user = User.find(current_user.id)
+    @users_dogs = @user.dogs
+    found = false
+
+    @users_dogs.each do |dog|
+      dog.followings.each do |following|
+        if following.id == follow_dog.id
+          found = true
+        end
+      end
+    end
+
+    return found
+  end
 end
