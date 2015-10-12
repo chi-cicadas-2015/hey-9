@@ -15,16 +15,14 @@
 //= require materialize-sprockets
 //= require_tree .
 
-var railsEnv = $('body').data('env')
-console.log(railsEnv)
-// var myLatlng
+
 $(document).ready(function(){
   $('.button-collapse').sideNav({edge: "left"});
   $("#location").on("submit", function(event){
     event.preventDefault();
 		$.ajax({
 			method: "POST",
-			url: "https://www.googleapis.com/geolocation/v1/geolocate?key=",
+			url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk",
 			success: function(response) {
         var id = $('input[type=hidden]').val()
         $.ajax({
@@ -32,14 +30,29 @@ $(document).ready(function(){
           url: "/users/" + id.toString(),
           dataType: "json",
           data: response,
-          // success: function(response) {
+          success: function(response) {
 
-          // }
-        });
-			}
-    });
+            }
+          })
+				}
+	  	})
+    })
+
+  $("#add-friend").on("click", function(event){
+    event.preventDefault();
+    console.log($(this).attr('name'))
+
+    $.ajax({
+      method: "PUT",
+      url: "/dogs/" + $(this).attr('name'),
+      success: function(response) {
+
+      }
+    })
+  })
+
   });
-});
+
 
 
 

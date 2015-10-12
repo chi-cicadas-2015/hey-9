@@ -3,8 +3,19 @@ class MessagesController < ApplicationController
   before_action :require_login
 
   def index
-    # @current_user = current_user
-    @messages = Message.all
+    @user = current_user
+    if @user.lat && @user.lng
+      @messages = []
+      @location = gen_neighborhood
+      @users = User.within(2, :origin => location_get).all
+      @users.each do |user|
+        user.messages.each do |message|
+          @messages << message
+        end
+      end
+      @messages.sort!{|a,b| a.created_at <=> b.created_at}
+      @messages
+    end
   end
 
   def show

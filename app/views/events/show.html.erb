@@ -1,11 +1,13 @@
-<h1>This is <%= @user.username %>'s Event<h1>
+<div class="container">
+  <h1>This is <%= @user.username %>'s Event<h1>
 
-<%= render partial: "event", locals: {event: @event} %>
+  <%= render partial: "event", locals: {event: @event} %>
 
-<div>
- <% if @event.comments %>
-   <ul>
-     <%= render partial: "comment", collection: @event.comments %>
-   </ul>       
- <% end %>
- </div>
+  <div class="section">
+   <% if @event.comments %>
+     <ul>
+
+     </ul>
+   <% end %>
+  </div>
+</div>
