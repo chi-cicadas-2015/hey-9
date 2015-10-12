@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   include ApplicationHelper
   def new
+    if current_user
+      redirect_to "/users/#{current_user.id}"
+    end
     @user = User.new
   end
 
