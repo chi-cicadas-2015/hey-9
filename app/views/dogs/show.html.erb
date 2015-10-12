@@ -7,7 +7,7 @@
       </div>
       <% if check_friend_status?(@dog) == false %>
         <% if @dog.owner_id != current_user.id %>
-          <a class="btn-floating btn-large waves-effect waves-light red" id="add-friend" name="<%= @dog.id %>"><i class="material-icons">add</i></a>
+          <a class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Follow <%= @dog.name %>" id="add-friend" name="<%= @dog.id %>"><i class="mdi-social-plus-one"></i></a>
         <% end %>
       <% end %>
     </div>

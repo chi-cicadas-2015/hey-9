@@ -19,6 +19,7 @@
 $(document).ready(function(){
   $('.button-collapse').sideNav({edge: "left"});
   $('.modal-trigger').leanModal();
+  $('.modal-trigger2').leanModal();
   $("#location").on("submit", function(event){
     event.preventDefault();
 		$.ajax({
