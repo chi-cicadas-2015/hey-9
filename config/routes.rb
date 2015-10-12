@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :direct_conversations, only: [:index, :show, :new, :create] do
-    resources :messages, only: [:create]
+    resources :private_messages, only: [:create]
   end
 
   resources :dogs, except: [:create, :delete] do
