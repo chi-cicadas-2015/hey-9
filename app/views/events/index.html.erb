@@ -5,6 +5,6 @@
   </div>
   <h1 class="center">Your Pack's Invitations</h1>
   <div class="row">
-
+    <%= render partial: "event", collection: dog_events(current_user.dogs) %>
   </div>
 </div>
