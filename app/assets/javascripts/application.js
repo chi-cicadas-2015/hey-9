@@ -57,6 +57,23 @@ $(document).ready(function(){
 
   });
 
+  // http://api.jquery.com/jQuery.noConflict/
+  // var $j = jQuery.noConflict();
+  // $("#event_event_start").datepicker({
+  //   changeMonth: true,
+  //     onSelect: function( selectedDate ) {
+  //       $( "#event_event_end" ).datepicker( "option", "minDate", selectedDate );
+  //     },
+  //     onClose:function(){
+  //       $( "#event_event_end" ).datepicker("show");
+  //     }
+  //   });
+  //   $( "#event_event_end" ).datepicker({
+  //     changeMonth: true,
+  //   });
+
+  // https://github.com/jonthornton/jquery-timepicker
+
 })
 
 
