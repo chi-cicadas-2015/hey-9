@@ -19,6 +19,8 @@
           <%= f.label :password %>
         </div>
       </div>
+          <%= f.file_field :avatar, :value => "upload picture" %>
+  
       <%= f.submit(:class => "btn", :value => "Register")%>
     <% end %>
   </div>

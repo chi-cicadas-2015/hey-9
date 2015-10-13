@@ -3,7 +3,7 @@
   <div class="section">
     <div class="row">
       <div class="center">
-        <img src="<%= @dog.profile_img %>" class="circle responsive-img valign">
+        <%= image_tag @dog.avatar.url(:medium) %>
       </div>
       <% if check_friend_status?(@dog) == false %>
         <% if @dog.owner_id != current_user.id %>

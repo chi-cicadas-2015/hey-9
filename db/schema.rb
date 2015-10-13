@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151011175749) do
+ActiveRecord::Schema.define(version: 20151013164106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,12 +40,15 @@ ActiveRecord::Schema.define(version: 20151011175749) do
   end
 
   create_table "dogs", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.integer  "owner_id",    null: false
+    t.string   "name",                null: false
+    t.integer  "owner_id",            null: false
     t.text     "bio"
-    t.string   "profile_img"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "event_invitations", force: :cascade do |t|
@@ -84,14 +87,18 @@ ActiveRecord::Schema.define(version: 20151011175749) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",        null: false
-    t.string   "email",           null: false
-    t.string   "password_digest", null: false
+    t.string   "username",            null: false
+    t.string   "email",               null: false
+    t.string   "password_digest",     null: false
     t.float    "lat"
     t.float    "lng"
     t.boolean  "receive_notices"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
 end
