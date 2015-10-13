@@ -33,15 +33,6 @@ class DogsController < ApplicationController
       end
   end
 
-  def edit
-      if session[:user_id] != nil
-        @user = User.find(session[:user_id])
-        @dog = Dog.find(params[:id])
-      else
-        redirect_to "/sessions/new"
-      end
-  end
-
   def update
     @user = User.find(session[:user_id])
     @dog = Dog.find(params[:id])
@@ -76,6 +67,6 @@ class DogsController < ApplicationController
   private
 
   def dog_params
-    params.require(:dog).permit(:name, :bio, :profile_img, :owner_id)
+    params.require(:dog).permit(:name, :bio, :picture, :owner_id)
   end
 end

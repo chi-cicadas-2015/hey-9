@@ -28,8 +28,17 @@
         </div>
       </li>
       <li>
-        <div class="collapsible-header">Remove <%= dog.name %> From Pack</div>
-        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+        <div class="collapsible-header"><a class="modal-trigger" href="#modal1">Remove <%= dog.name %> From Pack</a></div>
+        <div class="collapsible-body">
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <h4>Are you sure you want to remove <%= dog.name %> from your pack?</h4>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+          </div>
+        </div>
       </li>
     </ul>
     </div>
