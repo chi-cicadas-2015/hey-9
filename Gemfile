@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 gem 'travis', '~> 1.8.0'
-gem 'coveralls'
+gem 'coveralls', require: false
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -23,20 +22,28 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
+# gem 'dotenv-rails', :groups => [:development, :test]
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+gem 'simplecov', :require => false, :group => :test
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+gem 'geokit-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'materialize-sass'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-  gem 'rspec-rails', '~> 3.0.0'
+  # gem 'byebug'
+  gem 'rspec-rails', '~> 3.0'
+  # %w[rspec rspec-core rspec-expectations rspec-mocks rspec-support].each do |lib|
+  #   gem lib, :git => "git://github.com/rspec/#{lib}.git", :branch => 'master'
+  # end
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'shoulda-matchers'
+  gem 'capybara'
 end
 
 group :development do
@@ -46,4 +53,5 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+
 

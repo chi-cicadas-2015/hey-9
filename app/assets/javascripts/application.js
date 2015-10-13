@@ -13,6 +13,7 @@
 
 //= require jquery
 //= require jquery_ujs
+<<<<<<< HEAD
 //= require cloudinary
 //= require_tree .
 // $(document).ready(function(){
@@ -42,3 +43,52 @@
 // 	console.log(image)
 
 // 	})
+=======
+//= require materialize-sprockets
+//= require_tree .
+
+
+$(document).ready(function(){
+  $('.button-collapse').sideNav({edge: "left"});
+  $("#location").on("submit", function(event){
+    event.preventDefault();
+		$.ajax({
+			method: "POST",
+			url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk",
+			success: function(response) {
+        var id = $('input[type=hidden]').val()
+        $.ajax({
+          method: "PUT",
+          url: "/users/" + id.toString(),
+          dataType: "json",
+          data: response,
+          success: function(response) {
+
+            }
+          })
+				}
+	  	})
+    })
+
+  $("#add-friend").on("click", function(event){
+    event.preventDefault();
+    console.log($(this).attr('name'))
+
+    $.ajax({
+      method: "PUT",
+      url: "/dogs/" + $(this).attr('name'),
+      success: function(response) {
+
+      }
+    })
+  })
+  $("#pet-stores").on("click", function(){
+    console.log($(this).attr('name'))
+
+  });
+
+})
+
+
+
+>>>>>>> master
