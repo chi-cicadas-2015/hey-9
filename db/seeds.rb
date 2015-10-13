@@ -124,7 +124,7 @@ events = Event.create!([
 
 events.each do |event|
   15.times do
-    EventInvitation.create!(event: event, :invitee => dogs.sample)
+    EventInvitation.create!(event: event, :invitee => dogs.sample, :rsvp_status => ["pending", "pending", "pending", "pending", "pending", "accepted", "accepted", "accepted", "declined"].sample)
   end
 end
 

@@ -1,14 +1,6 @@
 <div class="container">
   <h1>This is <%= @user.username %>'s Event<h1>
 
-  <%= render partial: "event", locals: {event: @event} %>
+  <%= render partial: "event_show", locals: {event: @event} %>
 
-  <div class="section">
-   <% if @event.comments %>
-     <%= render partial: "events/comments", locals: {commentable: @event} %>
-   <% end %>
-   <% if @current_user %>
-      <%= render partial: "events/comments_form", locals: {commentable: @event} %>
-    <% end %>
-  </div>
 </div>
