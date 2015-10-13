@@ -15,7 +15,5 @@ class Dog < ActiveRecord::Base
     connections.collect{|connection| connection.dog}
   end
 
-
-
 end
 
