@@ -1,7 +1,9 @@
-<ul>
-  <p>
-    <%= message.user.username %>:
-    <%= message.content %>
-    <br>Sent on: <%= message.created_at %>
-  </p>
-</ul>
+<% if message.content %>
+  <ul>
+    <p>
+      <%= message.user.username %>:
+      <%= message.content %>
+      <br>Sent on: <%= message.created_at %>
+    </p>
+  </ul>
+<% end %>
