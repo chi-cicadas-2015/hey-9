@@ -30,3 +30,7 @@
 <div id="forecast_data">
   <%= @forecast_data %>
 </div>
+
+<div id="twilio-messaging">
+  <%= button_to "Send text message", send_text_message_path() %>
+</div>
