@@ -1,4 +1,6 @@
 module ApplicationHelper
+  require 'typhoeus'
+  require 'json'
 
   def set_user_session(user)
     session[:user_id] = user.id
@@ -10,6 +12,12 @@ module ApplicationHelper
 
   def require_login
     redirect_to new_session_path unless current_user
+  end
+
+  def forecast_data
+    key = Rails.application.secrets.dark_sky_key
+    response = Typhoeus::Request.get("https://api.forecast.io/forecast/#{key}/#{current_user.lat},#{current_user.lng}")
+    JSON.parse(response.body) if response.code == 200
   end
 
   def check_friend_status?(follow_dog)

@@ -1,6 +1,18 @@
 <div class="container">
   <h1 class="center"><%= @user.username %>'s Pack</h1>
-  <%= link_to "Add Dog", new_dog_path %>
+  <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger2" href="#modal2">Add New Dog To Pack</a>
+
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <h4>Add Dog</h4>
+      <%= render partial: "new"%>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
   <% @dogs.each do |dog|%>
     <%= render partial: "profile", locals: {dog: dog} %>
   <% end %>
