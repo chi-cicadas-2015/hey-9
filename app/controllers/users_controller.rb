@@ -22,6 +22,7 @@ class UsersController < ApplicationController
        redirect_to "/sessions/new"
     else
       @user = current_user
+      @forecast_data = forecast_data
       if @user.id != params[:id].to_i
           redirect_to "/users/#{@user.id}"
       end
