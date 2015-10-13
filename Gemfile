@@ -18,6 +18,8 @@ gem 'cloudinary'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+gem "paperclip", "~> 4.3"
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -32,6 +34,8 @@ gem 'geokit-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'materialize-sass'
+
+gem 'aws-sdk', '< 2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

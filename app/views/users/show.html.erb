@@ -20,6 +20,9 @@
     </div>
   </div>
 </div>
+<div>
+  <%= image_tag @user.avatar.url(:thumb) %>
+</div>
 <div class="location_sync">
   <form id = "location">
   <input type="hidden" name="user_id" value="<%= @user.id %>">

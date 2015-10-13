@@ -13,7 +13,7 @@
 
 //= require jquery
 //= require jquery_ujs
-<<<<<<< HEAD
+
 //= require cloudinary
 //= require_tree .
 // $(document).ready(function(){
@@ -43,7 +43,7 @@
 // 	console.log(image)
 
 // 	})
-=======
+
 //= require materialize-sprockets
 //= require_tree .
 
@@ -91,6 +91,3 @@ $(document).ready(function(){
 
 })
 
-
-
->>>>>>> master
