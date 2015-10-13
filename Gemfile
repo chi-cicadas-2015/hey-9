@@ -14,9 +14,11 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+gem 'cloudinary'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
+gem "paperclip", "~> 4.3"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -34,6 +36,8 @@ gem 'geokit-rails'
 gem 'materialize-sass'
 
 gem 'twilio-ruby'
+
+gem 'aws-sdk', '< 2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

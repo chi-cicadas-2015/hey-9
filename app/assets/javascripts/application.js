@@ -10,8 +10,40 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
 //= require jquery_ujs
+
+//= require cloudinary
+//= require_tree .
+// $(document).ready(function(){
+// 	$.cloudinary.config({ cloud_name: 'dj3bgluad', api_key: '255366543837721'})
+
+//     $('#fileupload').fileupload({
+//         dataType: 'json',
+
+//         add: function (e, data) {
+//         	console.log(data);
+//         	console.log("hey");
+//             data.context = $('<button/>').text('Upload')
+//                 .appendTo(document.body)
+//                 .click(function () {
+//                     data.context = $('<p/>').text('Uploading...').replaceAll($(this));
+//                     data.submit();
+//                 });
+//         },
+//         done: function (e, data) {
+//             data.context.text('Upload finished.');
+//         }
+//     });
+
+
+
+// 	var image = $.cloudinary.image(response.public_id + '.jpg', { width: 120, height: 80, crop: 'fill' });
+// 	console.log(image)
+
+// 	})
+
 //= require materialize-sprockets
 //= require_tree .
 
@@ -20,6 +52,8 @@ $(document).ready(function(){
   $('.button-collapse').sideNav({edge: "left"});
   $('.modal-trigger').leanModal();
   $('.modal-trigger2').leanModal();
+  $('.parallax').parallax();
+
   $("#location").on("submit", function(event){
     event.preventDefault();
 		$.ajax({
@@ -58,6 +92,4 @@ $(document).ready(function(){
   });
 
 })
-
-
 
