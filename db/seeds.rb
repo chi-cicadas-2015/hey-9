@@ -39,18 +39,18 @@ users = User.create!([
   ])
 
 dogs = Dog.create!([
-  {name: "Kira", :owner => User.find_by_username("alexis"), bio: "I am a cuddly beagle who loves to chase squirrels.", profile_img: "http://cdn.akc.org/akcdoglovers/beagleThumb.jpg"},
-  {name: "LaSalle", :owner => User.find_by_username("larissa"), bio: "I am an excellent pitbull mix who looks like a chocolate lab and loves to play with other dogs.", profile_img: "http://cdn.akc.org/akcdoglovers/ChesapeakeBayRetThumb.jpg"},
-  {name: "Hoss", :owner => User.find_by_username("wyeth"), bio: "I am a big sweetheart, a bloodhound who's always on the chase.", profile_img: "http://cdn.akc.org/akcdoglovers/bloodhoundThumb.jpg"},
-  {name: "Sophie", :owner => User.find_by_username("rodica"), bio: "I am a friendly and sociable mastiff.", profile_img: "http://cdn.akc.org/akcdoglovers/mastiffThumb.jpg"},
-  {name: "Stella", :owner => User.find_by_username("chris"), bio: "I am playful and energetic staffordshire terrier.", profile_img: "http://cdn.akc.org/akcdoglovers/amStaffTerThumb.jpg"},
-  {name: "Fluffy", :owner => users.sample, bio: "I'm a powerful but good-natured chow-chow.", profile_img: "http://cdn.akc.org/akcdoglovers/chowChowThumb.jpg"},
-  {name: "Batman", :owner => users.sample, bio: "I am a squeaky and excitable boston terrier. I love tennis balls and being carried around.", profile_img: "http://cdn.akc.org/akcdoglovers/bostonTerThumb.jpg"},
-  {name: "BeBop", :owner => users.sample, bio: "I am happy bull terrier who like friends and fun.", profile_img: "http://cdn.akc.org/akcdoglovers/bullTerThumb.jpg"},
-  {name: "Rufus", :owner => users.sample, bio: "Don't take my cranky demeanor personally; deep down I'm just an old boxer dog who needs a little extra time to get to know you.", profile_img: "http://cdn.akc.org/akcdoglovers/boxerThumb.jpg"},
-  {name: "Butters", :owner => users.sample, bio: "I am a sweet and loveable corgi who loves to go for walks.", profile_img: "http://cdn.akc.org/pembrokewelshcorgiThumb.jpg"},
-  {name: "Poppy", :owner => users.sample, bio: "I look like a miniature version of my friend Fluffy, but I'm a pomeranian.", profile_img: "http://cdn.akc.org/akcdoglovers/pomeranianThumb.jpg"},
-  {name: "Linnie-Belle", :owner => users.sample, bio: "I am a shy and skittish cocker spaniel, who nonetheless wants to make friends!", profile_img: "http://cdn.akc.org/akcdoglovers/cockerThumb.jpg"}
+  {name: "Kira", :owner => User.find_by_username("alexis"), bio: "I am a cuddly beagle who loves to chase squirrels."},
+  {name: "LaSalle", :owner => User.find_by_username("larissa"), bio: "I am an excellent pitbull mix who looks like a chocolate lab and loves to play with other dogs."},
+  {name: "Hoss", :owner => User.find_by_username("wyeth"), bio: "I am a big sweetheart, a bloodhound who's always on the chase."},
+  {name: "Sophie", :owner => User.find_by_username("rodica"), bio: "I am a friendly and sociable mastiff."},
+  {name: "Stella", :owner => User.find_by_username("chris"), bio: "I am playful and energetic staffordshire terrier."},
+  {name: "Fluffy", :owner => users.sample, bio: "I'm a powerful but good-natured chow-chow."},
+  {name: "Batman", :owner => users.sample, bio: "I am a squeaky and excitable boston terrier. I love tennis balls and being carried around."},
+  {name: "BeBop", :owner => users.sample, bio: "I am happy bull terrier who like friends and fun."},
+  {name: "Rufus", :owner => users.sample, bio: "Don't take my cranky demeanor personally; deep down I'm just an old boxer dog who needs a little extra time to get to know you."},
+  {name: "Butters", :owner => users.sample, bio: "I am a sweet and loveable corgi who loves to go for walks."},
+  {name: "Poppy", :owner => users.sample, bio: "I look like a miniature version of my friend Fluffy, but I'm a pomeranian."},
+  {name: "Linnie-Belle", :owner => users.sample, bio: "I am a shy and skittish cocker spaniel, who nonetheless wants to make friends!"}
   ])
 
 dog_connections = DogConnection.create!([
