@@ -35,6 +35,8 @@ gem 'geokit-rails'
 # gem 'capistrano-rails', group: :development
 gem 'materialize-sass'
 
+gem 'twilio-ruby'
+
 gem 'aws-sdk', '< 2.0'
 
 group :development, :test do

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get "/" => 'home#index'
+  post "/send_text_message" =>"text_messages#send_text_message"
 
   resources :sessions, only: [:new, :create, :destroy]
 
