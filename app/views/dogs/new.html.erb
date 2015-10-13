@@ -17,10 +17,14 @@
         <div class="input-field col s6">
           <%= f.label :profile_img %>
           <%= f.text_field :profile_img %>
+          <%= f.file_field :picture :value => "upload picture" %>
         </div>
       </div>
       <%= f.hidden_field :owner_id, :value => current_user.id %>
       <%= f.submit %>
     <% end %>
+    <%= form_for @person do |f| %>
+  
+<% end %>
   </div>
 </div>
