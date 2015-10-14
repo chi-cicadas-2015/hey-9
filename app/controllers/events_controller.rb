@@ -19,7 +19,7 @@ class EventsController < ApplicationController
       end
        @events.sort!{|a,b| a.created_at <=> b.created_at}
     end
-    p @events
+
   end
 
   def new
@@ -72,6 +72,10 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     redirect_to current_user
+  end
+
+  def event_data
+
   end
 
   private
