@@ -1,6 +1,3 @@
-
-   <div  id="map" name="<%= @location_array %>">
-</div>
 <% @local_dogs.each_with_index do |dog, index| %>
 <% @user = User.find_by(id: dog.owner_id) %>
   <h4><%= @alphabet[index]%>. <%= dog.name %> </h4>

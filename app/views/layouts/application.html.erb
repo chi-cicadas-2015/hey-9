@@ -32,7 +32,7 @@
                 <a class="collapsible-header">Dog Portal<i class="mdi-navigation-arrow-drop-down"></i></a>
                 <div class="collapsible-body">
                   <ul>
-                    <li><a href="/users/1/dogs">Manage Dogs</a></li>
+                    <li><a href="/users/<%= current_user.id %>/dogs">Manage Dogs</a></li>
                   </ul>
                 </div>
               </li>
@@ -44,8 +44,9 @@
                 <a class="collapsible-header">Owner Portal<i class="mdi-navigation-arrow-drop-down"></i></a>
                 <div class="collapsible-body">
                   <ul>
-                    <li><a href="#!">Messages</a></li>
-                    <li><a href="#!">Create Events</a></li>
+                    <li><a href="/messages">Messages</a></li>
+                    <li><a href="/direct_conversations">Private Messages</a></li>
+                    <li><a href="/events">Events</a></li>
                   </ul>
                 </div>
               </li>
@@ -57,9 +58,9 @@
                 <a class="collapsible-header">Resources<i class="mdi-navigation-arrow-drop-down"></i></a>
                 <div class="collapsible-body">
                   <ul>
-                    <li><a href="/maps" id="pet-stores" name="get-map">Pet Stores</a></li>
-                    <li><a href="#!">Dog Parks</a></li>
-                    <li><a href="#!">Vets</a></li>
+                    <li><a href="/maps" name="get-map">Pet Stores</a></li>
+                    <li><a href="/maps">Dog Parks</a></li>
+                    <li><a href="/maps">Vets</a></li>
                   </ul>
                 </div>
               </li>

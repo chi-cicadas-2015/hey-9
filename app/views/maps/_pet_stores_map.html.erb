@@ -1,6 +1,4 @@
-<div  id="map" name="<%= @location_array %>">
-</div>
-<% @store_names_display.each_with_index do |store, index| %>
+<% @store_names.each_with_index do |store, index| %>
   <h3><%= @alphabet[index]%>. <%= store %> </h3>
   <p><%= @store_addresses[index] %></p>
   <%= @pic %>
