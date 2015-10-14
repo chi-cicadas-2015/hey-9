@@ -7,7 +7,6 @@ class EventsController < ApplicationController
     @user = User.find_by(id: current_user.id)
     @events = []
     if @user.lat && @user.lng
-      p @user
       @location = gen_neighborhood
       @users = User.within(2, :origin => location_get).all
       @users.each do |user|
@@ -17,7 +16,6 @@ class EventsController < ApplicationController
       end
        @events.sort!{|a,b| a.created_at <=> b.created_at}
     end
-    p @events
   end
 
   def new
@@ -65,7 +63,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:location, :event_start, :event_end, :description)
+    params.require(:event).permit(:location, :event_start, :event_end, :description, :public)
   end
 
 end

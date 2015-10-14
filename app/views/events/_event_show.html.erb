@@ -26,36 +26,14 @@
     <% end %>
     <h5>Attending</h5>
     <div class="row">
-      <% event.event_invitations.each do |invitee|%>
-        <% dog = Dog.find(invitee.invitee_id) %>
-        <% if invitee.rsvp_status == "accepted" %>
+      <% event.invitees do |dog|%>
           <div class="col s8 m4 l2 green-text">
             <h6><%= dog.name %></h6>
           </div>
         <% end %>
       <% end %>
     </div>
-    <h5>Invited</h5>
-    <div class="row">
-      <% event.event_invitations.each do |invitee|%>
-        <% dog = Dog.find(invitee.invitee_id) %>
-        <% if invitee.rsvp_status == "pending" %>
-          <div class="col s8 m6 l2 amber-text">
-            <h6><%= dog.name %></h6>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-    <h5>Not Attending</h5>
-    <div class="row">
-      <% event.event_invitations.each do |invitee|%>
-        <% dog = Dog.find(invitee.invitee_id) %>
-        <% if invitee.rsvp_status == "declined" %>
-          <div class="col s8 m6 l2 red-text">
-            <h6><%= dog.name %></h6>
-          </div>
-        <% end %>
-      <% end %>
+    
     </div>
   </div>
 </div>

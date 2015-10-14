@@ -60,13 +60,14 @@ ActiveRecord::Schema.define(version: 20151013164106) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer  "creator_id",  null: false
+    t.integer  "creator_id",                  null: false
     t.string   "location"
-    t.datetime "event_start", null: false
-    t.datetime "event_end",   null: false
-    t.text     "description", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "event_start",                 null: false
+    t.datetime "event_end",                   null: false
+    t.text     "description",                 null: false
+    t.boolean  "public",      default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "messages", force: :cascade do |t|
