@@ -47,7 +47,6 @@
 //= require materialize-sprockets
 //= require_tree .
 
-
 $(document).ready(function(){
   $('.button-collapse').sideNav({edge: "left"});
   $('.modal-trigger').leanModal();
@@ -63,24 +62,23 @@ $(document).ready(function(){
   }
 
 
-  $("#location").on("submit", function(event){
+  $("#location_sync").on("click", function(event){
     event.preventDefault();
-		$.ajax({
-			method: "POST",
-			url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk",
-			success: function(response) {
-        var id = $('input[type=hidden]').val()
+    $.ajax({
+      method: "POST",
+      url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk",
+      success: function(response) {
+
         $.ajax({
-          method: "PUT",
-          url: "/users/" + id.toString(),
-          dataType: "json",
+          method: "POST",
+          url: "/sessions",
           data: response,
           success: function(response) {
 
             }
           })
-				}
-	  	})
+        }
+      })
     })
 
   $("#add-friend").on("click", function(event){
