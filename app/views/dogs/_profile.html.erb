@@ -2,7 +2,7 @@
   <h1><%= dog.name %></h1>
   <div class="row">
     <div class="col s4">
-      <img class="circle responsive-img" src="<%= dog.profile_img%>">
+     <%= image_tag dog.avatar.url(:medium) %>
     </div>
     <div class="col s8">
       <ul class="collapsible" data-collapsible="accordion">

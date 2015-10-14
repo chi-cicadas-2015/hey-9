@@ -9,6 +9,15 @@ class Dog < ActiveRecord::Base
 
   belongs_to  :owner, class_name: :User
 
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" },  :storage => :s3,
+   :bucket => 'imageuploadstorage',
+   :url => ':s3_domain_url',
+   :path => "/pieces/:id/:style/:basename.:extension",
+   :s3_credentials => "#{Rails.root}/config/aws.yml"
+
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
+
   def followers
     followed = Dog.find_by_id(self.id)
     connections = DogConnection.where(:following => followed)

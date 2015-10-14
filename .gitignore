@@ -16,6 +16,7 @@ pickle-email-*.html
 # TODO Comment out these rules if you are OK with secrets being uploaded to the repo
 config/initializers/secret_token.rb
 
+
 ## Environment normalisation:
 /.bundle
 /vendor/bundle
@@ -33,3 +34,7 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
+.env
+
+# Ignore the .DS_Store
+.DS_Store

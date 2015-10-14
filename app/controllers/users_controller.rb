@@ -22,6 +22,7 @@ class UsersController < ApplicationController
        redirect_to "/sessions/new"
     else
       @user = current_user
+      @forecast_data = forecast_data
       if @user.id != params[:id].to_i
           redirect_to "/users/#{@user.id}"
       end
@@ -75,6 +76,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-      params.require(:user).permit(:username, :email, :password)
+      params.require(:user).permit(:username, :email, :password, :avatar)
   end
 end

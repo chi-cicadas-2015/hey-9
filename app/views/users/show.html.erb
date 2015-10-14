@@ -20,6 +20,9 @@
     </div>
   </div>
 </div>
+<div>
+  <%= image_tag @user.avatar.url(:thumb) %>
+</div>
 <div class="location_sync">
   <form id = "location">
   <input type="hidden" name="user_id" value="<%= @user.id %>">
@@ -27,3 +30,10 @@
 </form>
 </div>
 
+<div id="forecast_data">
+  <%= @forecast_data %>
+</div>
+
+<div id="twilio-messaging">
+  <%= button_to "Send text message", send_text_message_path() %>
+</div>
