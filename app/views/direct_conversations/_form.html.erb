@@ -1,0 +1,18 @@
+<h3>Start a new direct conversation:</h3>
+<div>
+  <%= form_for direct_conversation do |f| %>
+    <div class="form-group">
+      <%= f.label "Recipient Username(s)" %><br/>
+      <%= f.text_area :recipient, class: "form-control", placeholder: "Who are you sending a message to?" %>
+      <%= f.label "Subject" %><br/>
+      <%= f.text_area :subject, class: "form-control", placeholder: "Subject of your conversation" %>
+    </div>
+      <%= f.fields_for :private_message do |u| %>
+      <div class="field">
+        <%= u.label "Message" %><br/>
+        <%= u.text_area :content, class: "form-control", placeholder: "Write a new message" %>
+      </div>
+      <% end %>
+    <%= f.submit class: "btn btn-primary", value: "Send message" %>
+  <% end %>
+</div>
