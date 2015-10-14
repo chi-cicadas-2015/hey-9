@@ -1,0 +1,123 @@
+
+   <div  id="map" name="<%= @location_array %>">
+</div>
+<% @local_dogs.each_with_index do |dog, index| %>
+<% @user = User.find_by(id: dog.owner_id) %>
+  <h4><%= @alphabet[index]%>. <%= dog.name %> </h4>
+  <a href="/dogs/<%= dog.id %>" ><p>Visit Dog Profile!</p></a>
+  <%= image_tag dog.avatar.url(:medium) %>
+    <h5> Owner: <%= @user.username %> </h5>
+    <%= image_tag @user.avatar.url(:thumb) %>
+  <p><%= dog.bio %></p>
+
+<% end %>
+  <h3></h3>
+    <div id="users-lat", name="<%= @users_lat %>">
+    </div>
+    <div id="users-lng" name="<%= @users_lng %>"></div>
+
+  <script type="text/javascript">
+
+    // $(document).ready(function(){
+
+    // })
+    // var map;
+    //   var lat = <%= @user.lat %>;
+    //   var lng = <%= @user.lng %>;
+    //   var usersLat = $("#users-lat").attr('name');
+
+    //   var usersLng = $("#users-lng").attr('name');
+    //   var usersLat = usersLat.slice(0)
+
+    //   var usersLat = usersLat.slice(1, (usersLat.length - 1))
+
+    //   usersLat = usersLat.split(",")
+    //   var usersLng = usersLng.slice(1)
+
+    //   var usersLng = usersLng.slice(1, (usersLng.length - 1))
+
+    //   usersLng = usersLng.split(",")
+    //   console.log(usersLat[0])
+    //   usersLat[0] = parseFloat(usersLat[0]);
+    //   console.log(usersLat)
+    //   console.log(usersLng.length)
+
+
+
+function initMap() {
+  var lat;
+  var lng;
+  var usersLat = [];
+  var usersLng = [];
+  $.ajax({
+        url: "/maps/data",
+        dataType: "json",
+        success: function(json_response) {
+
+          usersLat = json_response.users_lat
+         usersLng = json_response.users_lng
+          lat = json_response.my_lat
+
+          lng = json_response.my_lng
+          console.log(lat)
+          console.log(lng)
+    for(var i = 0; i < usersLng.length; i++) {
+        usersLat[i] = parseFloat(usersLat[i]);
+        usersLng[i] = parseFloat(usersLng[i]);
+    }
+          lat = parseFloat(lat);
+          lng = parseFloat(lng);
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: lat, lng: lng},
+            zoom: 14
+          });
+           var cityCircle = new google.maps.Circle({
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      map: map,
+      center: {lat: lat, lng: lng},
+      radius: 40
+    });
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var labelIndex = 0;
+   var markers = []
+   markers.length = usersLng.length
+   var contentString = []
+   contentString.length = usersLng.length
+
+   for(var i = 0; i < usersLat.length; i++) {
+      markers[i] = new google.maps.Marker({
+    map: map,
+    position: {lat: usersLat[i], lng: usersLng[i]},
+    label: labels[labelIndex++ % labels.length]
+    // title: localDogs[i]
+  });
+       }
+          // {
+          // lat:  45.23423423,
+          // lng:35.34232423,
+          // userslat: [34.423432, 42.23423],
+          // userslng: [34.23423423, 45.23423432]
+          // }
+          //do shit with the json that came back to load the map
+        }
+      });
+
+
+
+
+
+
+
+
+}
+
+
+    </script>
+
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs&callback=initMap">
+    </script>

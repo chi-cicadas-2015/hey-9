@@ -28,7 +28,8 @@ Rails.application.routes.draw do
     resources :event_inventations, only: [:create, :destroy]
   end
 
-  resources :maps
+  resources :maps, only: [:index]
+  get '/maps/data' => 'maps#data'
 
   # get 'users/new' => 'users#new'
 

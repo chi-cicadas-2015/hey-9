@@ -62,12 +62,14 @@ ActiveRecord::Schema.define(version: 20151013164106) do
   create_table "events", force: :cascade do |t|
     t.integer  "creator_id",                  null: false
     t.string   "location"
-    t.datetime "event_start",                 null: false
-    t.datetime "event_end",                   null: false
-    t.text     "description",                 null: false
-    t.boolean  "public",      default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+
+    t.float    "lat"
+    t.float    "lng"
+    t.datetime "event_start", null: false
+    t.datetime "event_end",   null: false
+    t.text     "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -88,14 +90,14 @@ ActiveRecord::Schema.define(version: 20151013164106) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",            null: false
-    t.string   "email",               null: false
-    t.string   "password_digest",     null: false
-    t.float    "lat"
-    t.float    "lng"
+    t.string   "username",                                      null: false
+    t.string   "email",                                         null: false
+    t.string   "password_digest",                               null: false
+    t.decimal  "lat",                 precision: 20, scale: 16
+    t.decimal  "lng",                 precision: 20, scale: 16
     t.boolean  "receive_notices"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
