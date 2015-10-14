@@ -19,7 +19,10 @@
     <div class="row">
       <%= f.text_area :description, placeholder: "Enter event description here", :class => "materialize-textarea" %>
     </div>
-      <%= check_box_tag(:public) %>
+     <div class="row">
+      <%= f.check_box :public %>  
+      <%= f.label "public" %>
+    </div>
       <%= f.submit "Create event", :class => "btn" %>
   <% end %>
   </div>

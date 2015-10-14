@@ -46,6 +46,7 @@ module ApplicationHelper
         end
       end
     end
+    @events
   end
 
   def find_friends

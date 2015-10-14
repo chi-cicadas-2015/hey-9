@@ -23,15 +23,26 @@
   <div class="col s12 l4">
     <% if dog_events(current_user.dogs).include?(event) %>
       <a class="btn-floating btn-large waves-effect waves-light red"></a>
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">+</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+  </div>
+        
     <% end %>
     <h5>Attending</h5>
     <div class="row">
-      <% event.invitees do |dog|%>
-          <div class="col s8 m4 l2 green-text">
-            <h6><%= dog.name %></h6>
-          </div>
+      <div class="col s8 m4 l2 green-text">
+        <% event.invitees.uniq.each do |dog|%>
+            <h6><%= link_to "#{dog.name}", dog_path(dog) %></h6>
         <% end %>
-      <% end %>
+      </div>
     </div>
     
     </div>
