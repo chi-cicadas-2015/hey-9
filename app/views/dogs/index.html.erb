@@ -1,13 +1,58 @@
 <div class="container">
   <h1 class="center"><%= @user.username %>'s Pack</h1>
-  <a class="waves-effect waves-light btn modal-trigger2" href="#modal2">Add New Dog To Pack</a>
-  <div id="modal2" class="modal">
-    <div class="modal-content">
-      <h4>Add Dog</h4>
-      <%= render partial: "new"%>
+  <div class="row">
+    <div class="col s12 m6 l4">
+      <div class="card" id="weather-card">
+        <div class="center">
+          <p>Current Weather</p>
+          <p id="summary"><%= @forecast_data["currently"]["summary"] %></p>
+          <p>Current Temp: <%= @forecast_data["currently"]["temperature"].to_i %> &deg;F</p>
+          <p>Chance of Rain: <%= @forecast_data["currently"]["precipProbability"]%>&#37;</p>
+        </div>
+      </div>
     </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    <div class="col s12 m6 l4">
+      <div class="card" id="weather-card2">
+        <div class="center">
+          <% time = DateTime.strptime(@forecast_data["hourly"]["data"][1]["time"].to_s, '%s')%>
+          <% time = time.in_time_zone(@forecast_data["timezone"])%>
+          <p><%= time.strftime('%I:%M%p')%> Forecast:</p>
+          <p id="summary"><%= @forecast_data["hourly"]["data"][1]["summary"] %></p>
+          <p>Temp: <%= @forecast_data["hourly"]["data"][1]["temperature"].to_i %> &deg;F</p>
+          <p>Chance of Rain: <%= @forecast_data["hourly"]["data"][1]["precipProbability"] %>&#37;</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <% if @forecast_data["alert"] %>
+      <% @forecast_data["alert"].each do |alert|%>
+        <div class="col s12 m6 l4">
+          <div class="card red" id="weather-card3">
+            <% time = DateTime.strptime(alert["expires"].to_s, '%s')%>
+            <% time = time.in_time_zone(@forecast_data["timezone"])%>
+            <p>EMERGENCY ALERT:</p>
+            <p><%= @forecast_data["alert"]["title"] %></p>
+            <p>Expires at: <%= time.strftime('%r')%></p>
+            <p>Description: <%= @forecast_data["alert"]["description"].to_i %> &deg;F</p>
+            <a href="<%= @forecast_data["alert"]["uri"] %>">More Information</a>
+          </div>
+        </div>
+        <% end %>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col s12 center">
+      <a class="waves-effect waves-light btn modal-trigger2" href="#modal2">Add New Dog To Pack</a>
+    </div>
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <h4>Add Dog</h4>
+        <%= render partial: "new"%>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+      </div>
     </div>
   </div>
   <% @dogs.each do |dog|%>

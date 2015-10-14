@@ -31,7 +31,8 @@ Rails.application.routes.draw do
     # resources :commentable, only: [:create]
   end
 
-  resources :maps
+  resources :maps, only: [:index]
+  get '/maps/data' => 'maps#data'
 
 
   # concern :commentable do

@@ -1,6 +1,9 @@
 class DogsController < ApplicationController
+  include ApplicationHelper
+
   def index
      if session[:user_id] != nil
+        @forecast_data = forecast_data
         @user = User.find(session[:user_id])
         @dogs = @user.dogs
       else
