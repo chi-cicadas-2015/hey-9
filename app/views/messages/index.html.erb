@@ -4,5 +4,10 @@
     <%= react_component("MessageBox",
                         {presenter: @presenter.to_json} ) %>
 
+    <%= render partial: "message", collection: @messages %>
+  <% if @current_user %>
+    <%= render partial: "messages/form" %>
+  <% end %>
+
   </div>
 </div>
