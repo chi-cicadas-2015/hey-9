@@ -55,6 +55,14 @@ $(document).ready(function(){
   $('.parallax').parallax();
   $('.datepicker').pickadate({selectMonths: true, selectYears: 15});
 
+  var summary = $("#summary").text();
+
+  if(summary.includes("Clear")){
+    $("#weather-card").addClass("yellow");
+    Materialize.fadeInImage("#weather-card");
+  }
+
+
   $("#location").on("submit", function(event){
     event.preventDefault();
 		$.ajax({
