@@ -14,4 +14,5 @@ class ApplicationController < ActionController::Base
   def gen_neighborhood
     neighborhood = Geokit::Bounds.from_point_and_radius(location_get, 1)
   end
+
 end

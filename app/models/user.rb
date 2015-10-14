@@ -18,6 +18,12 @@ class User < ActiveRecord::Base
    :s3_credentials => "#{Rails.root}/config/aws.yml"
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-  
+
   has_secure_password
+
+  def self.find_users(string)
+    usernames = string.split(', ')
+    usernames.map!{ |username|
+      self.find_by_username(username)}
+  end
 end

@@ -35,6 +35,8 @@ gem 'geokit-rails'
 # gem 'capistrano-rails', group: :development
 gem 'materialize-sass'
 
+gem 'twilio-ruby'
+
 gem 'aws-sdk', '< 2.0'
 
 group :development, :test do
@@ -57,5 +59,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+
+gem "pry", group: [:development, :test]
 
 
