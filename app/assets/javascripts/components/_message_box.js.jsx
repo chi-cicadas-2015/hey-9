@@ -22,6 +22,7 @@ var MessageBox = React.createClass({
         <hr />
         <h2>Add a message:</h2>
         <MessageForm form={ this.state.form } onMessageSubmit={ this.handleMessageSubmit } />
+
       </div>
     );
   }

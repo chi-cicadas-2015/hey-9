@@ -3,9 +3,17 @@ class MessagesController < ApplicationController
   before_action :require_login
 
   def index
-
+    @presenter_messages = []
+    Message.last(5).each do |message|
+      p "MESSAGE content:"
+      p message.content
+      p "MESSAGE author:"
+      p message.author.username
+      message_hash = { content: message.content, author: message.author.username }
+      @presenter_messages<< message_hash
+    end
     @presenter = {
-      messages: Message.last(5),
+      messages: @presenter_messages,
       form: {
         action: messages_path,
         :csrf_param => request_forgery_protection_token,
