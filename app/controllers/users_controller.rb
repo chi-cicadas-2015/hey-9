@@ -22,6 +22,7 @@ class UsersController < ApplicationController
        redirect_to "/sessions/new"
     else
       @user = current_user
+       p "**************#{@user.lng}"
       @forecast_data = forecast_data
       if @user.id != params[:id].to_i
           redirect_to "/users/#{@user.id}"
@@ -48,11 +49,13 @@ class UsersController < ApplicationController
     if request.xhr?
       lat = params[:location][:lat]
       lng = params[:location][:lng]
-      p "******#{lat}"
+
       lat = lat.to_f
+      p lat
       lng = lng.to_f
+
       @user.update_attributes(lng: lng, lat: lat)
-      p @user.lat
+
       render :show
     else
       if @user.update_attributes(user_params)

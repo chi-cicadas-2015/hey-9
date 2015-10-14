@@ -1,99 +1,76 @@
-<div  id="map" name="<%= @location_array %>">
+
+   <div  id="map" name="<%= @location_array %>">
 </div>
-<% @store_names_display.each_with_index do |store, index| %>
-  <h3><%= @alphabet[index]%>. <%= store %> </h3>
-  <p><%= @store_addresses[index] %></p>
+<% @local_dogs.each_with_index do |dog, index| %>
+<% @user = User.find_by(id: dog.owner_id) %>
+  <h4><%= @alphabet[index]%>. <%= dog.name %> </h4>
+  <%= image_tag dog.avatar.url(:medium) %>
+    <h5> Owner: <%= @user.username %> </h5>
+    <%= image_tag @user.avatar.url(:thumb) %>
+  <p><%= dog.bio %></p>
+
 <% end %>
   <h3></h3>
-    <div id="store-names", name="<%= @store_names %>">
+    <div id="users-lat", name="<%= @users_lat %>">
     </div>
-    <div id="store-lats", name="<%= @store_lats %>">
-    </div>
-     <div id="store-lngs", name="<%= @store_lngs %>">
-    </div>
-    <div id="store-addresses", name="<%= @store_addresses %>">
-    </div>
+    <div id="users-lng" name="<%= @users_lng %>"></div>
 
+  <script type="text/javascript">
 
-    <script type="text/javascript">
-    String.prototype.insertAt=function(index, string) {
-  return this.substr(0, index) + string + this.substr(index);
-      }
-      var map;
-      var coordinates = $("#map").attr('name');
-      var array = coordinates.split(",");
-      var lat = array[0].slice(1)
-      var lng = array[1].slice(0)
-      lng = lng.slice(1,(lng.length - 1))
-      lat = parseFloat(lat);
-      lng = parseFloat(lng);
+    // $(document).ready(function(){
 
-      var storeNames = $("#store-names").attr('name');
-      var storeNames = storeNames.slice(0)
-      var storeNames = storeNames.slice(1, (storeNames.length - 1))
-      storeNames = storeNames.split(",")
+    // })
+    // var map;
+    //   var lat = <%= @user.lat %>;
+    //   var lng = <%= @user.lng %>;
+    //   var usersLat = $("#users-lat").attr('name');
 
-      var storeLats = $("#store-lats").attr('name');
-      var storeLats = storeLats.slice(0)
-      var storeLats = storeLats.slice(1, (storeLats.length - 1))
-      storeLats = storeLats.split(",")
+    //   var usersLng = $("#users-lng").attr('name');
+    //   var usersLat = usersLat.slice(0)
 
-      var storeLngs = $("#store-lngs").attr('name');
-      var storeLngs = storeLngs.slice(0)
-      var storeLngs = storeLngs.slice(1, (storeLngs.length - 1))
-      storeLngs = storeLngs.split(",")
+    //   var usersLat = usersLat.slice(1, (usersLat.length - 1))
 
-      for(var i = 0; i < storeLats.length; i++) {
-        storeLats[i] = parseFloat(storeLats[i])
-         storeLngs[i] = parseFloat(storeLngs[i])
-      }
-      console.log(storeLats)
+    //   usersLat = usersLat.split(",")
+    //   var usersLng = usersLng.slice(1)
 
-      var storeAddresses = $("#store-addresses").attr('name');
-      var storeAddresses = storeAddresses.slice(0)
-      var storeAddresses = storeAddresses.slice(1, (storeAddresses.length - 1))
-      storeAddresses = storeAddresses.split(",")
-      addressesArray = []
-      for(var i = 0; i < storeAddresses.length - 1; i+=2) {
-        addressesArray.push(storeAddresses[i] + ", " + storeAddresses[i+1])
-      }
+    //   var usersLng = usersLng.slice(1, (usersLng.length - 1))
 
+    //   usersLng = usersLng.split(",")
+    //   console.log(usersLat[0])
+    //   usersLat[0] = parseFloat(usersLat[0]);
+    //   console.log(usersLat)
+    //   console.log(usersLng.length)
 
-
-//"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=500&keyword=pet&key=AIzaSyCX0zgiH5c-ezhGHS679V2hWO7rQbenKbg"
-
-      //  $.ajax({
-      //   method: "POST",
-      //   dataType: 'json',
-      //   useDefaultXhrHeader: false,
-      //   url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=5000&keyword=pet&types=pet_store&key=AIzaSyCX0zgiH5c-ezhGHS679V2hWO7rQbenKbg",
-      //   success: function(response){
-      //     console.log(response[0])
-      //   }
-      // })
-
-    // var store1 = $("#store1").attr('name');
-    // var store1Name = $("#store1-name").attr('name');
-    // store1 = store1.split(",");
-
-    // var store1Lat = store1[0].slice(1);
-    //  var store1Lng = store1[1].slice(1, (store1[1].length - 1));
-    //  store1Lat = parseFloat(store1Lat);
-    //  store1Lng = parseFloat(store1Lng);
 
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: lat, lng: lng},
-    zoom: 14
-  });
+  var lat;
+  var lng;
+  var usersLat = [];
+  var usersLng = [];
+  $.ajax({
+        url: "/maps/data",
+        dataType: "json",
+        success: function(json_response) {
 
-  // var marker = new google.maps.Marker({
-  //   map: map,
-  //   position: {lat: lat, lng: lng},
-  //   title: 'Hello World!'
-  // });
-    var cityCircle = new google.maps.Circle({
+          usersLat = json_response.users_lat
+         usersLng = json_response.users_lng
+          lat = json_response.my_lat
+
+          lng = json_response.my_lng
+          console.log(lat)
+          console.log(lng)
+    for(var i = 0; i < usersLng.length; i++) {
+        usersLat[i] = parseFloat(usersLat[i]);
+        usersLng[i] = parseFloat(usersLng[i]);
+    }
+          lat = parseFloat(lat);
+          lng = parseFloat(lng);
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: lat, lng: lng},
+            zoom: 14
+          });
+           var cityCircle = new google.maps.Circle({
       strokeColor: '#FF0000',
       strokeOpacity: 0.8,
       strokeWeight: 2,
@@ -103,67 +80,44 @@ function initMap() {
       center: {lat: lat, lng: lng},
       radius: 40
     });
-
-
-    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     var labelIndex = 0;
    var markers = []
-   markers.length = storeNames.length
+   markers.length = usersLng.length
    var contentString = []
-   contentString.length = storeNames.length
-   console.log(markers.length)
-   for(var i = 0; i < storeNames.length; i++) {
+   contentString.length = usersLng.length
+
+   for(var i = 0; i < usersLat.length; i++) {
       markers[i] = new google.maps.Marker({
     map: map,
-    position: {lat: storeLats[i], lng: storeLngs[i]},
-    label: labels[labelIndex++ % labels.length],
-    title: storeNames[i]
+    position: {lat: usersLat[i], lng: usersLng[i]},
+    label: labels[labelIndex++ % labels.length]
+    // title: localDogs[i]
   });
        }
-  //      for (var i = 0; i < storeNames.length; i++) {
-  //       markers[i].addListener('click', function() {
-  //   infowindow.open(map, markers[i]);
-  // });
-  //   contentString[i] = '<h5 id="firstHeading" class="firstHeading">' + storeNames[i] + '</h5>' + '<p>' + storeAddresses[i] +'</p>'
-
-  //      }
-
-  //      for(var i = 0; i < storeNames.length; i++) {
-  //       var infowindow = new google.maps.InfoWindow({
-  //   content: contentString[i]
-  // });
-  //      }
-      // console.log(markers[0])
+          // {
+          // lat:  45.23423423,
+          // lng:35.34232423,
+          // userslat: [34.423432, 42.23423],
+          // userslng: [34.23423423, 45.23423432]
+          // }
+          //do shit with the json that came back to load the map
+        }
+      });
 
 
 
-  // var firstMarker = new google.maps.Marker({
-  //   map: map,
-  //   position: {lat: store1Lat, lng: store1Lng},
-  //   title: store1Name
-  // });
 
-  //    var secondMarker = new google.maps.Marker({
-  //   map: map,
-  //   position: {lat: store2Lat, lng: store2Lng},
-  //   title: store1Name
-  // });
-  //   secondMarker.addListener('click', function() {
-  //   infowindow.open(map, secondMarker);
-  // });
 
-  //    var thirdMarker = new google.maps.Marker({
-  //   map: map,
-  //   position: {lat: store3Lat, lng: store3Lng},
-  //   title: store1Name
-  // });
-  //   thirdMarker.addListener('click', function() {
-  //   infowindow.open(map, thirdMarker);
-  // });
+
+
+
 }
 
 
     </script>
+
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs&callback=initMap">
     </script>
+

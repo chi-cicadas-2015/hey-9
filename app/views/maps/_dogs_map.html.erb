@@ -1,0 +1,60 @@
+   <div  id="local-dogs-map" name="<%= @location_array %>">
+</div>
+<% @local_dogs.each do |store, index| %>
+  <h3><%= @alphabet[index]%>. <%= store %> </h3>
+  <p><%= @store_addresses[index] %></p>
+  <%= @pic %>
+<% end %>
+  <h3></h3>
+    <div id="local-dogs", name="<%= @local_dogs %>">
+    </div>
+
+  <script type="text/javascript">
+  var map
+      var localDogs = $("#local-dogs").attr('name');
+      var localDogs = localDogs.slice(0)
+      var localDogs = localDogs.slice(1, (localDogs.length - 1))
+      localDogs = localDogs.split(",")
+
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('local-dogs-map'), {
+    center: {lat: lat, lng: lng},
+    zoom: 14
+  });
+
+    var cityCircle = new google.maps.Circle({
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      map: map,
+      center: {lat: lat, lng: lng},
+      radius: 40
+    });
+
+
+    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var labelIndex = 0;
+   var markers = []
+   markers.length = localDogs.length
+   var contentString = []
+   contentString.length = localDogs.length
+
+   for(var i = 0; i < localDogs.length; i++) {
+      markers[i] = new google.maps.Marker({
+    map: map,
+    position: {lat: storeLats[i], lng: storeLngs[i]},
+    label: labels[labelIndex++ % labels.length],
+    title: localDogs[i]
+  });
+       }
+
+}
+
+
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs&callback=initMap">
+    </script>
