@@ -1,6 +1,18 @@
 <div class="container">
   <h1 class="center"><%= @user.username %>'s Pack</h1>
-  <a class="waves-effect waves-light btn modal-trigger2" href="#modal2">Add New Dog To Pack</a>
+  <div class="row">
+    <div class="col s12 l6">
+      <a class="waves-effect waves-light btn modal-trigger2" href="#modal2">Add New Dog To Pack</a>
+    </div>
+    <div class="col s12 l6">
+      <div class="card col s12 l6" id="weather-card">
+        <p>Weather Summary: </p>
+        <p id="summary"><%= @forecast_data["summary"] %></p>
+        <p>Current Temp: <%= @forecast_data["temperature"].to_i %></p>
+        <p>Chance of Rain: <%= @forecast_data["precipProbability"] %></p>
+      </div>
+    </div>
+  </div>
   <div id="modal2" class="modal">
     <div class="modal-content">
       <h4>Add Dog</h4>
