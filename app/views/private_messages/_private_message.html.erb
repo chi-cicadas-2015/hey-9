@@ -1,0 +1,13 @@
+<% if message.content %>
+  <ul>
+    <p>
+      <% if message.user.username == @user.username %>
+        you:
+      <% else %>
+        <%= message.user.username %>:
+      <% end %>
+      <%= message.content %>
+      <br>Sent on: <%= message.created_at %>
+    </p>
+  </ul>
+<% end %>

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get "/" => 'home#index'
+  post "/send_text_message" =>"text_messages#send_text_message"
 
   resources :sessions, only: [:new, :create, :destroy]
 
@@ -64,6 +65,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+
 
   # root 'home#index'
 

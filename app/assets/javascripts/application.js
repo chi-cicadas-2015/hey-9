@@ -10,8 +10,12 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
 //= require jquery_ujs
+
+//= require cloudinary
+//= require_tree .
 //= require materialize-sprockets
 //= require_tree .
 
@@ -21,6 +25,7 @@ $(document).ready(function(){
   $('.modal-trigger').leanModal();
   $('.modal-trigger2').leanModal();
   $('.parallax').parallax();
+  $('.datepicker').pickadate({selectMonths: true, selectYears: 15});
 
   $("#location").on("submit", function(event){
     event.preventDefault();
@@ -62,6 +67,7 @@ $(document).ready(function(){
 
   // });
 
+
   // http://api.jquery.com/jQuery.noConflict/
   // var $j = jQuery.noConflict();
   // $("#event_event_start").datepicker({
@@ -101,7 +107,6 @@ $(document).ready(function(){
   //       }
   //     })
   // })
+
 })
-
-
 

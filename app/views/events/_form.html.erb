@@ -1,19 +1,27 @@
-<div class="event-form-inputs">
 
-  <%= form_for @event do |f| %>
-
-    <% if @event.errors.any? %>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    <% end %>
-
-    <%= f.text_field :location,  placeholder: "123 Main St, Chicago, IL, 60601", :html => {:id => "event-location"} %>
-    <%= f.datetime_field :event_start, placeholder: "YYYY/MM/DD HH:MM" %>
-    <%= f.datetime_field :event_end, placeholder: "YYYY/MM/DD HH:MM" %>
-    <%= f.text_area :description, placeholder: "Enter event description here" %>
-    <%= f.submit value: "Create event", :id => "event-button" %>
+<div class="container">
+  <div class="row">
+  <%= form_for(:event, :html => {:class => "col s8 offset-l2"} )do |f| %>
+    <div class="row">
+      <div class="input-field col s12">
+      <%= f.text_field :location,  placeholder: "123 Main St, Chicago, IL, 60601", :id => "event-location"  %>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.label :event_start %>
+      <%= f.datetime_field :event_start, placeholder: "YYYY/MM/DD", :class => "datepicker" %>
+      <%= f.datetime_field :event_start, placeholder: "HH:MM" %>
+    </div>
+    <div class="row">
+      <%= f.label :event_end %>
+      <%= f.datetime_field :event_end, placeholder: "YYYY/MM/DD HH:MM", :class => "datepicker" %>
+      <%= f.datetime_field :event_end, placeholder: "HH:MM" %>
+    </div>
+    <div class="row">
+      <%= f.text_area :description, placeholder: "Enter event description here", :class => "materialize-textarea" %>
+    </div>
+      <%= f.submit "Create event", :class => "btn", :id => "event-button" %>
 
   <% end %>
-
+  </div>
 </div>

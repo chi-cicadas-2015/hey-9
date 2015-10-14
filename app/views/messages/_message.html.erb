@@ -1,20 +1,20 @@
-  <div class="card">
-    <ul class="collapsible" data-collapsible="accordion">
-      <li>
-        <div class="collapsible-header">
-          <h3 class="truncate"><%= message.content%></h3>
-        </div>
-        <div class="collapsible-body">
-          <div class="textarea"><%= message.content %></div>
-          <% if message.comments %>
-            <%= render partial: "comments/comments", locals: {commentable: message} %>
-          <% end %>
-          <% if @current_user %>
-            <%= render partial: "comments/form", locals: {commentable: message} %>
-          <% end %>
-        </li>
-      </ul>
-    </div>
+<div class="section">
+  <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header">
+        <h5 class="truncate"><%= message.content%></h5>
+      </div>
+      <div class="collapsible-body">
+        <div class="textarea"><%= message.content %></div>
+        <% if message.comments %>
+          <%= render partial: "comments/comments", locals: {commentable: message} %>
+        <% end %>
+        <% if @current_user %>
+          <%= render partial: "comments/form", locals: {commentable: message} %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 
 
 

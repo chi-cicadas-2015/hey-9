@@ -2,7 +2,7 @@
   <h1><%= dog.name %></h1>
   <div class="row">
     <div class="col s4">
-      <img class="circle responsive-img" src="<%= dog.profile_img%>">
+     <%= image_tag dog.avatar.url(:medium) %>
     </div>
     <div class="col s8">
       <ul class="collapsible" data-collapsible="accordion">
@@ -13,7 +13,6 @@
             <% dog.followings.each do |friend| %>
               <li class="collection-item avatar">
                 <a href="/dogs/<%= friend.id %>">
-                  <img src="<%= friend.profile_img %>" alt="" class="circle">
                   <span class="title"><%=friend.name%></span>
                 </a>
               </li>

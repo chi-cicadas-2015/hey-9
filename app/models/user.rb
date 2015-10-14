@@ -11,11 +11,19 @@ class User < ActiveRecord::Base
   has_many :comments, foreign_key: "commenter_id"
   has_many :messages, foreign_key: "author_id"
 
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, :storage => :s3,
+   :bucket => 'imageuploadstorage',
+   :url => ':s3_domain_url',
+   :path => "/pieces/:id/:style/:basename.:extension",
+   :s3_credentials => "#{Rails.root}/config/aws.yml"
+
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
   has_secure_password
 
-
-  private
-  def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :location, :receive_notices)
+  def self.find_users(string)
+    usernames = string.split(', ')
+    usernames.map!{ |username|
+      self.find_by_username(username)}
   end
 end
