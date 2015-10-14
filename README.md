@@ -3,8 +3,7 @@
 # hey-9
 *the four-legged social network*
 
-App live on Heroku:   
-hey-9.herokuapp.com
+App live on Heroku: (hey-9.herokuapp.com)
 
 Hey-9 exists to elevate the social situation of our beloved counterparts.
 
