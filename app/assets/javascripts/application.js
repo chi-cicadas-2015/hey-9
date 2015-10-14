@@ -54,7 +54,14 @@ $(document).ready(function(){
   $('.modal-trigger2').leanModal();
   $('.parallax').parallax();
   $('.datepicker').pickadate({selectMonths: true, selectYears: 15});
+  $("#weather-summary").load(function(){
+    var weather = $(this).text();
+    if ($("#weather-summary:contains('Cloudy')")){
+      $(this).css("background-color","grey");
+      console.log("howdy");
+    }
 
+  });
   $("#location").on("submit", function(event){
     event.preventDefault();
 		$.ajax({
