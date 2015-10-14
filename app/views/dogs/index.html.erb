@@ -5,8 +5,11 @@
       <a class="waves-effect waves-light btn modal-trigger2" href="#modal2">Add New Dog To Pack</a>
     </div>
     <div class="col s12 l6">
-      <div class="card col s12 l6">
-        <p class="flow-text" id="weather-summary">Weather Summary: <%= @forecast_data["summary"] %><br class="end">Current Temp: <%= @forecast_data["temperature"] %><br>Chance of Storm: <%= @forecast_data["nearestStormDistance"] %><br>Chance of Rain: <%= @forecast_data["precipProbability"] %></p>
+      <div class="card col s12 l6" id="weather-card">
+        <p>Weather Summary: </p>
+        <p id="summary"><%= @forecast_data["summary"] %></p>
+        <p>Current Temp: <%= @forecast_data["temperature"].to_i %></p>
+        <p>Chance of Rain: <%= @forecast_data["precipProbability"] %></p>
       </div>
     </div>
   </div>
