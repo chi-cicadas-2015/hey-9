@@ -1,6 +1,12 @@
-<div>
+<div class="conversation">
   <h3><%= direct_conversation.subject %></h3>
-  <p>...A conversation between <%= direct_conversation.participants(@user) %></p>
-  <%= render partial: "private_messages/private_message", collection: direct_conversation.private_messages, as: :message %>
-  <%= render partial: "private_messages/form", locals: {direct_conversation: direct_conversation, private_message: @private_message} %>
+  <p>...A conversation between <%= direct_conversation.participants(current_user) %></p>
+  <div>
+    <div class="pm_list">
+      <%= render partial: "private_messages/private_message", collection: direct_conversation.private_messages, as: :message %>
+    </div>
+    <div class="pm_forms">
+      <%= render partial: "private_messages/form", locals: {direct_conversation: direct_conversation, private_message: PrivateMessage.new} %>
+    </div>
+  </div>
 </div>

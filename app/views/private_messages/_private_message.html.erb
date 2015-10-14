@@ -1,7 +1,7 @@
 <% if message.content %>
   <ul>
     <p>
-      <% if message.user.username == @user.username %>
+      <% if message.user.username == current_user.username %>
         you:
       <% else %>
         <%= message.user.username %>:

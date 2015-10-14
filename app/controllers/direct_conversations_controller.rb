@@ -22,8 +22,19 @@ class DirectConversationsController < ApplicationController
     added = recipients.map {|recipient| recipient.private_messages.new(conversation: @direct_conversation)}
     private_message = current_user.private_messages.new( private_message_params.merge(conversation: @direct_conversation))
     added.each { |added| added.save }
-    private_message.save
-    redirect_to :back
+    if private_message.save
+      if request.xhr?
+        render :partial => 'direct_conversations/conversation', :layout => false, locals: {direct_conversation: @direct_conversation}
+      else
+        redirect_to :back
+      end
+    else
+      if request.xhr?
+        status 422
+      else
+        redirect_to :back
+      end
+    end
   end
 
   private
