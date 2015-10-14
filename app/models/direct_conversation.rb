@@ -11,7 +11,7 @@ class DirectConversation < ActiveRecord::Base
   end
 
   def participants(user)
-    usernames = self.users.collect{|user| user.username}.reverse.uniq
+    usernames = self.users.collect{|user| user.username}.uniq
 
     if usernames.length == 2
       participants = usernames.join(' and ')
