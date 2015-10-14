@@ -54,14 +54,8 @@ $(document).ready(function(){
   $('.modal-trigger2').leanModal();
   $('.parallax').parallax();
   $('.datepicker').pickadate({selectMonths: true, selectYears: 15});
-
-  var summary = $("#summary").text();
-
-  if(summary.includes("Clear")){
-    $("#weather-card").addClass("yellow");
-    Materialize.fadeInImage("#weather-card");
-  }
-
+  changeWeather("#weather-card");
+  changeWeather("#weather-card2");
 
   $("#location").on("submit", function(event){
     event.preventDefault();
@@ -101,4 +95,26 @@ $(document).ready(function(){
   });
 
 })
+
+function changeWeather(card){
+  var inner = $(card);
+  var summary = $(inner).text();
+
+  if(summary.includes("Clear")){
+    $(inner).addClass("light-blue lighten-3");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Sunny")){
+    $(inner).addClass("yellow");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Cloudy")){
+    $(inner).addClass("grey lighten-1");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Rain")){
+    $(inner).addClass("grey");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Storm")){
+    $(inner).addClass("grey darken-1");
+    Materialize.fadeInImage(inner);
+  }
+};
 
