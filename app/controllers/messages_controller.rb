@@ -3,17 +3,16 @@ class MessagesController < ApplicationController
   before_action :require_login
 
   def index
-    @presenter_messages = []
-    Message.last(5).each do |message|
-      p "MESSAGE content:"
-      p message.content
-      p "MESSAGE author:"
-      p message.author.username
-      message_hash = { content: message.content, author: message.author.username }
-      @presenter_messages<< message_hash
-    end
+
+    # @presenter_messages = []
+    # Message.last(5).each do |message|
+    #   message_hash = { message: message, author: message.author.username, author_id: message.author.id }
+    #   @presenter_messages<< message_hash
+    # end
+
     @presenter = {
-      messages: @presenter_messages,
+      messages: Message.last(5),
+      current_user_id: current_user.id
       form: {
         action: messages_path,
         :csrf_param => request_forgery_protection_token,
@@ -46,12 +45,16 @@ class MessagesController < ApplicationController
   end
 
   def create
-  	@message = Message.new message_params
-  	@message.author = current_user
-    @message.lat = current_user.lat
-    @message.lng = current_user.lng
-    @message.save if @message
+    p "PARAMS:"
+    logger.info(params)
+    @author = user.find(params[:author_id])
+    @message = @author.messages.build(message_params)
 
+    @message.lat = @author.lat
+    @message.lng = @author.lng
+    @message.save if @message
+    p "Message:"
+    p @message
     if request.xhr?
       render :json => Message.last(5)
     else

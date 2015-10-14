@@ -20,6 +20,7 @@ var MessageForm = React.createClass({
     return (
       <form ref="form" className="message-form" action={ this.props.form.action } accept-charset="UTF-8" method="post" onSubmit={ this.handleSubmit }>
         <p><input type="hidden" name={ this.props.form.csrf_param } value={ this.props.form.csrf_token } /></p>
+        <p><input type="hidden" name="author_id" value={this.props.author_id} /></p>
         <p><textarea ref="content" name="message[content]" placeholder="Message here..." /></p>
         <p><button type="submit">Post message</button></p>
       </form>
