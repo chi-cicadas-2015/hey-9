@@ -25,6 +25,7 @@ $(document).ready(function(){
   $('.modal-trigger').leanModal();
   $('.modal-trigger2').leanModal();
   $('.parallax').parallax();
+  $('.datepicker').pickadate({selectMonths: true, selectYears: 15});
 
   $("#location").on("submit", function(event){
     event.preventDefault();

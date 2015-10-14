@@ -1,0 +1,8 @@
+<div>
+  <%= form_for private_message, as: :private_message, url: direct_conversation_private_messages_path(direct_conversation), html: {class: "new_private_message", id: "new_private_message"} do |f| %>
+    <div class="form-group">
+      <%= f.text_area :content, class: "form-control", placeholder: "Write a new message" %>
+    </div>
+    <%= f.submit class: "btn btn-primary", value: "Send message" %>
+  <% end %>
+</div>

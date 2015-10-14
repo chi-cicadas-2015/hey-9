@@ -62,4 +62,6 @@ group :development do
   gem 'spring'
 end
 
+gem "pry", group: [:development, :test]
+
 

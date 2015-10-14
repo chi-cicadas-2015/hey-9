@@ -303,6 +303,7 @@ DEPENDENCIES
   materialize-sass
   paperclip (~> 4.3)
   pg
+  pry
   rails (= 4.2.4)
   react-rails
   rspec-rails (~> 3.0)
