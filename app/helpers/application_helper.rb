@@ -58,4 +58,18 @@ module ApplicationHelper
       @friends << Dog.find_by(id: connection.following_id )
     end
   end
+
+  def convert_time(time_num)
+    hour = (time_num / 1000000) % 100
+    minute = (time_num / 10000) % 100
+    second = (time_num / 100) % 100
+    millisecond = (time_num % 100) * 10
+
+    time = "#{hour}:#{minute}:#{second}"
+  end
 end
+
+
+
+
+
