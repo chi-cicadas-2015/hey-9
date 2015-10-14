@@ -21,6 +21,9 @@
     <% end %>
   </div>
   <div class="col s12 l4">
+    <% if dog_events(current_user.dogs).include?(event) %>
+      <a class="btn-floating btn-large waves-effect waves-light red"></a>
+    <% end %>
     <h5>Attending</h5>
     <div class="row">
       <% event.event_invitations.each do |invitee|%>
