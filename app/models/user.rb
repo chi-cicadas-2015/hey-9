@@ -14,7 +14,14 @@ class User < ActiveRecord::Base
   has_secure_password
 
 
+  def self.find_users(string)
+    usernames = string.split(', ')
+    usernames.map!{ |username|
+      self.find_by_username(username)}
+  end
+
   private
+
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation, :location, :receive_notices)
   end
