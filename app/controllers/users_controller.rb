@@ -48,6 +48,7 @@ class UsersController < ApplicationController
     if request.xhr?
       lat = params[:location][:lat]
       lng = params[:location][:lng]
+      p "******#{lat}"
       lat = lat.to_f
       lng = lng.to_f
       @user.update_attributes(lng: lng, lat: lat)

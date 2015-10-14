@@ -20,7 +20,7 @@
         </div>
       </div>
       <%= f.hidden_field :owner_id, :value => current_user.id %>
-      <%= f.submit %>
+      <%= f.submit :html => {:id => "event-submit"} %>
     <% end %>
   </div>
 </div>

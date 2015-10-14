@@ -8,11 +8,11 @@
       <% end %>
     <% end %>
 
-    <%= f.text_field :location,  placeholder: "123 Main St, Chicago, IL, 60601" %>
+    <%= f.text_field :location,  placeholder: "123 Main St, Chicago, IL, 60601", :html => {:id => "event-location"} %>
     <%= f.datetime_field :event_start, placeholder: "YYYY/MM/DD HH:MM" %>
     <%= f.datetime_field :event_end, placeholder: "YYYY/MM/DD HH:MM" %>
     <%= f.text_area :description, placeholder: "Enter event description here" %>
-    <%= f.submit "Create event" %>
+    <%= f.submit value: "Create event", :id => "event-button" %>
 
   <% end %>
 

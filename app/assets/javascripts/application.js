@@ -26,9 +26,11 @@ $(document).ready(function(){
     event.preventDefault();
 		$.ajax({
 			method: "POST",
-			url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk",
+			url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs",
 			success: function(response) {
-        var id = $('input[type=hidden]').val()
+        console.log(response);
+        var id = $('#user_id').attr('name');
+        console.log(id);
         $.ajax({
           method: "PUT",
           url: "/users/" + id.toString(),
@@ -54,11 +56,11 @@ $(document).ready(function(){
       }
     })
   })
-  $("#pet-stores").on("click", function(){
-    console.log("whatup")
+  // $("#pet-stores").on("click", function(){
+  //   console.log("whatup")
 
 
-  });
+  // });
 
   // http://api.jquery.com/jQuery.noConflict/
   // var $j = jQuery.noConflict();
@@ -76,7 +78,29 @@ $(document).ready(function(){
   //   });
 
   // https://github.com/jonthornton/jquery-timepicker
-
+  // $("#event-button").on("click", function(){
+  //      var eventLocation = $("#event-map").attr('name');
+  //      console.log('yooooooo')
+  //     var lat
+  //     var lng
+  //     $.ajax({
+  //       method: "POST",
+  //       dataType: 'json',
+  //       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + eventLocation + "&key=AIzaSyDj8b8ELTA9Zq9pW7IY1L4TSUX0PClr06M",
+  //       success: function(response) {
+  //         lat = response.results[0].geometry.location.lat
+  //         lng = response.results[0].geometry.location.lng
+  //       $.ajax({
+  //         method: "POST",
+  //         url: "/events",
+  //         data: response,
+  //         success: function(response) {
+  //             console.log(response)
+  //           }
+  //         })
+  //       }
+  //     })
+  // })
 })
 
 
