@@ -3,7 +3,7 @@ class DogsController < ApplicationController
 
   def index
      if session[:user_id] != nil
-        @forecast_data = forecast_data["currently"]
+        @forecast_data = forecast_data
         @user = User.find(session[:user_id])
         @dogs = @user.dogs
       else

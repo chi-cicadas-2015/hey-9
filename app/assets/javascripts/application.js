@@ -26,22 +26,18 @@ $(document).ready(function(){
   $('.modal-trigger2').leanModal();
   $('.parallax').parallax();
   $('.datepicker').pickadate({selectMonths: true, selectYears: 15});
-
-  var summary = $("#summary").text();
-
-  if(summary.includes("Clear")){
-    $("#weather-card").addClass("yellow");
-    Materialize.fadeInImage("#weather-card");
-  }
-
+  changeWeather("#weather-card");
+  changeWeather("#weather-card2");
 
   $("#location").on("submit", function(event){
     event.preventDefault();
 		$.ajax({
 			method: "POST",
-			url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk",
+			url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs",
 			success: function(response) {
-        var id = $('input[type=hidden]').val()
+        console.log(response);
+        var id = $('#user_id').attr('name');
+        console.log(id);
         $.ajax({
           method: "PUT",
           url: "/users/" + id.toString(),
@@ -67,10 +63,74 @@ $(document).ready(function(){
       }
     })
   })
-  $("#pet-stores").on("click", function(){
-    console.log($(this).attr('name'))
+  // $("#pet-stores").on("click", function(){
+  //   console.log("whatup")
 
-  });
+
+  // });
+
+
+  // http://api.jquery.com/jQuery.noConflict/
+  // var $j = jQuery.noConflict();
+  // $("#event_event_start").datepicker({
+  //   changeMonth: true,
+  //     onSelect: function( selectedDate ) {
+  //       $( "#event_event_end" ).datepicker( "option", "minDate", selectedDate );
+  //     },
+  //     onClose:function(){
+  //       $( "#event_event_end" ).datepicker("show");
+  //     }
+  //   });
+  //   $( "#event_event_end" ).datepicker({
+  //     changeMonth: true,
+  //   });
+
+  // https://github.com/jonthornton/jquery-timepicker
+  // $("#event-button").on("click", function(){
+  //      var eventLocation = $("#event-map").attr('name');
+  //      console.log('yooooooo')
+  //     var lat
+  //     var lng
+  //     $.ajax({
+  //       method: "POST",
+  //       dataType: 'json',
+  //       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + eventLocation + "&key=AIzaSyDj8b8ELTA9Zq9pW7IY1L4TSUX0PClr06M",
+  //       success: function(response) {
+  //         lat = response.results[0].geometry.location.lat
+  //         lng = response.results[0].geometry.location.lng
+  //       $.ajax({
+  //         method: "POST",
+  //         url: "/events",
+  //         data: response,
+  //         success: function(response) {
+  //             console.log(response)
+  //           }
+  //         })
+  //       }
+  //     })
+  // })
 
 })
+
+function changeWeather(card){
+  var inner = $(card);
+  var summary = $(inner).text();
+
+  if(summary.includes("Clear")){
+    $(inner).addClass("light-blue lighten-3");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Sunny")){
+    $(inner).addClass("yellow");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Cloudy")){
+    $(inner).addClass("grey lighten-1");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Rain")){
+    $(inner).addClass("grey");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Storm")){
+    $(inner).addClass("grey darken-1");
+    Materialize.fadeInImage(inner);
+  }
+};
 
