@@ -1,6 +1,115 @@
+<div id="event-map" name="<%= @event.lat %>">
+
+</div>
+
 <div class="container">
   <h1>This is <%= @user.username %>'s Event<h1>
+  <div id='event-lng' name="<%= @event.lng %>">
+
+
+  </div>
+
+
+  <div class="section">
+   <% if @event.comments %>
+     <%= render partial: "events/comments", locals: {commentable: @event} %>
+   <% end %>
+   <% if @current_user %>
+      <%= render partial: "events/comments_form", locals: {commentable: @event} %>
+    <% end %>
+  </div>
 
   <%= render partial: "event_show", locals: {event: @event} %>
 
+
 </div>
+
+  <script type="text/javascript">
+
+  var map
+
+
+      //  $.ajax({
+      //   method: "POST",
+      //   dataType: 'json',
+      //   useDefaultXhrHeader: false,
+      //   url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=5000&keyword=pet&types=pet_store&key=AIzaSyCX0zgiH5c-ezhGHS679V2hWO7rQbenKbg",
+      //   success: function(response){
+      //     console.log(response[0])
+      //   }
+      // })
+
+//  lat = parseFloat(lat);
+//   lng = parseFloat(lng);
+ var lat = $("#event-map").attr('name');
+ var lng = $("#event-lng").attr('name');
+  lat = parseFloat(lat);
+  lng = parseFloat(lng);
+
+// function initMap() {
+//   map = new google.maps.Map(document.getElementById('event-map'), {
+//     center: {lat: lat, lng: lng},
+//     zoom: 15
+//   });
+//   var marker = new google.maps.Marker({
+//     map: map,
+//     position: {lat: lat, lng: lng},
+//     title: 'Hello World!'
+//   });
+// }
+// function initMap() {
+//   var myLatLng = {lat: lat, lng: lng};
+
+//   // Create a map object and specify the DOM element for display.
+//   var map = new google.maps.Map(document.getElementById('map'), {
+//     center: myLatLng,
+//     scrollwheel: false,
+//     zoom: 4
+//   });
+
+//   // Create a marker and set its position.
+//   var marker = new google.maps.Marker({
+//     map: map,
+//     position: myLatLng,
+//     title: 'Hello World!'
+//   });
+// }
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('event-map'), {
+    center: {lat: lat, lng: lng},
+    zoom: 16
+  });
+
+    // var cityCircle = new google.maps.Circle({
+    //   strokeColor: '#FF0000',
+    //   strokeOpacity: 0.8,
+    //   strokeWeight: 2,
+    //   fillColor: '#FF0000',
+    //   fillOpacity: 0.35,
+    //   map: map,
+    //   center: {lat: lat, lng: lng},
+    //   radius: 40
+    // });
+var marker = new google.maps.Marker({
+    map: map,
+    position: {lat: lat, lng: lng},
+  });
+
+  //   var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  //   var labelIndex = 0;
+  //  var markers = []
+  //  markers.length = parkLats.length
+  //  var contentString = []
+  //  contentString.length = parkLats.length
+  //  console.log(markers.length)
+  //  for(var i = 0; i < parkLats.length; i++) {
+
+
+// }
+}
+
+     </script>
+     <script async defer
+       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs&callback=initMap">
+     </script>

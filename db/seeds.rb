@@ -163,11 +163,11 @@ end
 #   Message.create!(author: users.sample, lat: 0, lng: 0, :content => potential_messages.sample)
 # end
 
-# messages.each do |message|
-#   rand(0..6).times do
-#     message.comments.create!(:commenter => users.sample, :content => comments.sample)
-#   end
-# end
+messages.each do |message|
+  rand(0..6).times do
+    message.comments.create!(:commenter => users.sample, :content => comments.sample)
+  end
+end
 
 direct_conversations = DirectConversation.create!([
   {subject: "walk now?"},
