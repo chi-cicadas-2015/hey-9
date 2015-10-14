@@ -3,6 +3,17 @@ class MessagesController < ApplicationController
   before_action :require_login
 
   def index
+
+    @presenter = {
+      messages: Message.last(5),
+      form: {
+        action: messages_path,
+        :csrf_param => request_forgery_protection_token,
+        :csrf_token => form_authenticity_token
+      }
+    }
+
+
     @user = current_user
     if @user.lat && @user.lng
       @messages = []
@@ -32,7 +43,13 @@ class MessagesController < ApplicationController
     @message.lat = current_user.lat
     @message.lng = current_user.lng
     @message.save if @message
-    redirect_to :back, notice: "Your message was successfully posted."
+
+    if request.xhr?
+      render :json => Message.last(5)
+    else
+      redirect_to :back, notice: "Your message was successfully posted."
+    end
+
   end
 
   private
