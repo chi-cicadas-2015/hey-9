@@ -16,15 +16,13 @@
     </style>
 
 </head>
-<body>
-     <nav class="black">
-<!--         <div class="row">
- --><!--           <div class="col s1 offset-10 right">
- -->                <% if current_user != nil %>
-                  <%= form_for :session, url: session_path(session), method: "delete" do |f| %>
-                  <%= f.submit value: "Logout", :class => "right col s1 white-text btn-flat" %>
-                  <% end %>
-            <a href="/" class="brand-logo center">Hey-9</a>
+  <body>
+    <nav class="black">
+      <% if current_user != nil %>
+        <%= form_for :session, url: session_path(session), method: "delete" do |f| %>
+        <%= f.submit value: "Logout", :class => "right col s1 white-text btn-flat" %>
+        <% end %>
+            <a href="/users/<%= current_user.id %>" class="brand-logo center">Hey-9</a>
           </div>
           <ul id="slide-out" class="side-nav">
           <li class="no-padding">
