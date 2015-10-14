@@ -1,7 +1,20 @@
 <div class="container">
-  <%= link_to "Create an Event", new_event_path %>
+  <a class="waves-effect waves-light btn modal-trigger2" href="#modal3">Create an Event</a>
+  <div id="modal3" class="modal">
+    <div class="modal-content">
+      <h4>New Event</h4>
+      <%= render partial: "form"%>
+    </div>
+  </div>
   <div class="section">
-    <h1 class="center">Your Local Events</h1>
+    <h1 class="center">Your Events</h1>
+    <div class="row">
+      <%= render partial: "event", collection: current_user.events %>
+    </div>
+  </div>
+
+  <div class="section">
+    <h1 class="center">Community Events</h1>
     <div class="row">
       <%= render partial: "event", collection: @events %>
     </div>
