@@ -1,0 +1,102 @@
+<div  id="map" name="<%= @location_array %>">
+</div>
+<% @store_names_display.each_with_index do |store, index| %>
+  <h3><%= @alphabet[index]%>. <%= store %> </h3>
+  <p><%= @store_addresses[index] %></p>
+  <%= @pic %>
+<% end %>
+  <h3></h3>
+    <div id="store-names", name="<%= @store_names %>">
+    </div>
+    <div id="store-lats", name="<%= @store_lats %>">
+    </div>
+     <div id="store-lngs", name="<%= @store_lngs %>">
+    </div>
+    <div id="store-addresses", name="<%= @store_addresses %>">
+    </div>
+  <script type="text/javascript">
+
+      var map;
+      var coordinates = $("#map").attr('name');
+      var array = coordinates.split(",");
+      var lat = array[0].slice(1)
+      var lng = array[1].slice(0)
+      lng = lng.slice(1,(lng.length - 1))
+      lat = parseFloat(lat);
+      lng = parseFloat(lng);
+
+      var storeNames = $("#store-names").attr('name');
+      var storeNames = storeNames.slice(0)
+      var storeNames = storeNames.slice(1, (storeNames.length - 1))
+      storeNames = storeNames.split(",")
+
+      var storeLats = $("#store-lats").attr('name');
+      var storeLats = storeLats.slice(0)
+      var storeLats = storeLats.slice(1, (storeLats.length - 1))
+      storeLats = storeLats.split(",")
+
+      var storeLngs = $("#store-lngs").attr('name');
+      var storeLngs = storeLngs.slice(0)
+      var storeLngs = storeLngs.slice(1, (storeLngs.length - 1))
+      storeLngs = storeLngs.split(",")
+
+      for(var i = 0; i < storeLats.length; i++) {
+        storeLats[i] = parseFloat(storeLats[i])
+         storeLngs[i] = parseFloat(storeLngs[i])
+      }
+      console.log(storeLats)
+
+      var storeAddresses = $("#store-addresses").attr('name');
+      var storeAddresses = storeAddresses.slice(0)
+      var storeAddresses = storeAddresses.slice(1, (storeAddresses.length - 1))
+      storeAddresses = storeAddresses.split(",")
+      addressesArray = []
+      for(var i = 0; i < storeAddresses.length - 1; i+=2) {
+        addressesArray.push(storeAddresses[i] + ", " + storeAddresses[i+1])
+      }
+
+
+
+
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: lat, lng: lng},
+    zoom: 14
+  });
+
+    var cityCircle = new google.maps.Circle({
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      map: map,
+      center: {lat: lat, lng: lng},
+      radius: 40
+    });
+
+
+    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var labelIndex = 0;
+   var markers = []
+   markers.length = storeNames.length
+   var contentString = []
+   contentString.length = storeNames.length
+   console.log(markers.length)
+   for(var i = 0; i < storeNames.length; i++) {
+      markers[i] = new google.maps.Marker({
+    map: map,
+    position: {lat: storeLats[i], lng: storeLngs[i]},
+    label: labels[labelIndex++ % labels.length],
+    title: storeNames[i]
+  });
+       }
+
+}
+
+
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs&callback=initMap">
+    </script>

@@ -16,34 +16,6 @@
 
 //= require cloudinary
 //= require_tree .
-// $(document).ready(function(){
-// 	$.cloudinary.config({ cloud_name: 'dj3bgluad', api_key: '255366543837721'})
-
-//     $('#fileupload').fileupload({
-//         dataType: 'json',
-
-//         add: function (e, data) {
-//         	console.log(data);
-//         	console.log("hey");
-//             data.context = $('<button/>').text('Upload')
-//                 .appendTo(document.body)
-//                 .click(function () {
-//                     data.context = $('<p/>').text('Uploading...').replaceAll($(this));
-//                     data.submit();
-//                 });
-//         },
-//         done: function (e, data) {
-//             data.context.text('Upload finished.');
-//         }
-//     });
-
-
-
-// 	var image = $.cloudinary.image(response.public_id + '.jpg', { width: 120, height: 80, crop: 'fill' });
-// 	console.log(image)
-
-// 	})
-
 //= require materialize-sprockets
 //= require_tree .
 
@@ -61,9 +33,11 @@ $(document).ready(function(){
     event.preventDefault();
 		$.ajax({
 			method: "POST",
-			url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk",
+			url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs",
 			success: function(response) {
-        var id = $('input[type=hidden]').val()
+        console.log(response);
+        var id = $('#user_id').attr('name');
+        console.log(id);
         $.ajax({
           method: "PUT",
           url: "/users/" + id.toString(),
@@ -89,10 +63,52 @@ $(document).ready(function(){
       }
     })
   })
-  $("#pet-stores").on("click", function(){
-    console.log($(this).attr('name'))
+  // $("#pet-stores").on("click", function(){
+  //   console.log("whatup")
 
-  });
+
+  // });
+
+
+  // http://api.jquery.com/jQuery.noConflict/
+  // var $j = jQuery.noConflict();
+  // $("#event_event_start").datepicker({
+  //   changeMonth: true,
+  //     onSelect: function( selectedDate ) {
+  //       $( "#event_event_end" ).datepicker( "option", "minDate", selectedDate );
+  //     },
+  //     onClose:function(){
+  //       $( "#event_event_end" ).datepicker("show");
+  //     }
+  //   });
+  //   $( "#event_event_end" ).datepicker({
+  //     changeMonth: true,
+  //   });
+
+  // https://github.com/jonthornton/jquery-timepicker
+  // $("#event-button").on("click", function(){
+  //      var eventLocation = $("#event-map").attr('name');
+  //      console.log('yooooooo')
+  //     var lat
+  //     var lng
+  //     $.ajax({
+  //       method: "POST",
+  //       dataType: 'json',
+  //       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + eventLocation + "&key=AIzaSyDj8b8ELTA9Zq9pW7IY1L4TSUX0PClr06M",
+  //       success: function(response) {
+  //         lat = response.results[0].geometry.location.lat
+  //         lng = response.results[0].geometry.location.lng
+  //       $.ajax({
+  //         method: "POST",
+  //         url: "/events",
+  //         data: response,
+  //         success: function(response) {
+  //             console.log(response)
+  //           }
+  //         })
+  //       }
+  //     })
+  // })
 
 })
 
