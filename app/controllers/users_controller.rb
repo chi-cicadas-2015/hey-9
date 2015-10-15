@@ -77,16 +77,16 @@ class UsersController < ApplicationController
     end
   end
 
-   def sync_location
-    if session[:user_id]
-      if request.xhr?
-       lat = params['location']['lat'].to_f
-       lng = params['location']['lat'].to_f
-       @user = User.find_by(id: current_user.id)
-       @user.update_attributes(lat: lat, lng: lng)
-      end
-    end
-  end
+  # def sync_location
+  #   if session[:user_id]
+  #     if request.xhr?
+  #      lat = params['location']['lat'].to_f
+  #      lng = params['location']['lat'].to_f
+  #      @user = User.find_by(id: current_user.id)
+  #      @user.update_attributes(lat: lat, lng: lng)
+  #     end
+  #   end
+  # end
 
   private
 

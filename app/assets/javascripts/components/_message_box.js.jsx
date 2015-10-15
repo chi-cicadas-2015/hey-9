@@ -20,10 +20,7 @@ var MessageBox = React.createClass({
     return (
       <div className="message-box">
         <MessageList messages={ this.state.messages } />
-        <hr />
-        <h2>Add a message:</h2>
         <MessageForm form={ this.state.form } onMessageSubmit={ this.handleMessageSubmit } current_user_id={ this.props.current_user_id }/>
-
       </div>
     );
   }
