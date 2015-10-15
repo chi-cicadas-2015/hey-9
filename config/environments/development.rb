@@ -36,13 +36,15 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
-  config.paperclip_defaults = {
+ config.paperclip_defaults = {
    :storage => :s3,
    :bucket => 'imageuploadstorage',
    :url => ':s3_domain_url',
    :path => "/pieces/:id/:style/:basename.:extension",
    :s3_credentials => "#{Rails.root}/config/aws.yml"
  }
+
+
 
   Paperclip.options[:command_path] = "/usr/local/bin/convert"
 
