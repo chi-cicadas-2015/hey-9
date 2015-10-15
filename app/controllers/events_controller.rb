@@ -26,13 +26,10 @@ class EventsController < ApplicationController
   end
 
   def create
-    # p "*********#{params['event']['location']}"
 
     location_event = params['event']['location'].gsub(" ", "+")
       url = URI.parse("https://maps.googleapis.com/maps/api/geocode/json?address=#{location_event}&key=AIzaSyDj8b8ELTA9Zq9pW7IY1L4TSUX0PClr06M")
       response = Net::HTTP.get_response(url)
-      # p  response.body
-      # p response.body["results"]
       body = JSON.parse(response.body)
       lat = body['results'][0]["geometry"]["location"]["lat"]
       lng = body['results'][0]["geometry"]["location"]["lng"]
@@ -40,7 +37,6 @@ class EventsController < ApplicationController
       @event.update_attributes(:lat => lat, :lng => lng)
       p @event
     if @event.save
-      "*********#{@event.lat}"
       redirect_to @event
     else
       render :new
@@ -51,8 +47,6 @@ class EventsController < ApplicationController
   def show
     @event = Event.find_by(id: params[:id])
     @user = User.find_by(id: @event.creator_id)
-
-    p "*******#{@event.lat}"
     @location = [@event.lat, @event.lng]
   end
 
