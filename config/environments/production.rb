@@ -76,7 +76,7 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
     :storage => :s3,
-    :bucket => 'imageuploadstorage',
+    :bucket => 'imageuploadstorage_prod',
     :url => ":s3_domain_url",
     :path => "/pieces/:id/:style/:basename.:extension",
     :s3_credentials => {
