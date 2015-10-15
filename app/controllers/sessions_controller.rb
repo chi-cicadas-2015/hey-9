@@ -5,7 +5,9 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:session][:email])
-    p @user
+    if request.xhr?
+      p "yoooooooooo"
+    end
     if @user != nil
       session[:user_id] = @user.id
       redirect_to "/users/#{@user.id}"
@@ -18,4 +20,6 @@ class SessionsController < ApplicationController
     session.clear
     redirect_to "/"
   end
+
+
 end

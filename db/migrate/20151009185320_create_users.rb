@@ -4,9 +4,10 @@ class CreateUsers < ActiveRecord::Migration
       t.string  :username, null: false
       t.string  :email, null: false
       t.string  :password_digest, null: false
-      t.float :lat
-      t.float  :lng
+      t.decimal :lat, :precision => 20, :scale =>  16
+      t.decimal  :lng, :precision => 20, :scale =>  16
       t.boolean  :receive_notices
+      t.string :phone_number
       t.timestamps null: false
     end
   end

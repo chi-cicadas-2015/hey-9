@@ -16,47 +16,8 @@
 
 //= require cloudinary
 //= require_tree .
-// $(document).ready(function(){
-// 	$.cloudinary.config({ cloud_name: 'dj3bgluad', api_key: '255366543837721'})
-
-//     $('#fileupload').fileupload({
-//         dataType: 'json',
-
-//         add: function (e, data) {
-//         	console.log(data);
-//         	console.log("hey");
-//             data.context = $('<button/>').text('Upload')
-//                 .appendTo(document.body)
-//                 .click(function () {
-//                     data.context = $('<p/>').text('Uploading...').replaceAll($(this));
-//                     data.submit();
-//                 });
-//         },
-//         done: function (e, data) {
-//             data.context.text('Upload finished.');
-//         }
-//     });
-
-
-
-// 	var image = $.cloudinary.image(response.public_id + '.jpg', { width: 120, height: 80, crop: 'fill' });
-// 	console.log(image)
-
-// 	})
-
 //= require materialize-sprockets
 //= require_tree .
-
-
-// <% if @old_msg_ratio != @new_msg_ratio %>
-//   $("#message_ratio").value(<%= @new_msg_ratio %>);
-// <% end %>
-
-// if  {
-//   $( "span" ).addClass( "new" );}
-// }
-
-
 
 $(document).ready(function(){
 $( "span.badge" ).removeClass("new badge").addClass( "badge");
@@ -82,42 +43,17 @@ $( "span.badge" ).removeClass("new badge").addClass( "badge");
 });
 
 
-
-
 $(document).ready(function(){
   $('.button-collapse').sideNav({edge: "left"});
   $('.modal-trigger').leanModal();
   $('.modal-trigger2').leanModal();
+  $('.modal-trigger3').leanModal();
   $('.parallax').parallax();
   $('.datepicker').pickadate({selectMonths: true, selectYears: 15});
-
-  var summary = $("#summary").text();
-
-  if(summary.includes("Clear")){
-    $("#weather-card").addClass("yellow");
-    Materialize.fadeInImage("#weather-card");
-  }
+  changeWeather("#weather-card");
+  changeWeather("#weather-card2");
 
 
-  $("#location").on("submit", function(event){
-    event.preventDefault();
-		$.ajax({
-			method: "POST",
-			url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk",
-			success: function(response) {
-        var id = $('input[type=hidden]').val()
-        $.ajax({
-          method: "PUT",
-          url: "/users/" + id.toString(),
-          dataType: "json",
-          data: response,
-          success: function(response) {
-
-            }
-          })
-				}
-	  	})
-    })
 
   $("#add-friend").on("click", function(event){
     event.preventDefault();
@@ -131,10 +67,48 @@ $(document).ready(function(){
       }
     })
   })
-  $("#pet-stores").on("click", function(){
-    console.log($(this).attr('name'))
 
-  });
+
+
+  // http://api.jquery.com/jQuery.noConflict/
+  // var $j = jQuery.noConflict();
+  // $("#event_event_start").datepicker({
+  //   changeMonth: true,
+  //     onSelect: function( selectedDate ) {
+  //       $( "#event_event_end" ).datepicker( "option", "minDate", selectedDate );
+  //     },
+  //     onClose:function(){
+  //       $( "#event_event_end" ).datepicker("show");
+  //     }
+  //   });
+  //   $( "#event_event_end" ).datepicker({
+  //     changeMonth: true,
+  //   });
+
+
 
 })
 
+function changeWeather(card){
+  var inner = $(card);
+  var summary = $(inner).text();
+
+  if(summary.includes("Clear")){
+    $(inner).addClass("light-blue lighten-3");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Sunny")){
+    $(inner).addClass("yellow");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Cloudy")){
+    $(inner).addClass("grey lighten-1");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Rain")){
+    $(inner).addClass("grey");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Storm")){
+    $(inner).addClass("grey darken-1");
+    Materialize.fadeInImage(inner);
+  }
+};
+
+// AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk

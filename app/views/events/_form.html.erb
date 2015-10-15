@@ -1,9 +1,10 @@
+
 <div class="container">
   <div class="row">
   <%= form_for(:event, :html => {:class => "col s8 offset-l2"} )do |f| %>
     <div class="row">
       <div class="input-field col s12">
-      <%= f.text_field :location,  placeholder: "123 Main St, Chicago, IL, 60601" %>
+      <%= f.text_field :location,  placeholder: "123 Main St, Chicago, IL, 60601", :id => "event-location"  %>
       </div>
     </div>
     <div class="row">
@@ -19,7 +20,13 @@
     <div class="row">
       <%= f.text_area :description, placeholder: "Enter event description here", :class => "materialize-textarea" %>
     </div>
-      <%= f.submit "Create event", :class => "btn" %>
+
+     <div class="row">
+      <%= f.check_box :public %>  
+      <%= f.label "public" %>
+    </div>
+      <%= f.submit "Create event", :class => "btn", :id => "event-button" %>
+
   <% end %>
   </div>
 </div>

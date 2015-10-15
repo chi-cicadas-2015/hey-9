@@ -7,9 +7,6 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  # concern :commentable do
-  #   resources :comments
-  # end
 
   resources :users, except: :delete do
     resources :dogs, only: [:index, :create, :delete]
@@ -17,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:new, :create, :show, :index] do
     resources :comments, module: :messages
-    # resources :commentable, only: [:create]
+
   end
 
   resources :direct_conversations, only: [:index, :show, :new, :create] do
@@ -30,12 +27,16 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :comments, module: :events
-    # resources :commentable, only: [:create]
+    resources :event_invitations, only: [:create, :destroy]
   end
 
-  resources :maps
+  resources :maps, only: [:index]
+  get '/maps/data' => 'maps#data'
+  get '/maps/pet_stores' => 'maps#pet_stores'
+  get '/maps/dog_parks' => 'maps#dog_parks'
+  post '/users/sync_location' => 'users#sync_location'
 
-
+  post '/dogs/sync_location' => 'dogs#sync_location'
   # concern :commentable do
   #   resources :comments, shallow: true, except: [:show, :index]
   # end
@@ -57,8 +58,6 @@ Rails.application.routes.draw do
   # end
 
   # resources :message_board, concerns: :messageable
-
-
 
   # get 'users/new' => 'users#new'
 

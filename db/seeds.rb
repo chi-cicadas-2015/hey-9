@@ -32,8 +32,8 @@ potential_messages =
 
 users = User.create!([
   {username: "larissa", email: "larissa@email.com", password: "password",:lat=> 41.878114,:lng => -87.629798, receive_notices: false},
-  {username: "chris", email: "chris@email.com", password: "password", :lat=> 0,:lng=> 0, receive_notices: false},
-  {username: "alexis", email: "alexis@email.com", password: "password", :lat=> 0,:lng=> 0, receive_notices: false},
+  {username: "chris", email: "chris@email.com", password: "password", :lat=> 41.890192,:lng=> -87.637224, receive_notices: false},
+  {username: "alexis", email: "alexis@email.com", password: "password", :lat=> 41.890929,:lng=> -87.632222, receive_notices: false},
   {username: "rodica", email: "rodica@email.com", password: "password", :lat=> 0,:lng=> 0, receive_notices: false},
   {username: "wyeth", email: "wyeth@email.com", password: "password", :lat=> 0,:lng=> 0, receive_notices: false}
   ])
@@ -124,7 +124,7 @@ events = Event.create!([
 
 events.each do |event|
   15.times do
-    EventInvitation.create!(event: event, :invitee => dogs.sample, :rsvp_status => ["pending", "pending", "pending", "pending", "pending", "accepted", "accepted", "accepted", "declined"].sample)
+    EventInvitation.create!(event: event, :invitee => dogs.sample)
   end
 end
 

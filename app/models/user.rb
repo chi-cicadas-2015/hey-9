@@ -11,13 +11,11 @@ class User < ActiveRecord::Base
   has_many :comments, foreign_key: "commenter_id"
   has_many :messages, foreign_key: "author_id"
 
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, :storage => :s3,
-   :bucket => 'imageuploadstorage',
-   :url => ':s3_domain_url',
-   :path => "/pieces/:id/:style/:basename.:extension",
-   :s3_credentials => "#{Rails.root}/config/aws.yml"
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }
+
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  validates_attachment_file_name :avatar, matches: [/png\Z/, /PNG\Z/, /jpe?g\Z/, /JPE?G\Z/]
 
   has_secure_password
 

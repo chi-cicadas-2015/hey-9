@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
   include ApplicationHelper
+  require 'net/https'
+  require 'open-uri'
   before_action :require_login
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
@@ -7,7 +9,6 @@ class EventsController < ApplicationController
     @user = User.find_by(id: current_user.id)
     @events = []
     if @user.lat && @user.lng
-      p @user
       @location = gen_neighborhood
       @users = User.within(2, :origin => location_get).all
       @users.each do |user|
@@ -17,7 +18,7 @@ class EventsController < ApplicationController
       end
        @events.sort!{|a,b| a.created_at <=> b.created_at}
     end
-    p @events
+
   end
 
   def new
@@ -25,9 +26,21 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.events.new(event_params)
+    # p "*********#{params['event']['location']}"
 
+    location_event = params['event']['location'].gsub(" ", "+")
+      url = URI.parse("https://maps.googleapis.com/maps/api/geocode/json?address=#{location_event}&key=AIzaSyDj8b8ELTA9Zq9pW7IY1L4TSUX0PClr06M")
+      response = Net::HTTP.get_response(url)
+      # p  response.body
+      # p response.body["results"]
+      body = JSON.parse(response.body)
+      lat = body['results'][0]["geometry"]["location"]["lat"]
+      lng = body['results'][0]["geometry"]["location"]["lng"]
+      @event = current_user.events.new(event_params)
+      @event.update_attributes(:lat => lat, :lng => lng)
+      p @event
     if @event.save
+      "*********#{@event.lat}"
       redirect_to @event
     else
       render :new
@@ -36,7 +49,11 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.find_by(id: params[:id])
     @user = User.find_by(id: @event.creator_id)
+
+    p "*******#{@event.lat}"
+    @location = [@event.lat, @event.lng]
   end
 
   def edit
@@ -56,6 +73,10 @@ class EventsController < ApplicationController
     redirect_to current_user
   end
 
+  def event_data
+
+  end
+
   private
 
   def set_event
@@ -65,7 +86,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:location, :event_start, :event_end, :description)
+    params.require(:event).permit(:location, :event_start, :event_end, :description, :public)
   end
 
 end

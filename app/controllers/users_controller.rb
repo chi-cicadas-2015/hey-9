@@ -59,10 +59,12 @@ class UsersController < ApplicationController
     if request.xhr?
       lat = params[:location][:lat]
       lng = params[:location][:lng]
+
       lat = lat.to_f
       lng = lng.to_f
+
       @user.update_attributes(lng: lng, lat: lat)
-      p @user.lat
+
       render :show
     else
       if @user.update_attributes(user_params)
@@ -82,6 +84,18 @@ class UsersController < ApplicationController
       session.clear
       redirect_to "/"
     end
+  end
+
+   def sync_location
+    if session[:user_id]
+      if request.xhr?
+       lat = params['location']['lat'].to_f
+       lng = params['location']['lng'].to_f
+       @user = User.find_by(id: current_user.id)
+       @user.update_attributes(lat: lat, lng: lng)
+      end
+    end
+    render nothing: true, status: 200
   end
 
   private
