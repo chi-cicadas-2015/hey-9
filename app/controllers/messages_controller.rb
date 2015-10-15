@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
 
   def index
     @user = current_user
+    "*****************#{@user.lat}"
     if @user.lat && @user.lng
       @messages = []
       @location = gen_neighborhood

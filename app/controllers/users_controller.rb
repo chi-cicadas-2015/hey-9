@@ -84,6 +84,7 @@ class UsersController < ApplicationController
        lng = params['location']['lat'].to_f
        @user = User.find_by(id: current_user.id)
        @user.update_attributes(lat: lat, lng: lng)
+       redirect_to "users/@user.id"
       end
     end
   end
