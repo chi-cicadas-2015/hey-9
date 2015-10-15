@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.decimal :lat, :precision => 20, :scale =>  16
       t.decimal  :lng, :precision => 20, :scale =>  16
       t.boolean  :receive_notices
+      t.string :phone_number
       t.timestamps null: false
     end
   end
