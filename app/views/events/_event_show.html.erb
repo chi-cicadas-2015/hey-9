@@ -23,39 +23,29 @@
   <div class="col s12 l4">
     <% if dog_events(current_user.dogs).include?(event) %>
       <a class="btn-floating btn-large waves-effect waves-light red"></a>
+        <div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">+</i>
+    </a>
+    <% current_user.dogs.each do |dog| %>
+    <ul>
+      <li><a class="btn-floating red">
+        <%= link_to "#{dog.name}",  event_event_invitations_path(:event_id => params[:id], :invitee_id => dog.id), :method => :post %>
+      </a></li>
+    <% end %>
+     
+  </div>
+        
     <% end %>
     <h5>Attending</h5>
     <div class="row">
-      <% event.event_invitations.each do |invitee|%>
-        <% dog = Dog.find(invitee.invitee_id) %>
-        <% if invitee.rsvp_status == "accepted" %>
-          <div class="col s8 m4 l2 green-text">
-            <h6><%= dog.name %></h6>
-          </div>
+      <div class="col s8 m4 l2 green-text">
+        <% event.invitees.uniq.each do |dog|%>
+            <h6><%= link_to "#{dog.name}", dog_path(dog) %></h6>
         <% end %>
-      <% end %>
+      </div>
     </div>
-    <h5>Invited</h5>
-    <div class="row">
-      <% event.event_invitations.each do |invitee|%>
-        <% dog = Dog.find(invitee.invitee_id) %>
-        <% if invitee.rsvp_status == "pending" %>
-          <div class="col s8 m6 l2 amber-text">
-            <h6><%= dog.name %></h6>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-    <h5>Not Attending</h5>
-    <div class="row">
-      <% event.event_invitations.each do |invitee|%>
-        <% dog = Dog.find(invitee.invitee_id) %>
-        <% if invitee.rsvp_status == "declined" %>
-          <div class="col s8 m6 l2 red-text">
-            <h6><%= dog.name %></h6>
-          </div>
-        <% end %>
-      <% end %>
+    
     </div>
   </div>
 </div>

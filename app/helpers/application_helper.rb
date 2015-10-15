@@ -46,7 +46,18 @@ module ApplicationHelper
         end
       end
     end
-    return @events
+    @events
+  end
+
+  def find_friends
+    @connection = []
+    @friends = []
+    current_user.dogs.each do |dog|
+      @connection << dog.dog_connections
+    end
+    @connection.each do |connection|
+      @friends << Dog.find_by(id: connection.following_id )
+    end
   end
 
   def text_users
