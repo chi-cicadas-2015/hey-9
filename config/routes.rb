@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   get '/maps/data' => 'maps#data'
 
   post '/users/sync_location' => 'users#sync_location'
+
+  post '/dogs/sync_location' => 'dogs#sync_location'
   # concern :commentable do
   #   resources :comments, shallow: true, except: [:show, :index]
   # end

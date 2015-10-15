@@ -31,3 +31,25 @@
 <div id="twilio-messaging">
   <%= button_to "Send text message", send_text_message_path() %>
 </div>
+ <script type="text/javascript">
+      $(window).load(function(event){
+    event.preventDefault();
+
+    $.ajax({
+      method: "POST",
+      url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs",
+      success: function(response) {
+        console.log(response)
+
+        $.ajax({
+          method: "POST",
+          url: "/users/sync_location",
+          data: response,
+          success: function(response) {
+
+            }
+          })
+        }
+      })
+    })
+    </script>
