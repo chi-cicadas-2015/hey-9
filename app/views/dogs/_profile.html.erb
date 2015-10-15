@@ -13,10 +13,10 @@
         <div class="collapsible-header">Dogs <%= dog.name %> Follows</div>
         <div class="collapsible-body">
           <ul class="collection">
-            <% dog.followings.each do |friend| %>
+            <% dog.find_good_dogs do |dog| %>
               <li class="collection-item avatar">
                 <a href="/dogs/<%= friend.id %>">
-                  <span class="title"><%=friend.name%></span>
+                  <span class="title"><%=dog.name%></span>
                 </a>
               </li>
             <% end %>

@@ -3,12 +3,16 @@ class DogsController < ApplicationController
 
   def index
      if session[:user_id] != nil
-        @forecast_data = forecast_data
-        @user = User.find(session[:user_id])
-        @dogs = @user.dogs
+      @forecast_data = forecast_data
+      @user = User.find(session[:user_id])
+      if params[:search]
+        @dogs = Dog.search(params[:search]).order("created_at DESC")
       else
-        redirect_to "/sessions/new"
+        @dogs = @user.dogs
       end
+     else
+        redirect_to "/sessions/new"
+     end
   end
 
   def new
