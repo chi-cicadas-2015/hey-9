@@ -1,4 +1,4 @@
-<div id="map" name="<%= @location_array %>"></div>
+<div id="pet-stores-map" ></div>
 
 <% @store_names.each_with_index do |store, index| %>
   <h3><%= @alphabet[index]%>. <%= store %> </h3>
@@ -14,16 +14,17 @@
     </div>
     <div id="store-addresses", name="<%= @store_addresses %>">
     </div>
+       <div id="user-lat" name="<%= @current_user_lat %>"></div>
+    <div id="user-lng" name="<%= @current_user_lng %>"></div>
   <script type="text/javascript">
 
-      var map;
-      var coordinates = $("#map").attr('name');
-      var array = coordinates.split(",");
-      var lat = array[0].slice(1)
-      var lng = array[1].slice(0)
-      lng = lng.slice(1,(lng.length - 1))
-      lat = parseFloat(lat);
-      lng = parseFloat(lng);
+    var map;
+
+      var userLat = $("#user-lat").attr('name');
+      var userLng = $("#user-lng").attr('name');
+      var lat = parseFloat(userLat);
+      var lng = parseFloat(userLng);
+
 
       var storeNames = $("#store-names").attr('name');
       var storeNames = storeNames.slice(0)
@@ -44,7 +45,6 @@
         storeLats[i] = parseFloat(storeLats[i])
          storeLngs[i] = parseFloat(storeLngs[i])
       }
-      console.log(storeLats)
 
       var storeAddresses = $("#store-addresses").attr('name');
       var storeAddresses = storeAddresses.slice(0)
@@ -60,11 +60,10 @@
 
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('pet-stores-map'), {
     center: {lat: lat, lng: lng},
     zoom: 14
   });
-
     var cityCircle = new google.maps.Circle({
       strokeColor: '#FF0000',
       strokeOpacity: 0.8,
@@ -76,14 +75,12 @@ function initMap() {
       radius: 40
     });
 
-
     var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     var labelIndex = 0;
    var markers = []
    markers.length = storeNames.length
    var contentString = []
    contentString.length = storeNames.length
-   console.log(markers.length)
    for(var i = 0; i < storeNames.length; i++) {
       markers[i] = new google.maps.Marker({
     map: map,
