@@ -5,14 +5,14 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
- 
+
   resources :users, except: :delete do
     resources :dogs, only: [:index, :create, :delete]
   end
 
   resources :messages, only: [:new, :create, :show, :index] do
     resources :comments, module: :messages
- 
+
   end
 
   resources :direct_conversations, only: [:index, :show, :new, :create] do
@@ -30,7 +30,8 @@ Rails.application.routes.draw do
 
   resources :maps, only: [:index]
   get '/maps/data' => 'maps#data'
-
+  get '/maps/pet_stores' => 'maps#pet_stores'
+  get '/maps/dog_parks' => 'maps#dog_parks'
   post '/users/sync_location' => 'users#sync_location'
 
   post '/dogs/sync_location' => 'dogs#sync_location'

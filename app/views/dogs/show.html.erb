@@ -39,28 +39,3 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
-  $(window).load(function(event){
-
-    var dogId = $("#get_dog").attr('name')
-    $.ajax({
-      method: "POST",
-      url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs",
-      success: function(response) {
-        console.log(response)
-        var parameters = {
-          response: response,
-          id: dogId
-        }
-        $.ajax({
-          method: "POST",
-          url: "/dogs/sync_location",
-          data: parameters,
-          success: function(response) {
-
-            }
-          })
-        }
-      })
-    })
-    </script>

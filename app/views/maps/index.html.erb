@@ -1,22 +1,115 @@
-<div id="map" name="<%= @location_array %>"></div>
-<div class="row">
+<div id="dogs-map" name="<%= @location_array %>">
+</div>
+<% @local_dogs.each_with_index do |dog, index| %>
+<% @user = User.find_by(id: dog.owner_id) %>
+  <h4><%= @alphabet[index]%>. <%= dog.name %> </h4>
+  <a href="/dogs/<%= dog.id %>" ><p>Visit Dog Profile!</p></a>
+  <%= image_tag dog.avatar.url(:medium) %>
+    <h5> Owner: <%= @user.username %> </h5>
+    <%= image_tag @user.avatar.url(:thumb) %>
+  <p><%= dog.bio %></p>
+
+<% end %>
+  <h3></h3>
+    <div id="users-lat", name="<%= @users_lat %>">
+    </div>
+    <div id="users-lng" name="<%= @users_lng %>"></div>
+<!-- <div class="row">
     <div class="col s12">
       <ul class="tabs black-text">
-        <li class="tab col s3"><a href="#pet_stores">Pet Stores</a></li>
-        <li class="tab col s3"><a class="active" href="#dog_parks">Dog Parks</a></li>
+        <li class="tab col s3"><a id="pet-stores-button" href="#pet_stores">Pet Stores</a></li>
+        <li class="tab col s3"><a id="dog-parks-button" href="#dog_parks">Dog Parks</a></li>
         <li class="tab col s3"><a href="#vets">Vets</a></li>
-        <li class="tab col s3"><a href="#closest_dogs">Closest Dogs</a></li>
+        <li class="tab col s3"><a id="dogs-button" href="#closest_dogs"  class="active">Closest Dogs</a></li>
       </ul>
     </div>
-    <div id="pet_stores" class="col s12">
-      <%= render partial: "pet_stores_map"%>
-    </div>
-    <div id="dog_parks" class="col s12">
-      <%= render partial: "dog_parks_map"%>
-    </div>
-    <div id="vets" class="col s12">Test 3</div>
-    <div id="closest_dogs" class="col s12">
-      <%= render partial: "dogs_map"%>
-    </div>
-</div>
+    <div id="dog_partials">
+    <div id="pet_stores">
+    <div  class="col s12">
 
+    </div> -->
+<!--   </div>
+  <div id="dog_parks">
+    <div  class="col s12">
+
+    </div>
+    <div>
+    <div id="vets" class="col s12">Test 3</div>
+    <div id="active"  class="closest_dogs">
+    <div class="col s12">
+
+    </div>
+  </div>
+  </div>
+</div> -->
+
+
+
+  <script type="text/javascript">
+
+
+function initMap() {
+  var lat;
+  var lng;
+  var usersLat = [];
+  var usersLng = [];
+  $.ajax({
+        url: "/maps/data",
+        dataType: "json",
+        success: function(json_response) {
+
+          usersLat = json_response.users_lat
+         usersLng = json_response.users_lng
+          lat = json_response.my_lat
+
+          lng = json_response.my_lng
+    for(var i = 0; i < usersLng.length; i++) {
+        usersLat[i] = parseFloat(usersLat[i]);
+        usersLng[i] = parseFloat(usersLng[i]);
+    }
+          lat = parseFloat(lat);
+          lng = parseFloat(lng);
+          map = new google.maps.Map(document.getElementById('dogs-map'), {
+            center: {lat: lat, lng: lng},
+            zoom: 14
+          });
+           var cityCircle = new google.maps.Circle({
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      map: map,
+      center: {lat: lat, lng: lng},
+      radius: 40
+    });
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var labelIndex = 0;
+   var markers = []
+   markers.length = usersLng.length
+   var contentString = []
+   contentString.length = usersLng.length
+
+   for(var i = 0; i < usersLat.length; i++) {
+      console.log(usersLat[i])
+      markers[i] = new google.maps.Marker({
+    map: map,
+    position: {lat: usersLat[i], lng: usersLng[i]},
+    label: labels[labelIndex++ % labels.length]
+
+  });
+       }
+
+        }
+      });
+
+
+
+}
+
+
+    </script>
+
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs&callback=initMap">
+    </script>
