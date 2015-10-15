@@ -81,7 +81,7 @@ class UsersController < ApplicationController
     if session[:user_id]
       if request.xhr?
        lat = params['location']['lat'].to_f
-       lng = params['location']['lat'].to_f
+       lng = params['location']['lng'].to_f
        @user = User.find_by(id: current_user.id)
        @user.update_attributes(lat: lat, lng: lng)
        redirect_to "users/@user.id"
