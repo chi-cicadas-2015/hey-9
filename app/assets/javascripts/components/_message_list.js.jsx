@@ -1,7 +1,7 @@
 var MessageList = React.createClass({
   render: function () {
     var messageNodes = this.props.messages.map(function ( message ) {
-      return <Message content={ message.content } author={message.author}  author_id={message.author_id} />
+      return <Message content={message.message.content} author={message.author} />
     });
 
     return (

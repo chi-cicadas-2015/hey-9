@@ -4,15 +4,14 @@ class MessagesController < ApplicationController
 
   def index
 
-    # @presenter_messages = []
-    # Message.last(5).each do |message|
-    #   message_hash = { message: message, author: message.author.username, author_id: message.author.id }
-    #   @presenter_messages<< message_hash
-    # end
+    @presenter_messages = []
+    Message.last(5).each do |message|
+      message_hash = { message: message, author: message.author.username }
+      @presenter_messages<< message_hash
+    end
 
     @presenter = {
-      messages: Message.last(5),
-      current_user_id: current_user.id
+      messages: @presenter_messages,
       form: {
         action: messages_path,
         :csrf_param => request_forgery_protection_token,
@@ -47,7 +46,7 @@ class MessagesController < ApplicationController
   def create
     p "PARAMS:"
     logger.info(params)
-    @author = user.find(params[:author_id])
+    @author = User.find(params[:current_user_id].to_i)
     @message = @author.messages.build(message_params)
 
     @message.lat = @author.lat
