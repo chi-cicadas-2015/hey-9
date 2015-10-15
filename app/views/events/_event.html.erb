@@ -1,14 +1,9 @@
-<div class="col s4">
-  <a href="/events/<%= event.id %>">
-    <div class="card red hoverable">
-      <p class="center">Event description: </p>
-      <p class="center"><%= event.description %> </p>
-      <p class="center">Event start: </p>
-      <p class="center"><%= event.event_start.strftime('%D') %> @ <%= event.event_start.strftime('%r') %></p>
-      <p class="center">Event end: </p>
-      <p class="center"><%= event.event_end.strftime('%D') %> @ <%= event.event_end.strftime('%r') %></p>
-      <p class="center"> Event location: </p>
-      <p class="center"><%= event.location %> </p>
+<div class="col s12 m6 l6">
+  <a href="/events/<%= event.id %>" class="white-text">
+    <div class="card hoverable light-blue darken-3">
+      <h5 class="center truncate"><%= event.description %> </h5>
+      <h6 class="center"><%= event.event_start.strftime('%D') %> @ <%= event.event_start.strftime('%r') %></h6>
+      <h6 class="center"><%= event.location %> </h6>
     </div>
   </a>
 </div>

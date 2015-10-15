@@ -9,6 +9,7 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
 
   <%= javascript_include_tag 'application' %>
+
   <%= csrf_meta_tags %>
      <style type="text/css">
       html, body { height: 100%; margin: 0; padding: 0; }
@@ -17,15 +18,13 @@
     </style>
 
 </head>
-<body>
-     <nav class="black">
-<!--         <div class="row">
- --><!--           <div class="col s1 offset-10 right">
- -->                <% if current_user != nil %>
-                  <%= form_for :session, url: session_path(session), method: "delete" do |f| %>
-                  <%= f.submit value: "Logout", :class => "right col s1 white-text btn-flat" %>
-                  <% end %>
-            <a href="/" class="brand-logo center">Hey-9</a>
+  <body>
+    <nav class="black">
+      <% if current_user != nil %>
+        <%= form_for :session, url: session_path(session), method: "delete" do |f| %>
+        <%= f.submit value: "Logout", :class => "right col s1 white-text btn-flat" %>
+        <% end %>
+            <a href="/users/<%= current_user.id %>" class="brand-logo center">Hey-9</a>
           </div>
           <ul id="slide-out" class="side-nav">
           <li class="no-padding">
@@ -34,7 +33,7 @@
                 <a class="collapsible-header">Dog Portal<i class="mdi-navigation-arrow-drop-down"></i></a>
                 <div class="collapsible-body">
                   <ul>
-                    <li><a href="/users/1/dogs">Manage Dogs</a></li>
+                    <li><a href="/users/<%= current_user.id %>/dogs">Manage Dogs</a></li>
                   </ul>
                 </div>
               </li>
@@ -46,8 +45,9 @@
                 <a class="collapsible-header">Owner Portal<i class="mdi-navigation-arrow-drop-down"></i></a>
                 <div class="collapsible-body">
                   <ul>
-                    <li><a href="#!">Messages</a></li>
-                    <li><a href="#!">Create Events</a></li>
+                    <li><a href="/messages">Messages</a></li>
+                    <li><a href="/direct_conversations">Private Messages</a></li>
+                    <li><a href="/events">Events</a></li>
                   </ul>
                 </div>
               </li>
@@ -59,9 +59,9 @@
                 <a class="collapsible-header">Resources<i class="mdi-navigation-arrow-drop-down"></i></a>
                 <div class="collapsible-body">
                   <ul>
-                    <li><a href="/maps" id="pet-stores" name="get-map">Pet Stores</a></li>
-                    <li><a href="#!">Dog Parks</a></li>
-                    <li><a href="#!">Vets</a></li>
+                    <li><a href="/maps" name="get-map">Pet Stores</a></li>
+                    <li><a href="/maps">Dog Parks</a></li>
+                    <li><a href="/maps">Vets</a></li>
                   </ul>
                 </div>
               </li>
@@ -91,7 +91,28 @@
       <% end %>
         </div>
     </nav>
+    <script type="text/javascript">
+      $(window).load(function(event){
+    event.preventDefault();
 
+    $.ajax({
+      method: "POST",
+      url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs",
+      success: function(response) {
+        console.log(response)
+
+        $.ajax({
+          method: "POST",
+          url: "/users/sync_location",
+          data: response,
+          success: function(response) {
+
+            }
+          })
+        }
+      })
+    })
+    </script>
 <%= yield %>
 
 </body>

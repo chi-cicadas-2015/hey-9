@@ -1,26 +1,38 @@
 <div class="container">
-  <a class="waves-effect waves-light btn modal-trigger2" href="#modal3">Create an Event</a>
-  <div id="modal3" class="modal">
-    <div class="modal-content">
-      <h4>New Event</h4>
-      <%= render partial: "form"%>
-    </div>
-  </div>
   <div class="section">
-    <h1 class="center">Your Events</h1>
     <div class="row">
-      <%= render partial: "event", collection: current_user.events %>
-    </div>
-  </div>
+      <div class="col s12 l4">
+        <h4 class="center">Your Events</h4>
+        <div class="card">
+          <a class="waves-effect waves-light btn modal-trigger2" href="#modal3">Create an Event</a>
+          <div id="modal3" class="modal">
+            <div class="modal-content">
+              <h4>New Event</h4>
 
-  <div class="section">
-    <h1 class="center">Community Events</h1>
-    <div class="row">
-      <%= render partial: "event", collection: @events %>
+              <%= render partial: "form"%>
+            </div>
+          </div>
+          <div class="row">
+            <%= render partial: "event", collection: current_user.events %>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 l4">
+        <h4 class="center">Community Events</h4>
+        <div class="card">
+          <div class="row">
+            <%= render partial: "event", collection: @events %>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 l4">
+        <h4 class="center">Your Pack's Invitations</h4>
+        <div class="card">
+          <div class="row">
+            <%= render partial: "event", collection: dog_events(current_user.dogs) %>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <h1 class="center">Your Pack's Invitations</h1>
-  <div class="row">
-    <%= render partial: "event", collection: dog_events(current_user.dogs) %>
   </div>
 </div>
