@@ -1,98 +1,22 @@
-
-   <div  id="map" name="<%= @location_array %>">
-</div>
- <% @park_names.each_with_index do |name, index| %>
-  <h4><%= @alphabet[index] %>.  <%= name %> </h4>
-  <p><%= @park_addresses[index] %></p>
-  <% end %>
-
-    <div id="park-lats", name="<%= @park_lats %>">
-    </div>
-    <div id="park-lngs" name="<%= @park_lngs %>"></div>
-    <div id="user-lat" name="<%= @current_user_lat %>"></div>
-    <div id="user-lng" name="<%= @current_user_lng %>"></div>
-  <script type="text/javascript">
-
-      var map;
-      var parkLats = $("#park-lats").attr('name');
-      var parkLngs = $("#park-lngs").attr('name');
-      var userLat = $("#user-lat").attr('name');
-      var userLng = $("#user-lng").attr('name');
-      console.log(parkLats);
-      lat = parseFloat(userLat);
-      lng = parseFloat(userLng);
-
-
-      var parkLats = $("#park-lats").attr('name');
-      var parkLats = parkLats.slice(0)
-      var parkLats = parkLats.slice(1, (parkLats.length - 1))
-      parkLats = parkLats.split(",")
-
-      var parkLngs = $("#park-lngs").attr('name');
-      var parkLngs = parkLngs.slice(0)
-      var parkLngs = parkLngs.slice(1, (parkLngs.length - 1))
-      parkLngs = parkLngs.split(",")
-
-      for(var i = 0; i < parkLats.length; i++) {
-        parkLats[i] = parseFloat(parkLats[i])
-         parkLngs[i] = parseFloat(parkLngs[i])
-      }
-      console.log(parkLats)
-
-
-
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: lat, lng: lng},
-    zoom: 14
-  });
-
-    var cityCircle = new google.maps.Circle({
-      strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: '#FF0000',
-      fillOpacity: 0.35,
-      map: map,
-      center: {lat: lat, lng: lng},
-      radius: 40
-    });
-
-
-    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    var labelIndex = 0;
-   var markers = []
-   markers.length = parkLats.length
-   var contentString = []
-   contentString.length = parkLats.length
-   console.log(markers.length)
-   for(var i = 0; i < parkLats.length; i++) {
-      markers[i] = new google.maps.Marker({
-    map: map,
-    position: {lat: parkLats[i], lng: parkLngs[i]},
-    label: labels[labelIndex++ % labels.length]
-  });
-
-}
-}
-
-
-    </script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs&callback=initMap">
-    </script>
-
-  <div class="row">
+<div id="map" name="<%= @location_array %>"></div>
+<div class="row">
     <div class="col s12">
-      <ul class="tabs">
-        <li class="tab col s3"><a href="#pet_stores">Test 1</a></li>
-        <li class="tab col s3"><a class="active" href="#dog_parks">Test 2</a></li>
-        <li class="tab col s3"><a href="#vets">Disabled Tab</a></li>
-        <li class="tab col s3"><a href="#closest_dogs">Test 4</a></li>
+      <ul class="tabs black-text">
+        <li class="tab col s3"><a href="#pet_stores">Pet Stores</a></li>
+        <li class="tab col s3"><a class="active" href="#dog_parks">Dog Parks</a></li>
+        <li class="tab col s3"><a href="#vets">Vets</a></li>
+        <li class="tab col s3"><a href="#closest_dogs">Closest Dogs</a></li>
       </ul>
     </div>
-    <div id="pet_stores" class="col s12">Test 1</div>
-    <div id="dog_parks" class="col s12">Test 2</div>
+    <div id="pet_stores" class="col s12">
+      <%= render partial: "pet_stores_map"%>
+    </div>
+    <div id="dog_parks" class="col s12">
+      <%= render partial: "dog_parks_map"%>
+    </div>
     <div id="vets" class="col s12">Test 3</div>
-    <div id="closest_dogs" class="col s12">Test 4</div>
-  </div>
+    <div id="closest_dogs" class="col s12">
+      <%= render partial: "dogs_map"%>
+    </div>
+</div>
+

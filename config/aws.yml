@@ -1,7 +1,10 @@
 development:
-  access_key_id: AKIAI3XRMJSGVK6KI7RA
-  secret_access_key: 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
+  access_key_id: "AKIAI3XRMJSGVK6KI7RA"
+  secret_access_key: "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"
+  bucket_name: 'imageuploadstorage'
 
-test:
-  access_key_id: AKIAI3XRMJSGVK6KI7RA
-  secret_access_key: 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
+production:
+  access_key_id: <%= ENV["ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV["SECRET_ACCESS_KEY"] %>
+  bucket_name: <%= ENV["BUCKET_NAME"] %>
+

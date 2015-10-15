@@ -7,6 +7,7 @@ class MessagesController < ApplicationController
     p @presenter
 
     @user = current_user
+    "*****************#{@user.lat}"
     if @user.lat && @user.lng
       @messages = []
       @location = gen_neighborhood

@@ -46,17 +46,49 @@ module ApplicationHelper
         end
       end
     end
-
-    return @events
+    @events
   end
 
-  def convert_time(time_num)
-    hour = (time_num / 1000000) % 100
-    minute = (time_num / 10000) % 100
-    second = (time_num / 100) % 100
-    millisecond = (time_num % 100) * 10
+  def find_friends
+    @connection = []
+    @friends = []
+    current_user.dogs.each do |dog|
+      @connection << dog.dog_connections
+    end
+    @connection.each do |connection|
+      @friends << Dog.find_by(id: connection.following_id)
+    end
+  end
 
-    time = "#{hour}:#{minute}:#{second}"
+  def location_get
+      location = [current_user.lat, current_user.lng]
+  end
+
+  def gen_neighborhood
+    neighborhood = Geokit::Bounds.from_point_and_radius(location_get, 1)
+  end
+
+  def find_good_dogs(dog)
+    @good_dogs = []
+    @friends = DogConnection.where(relationship_status: 1, dog_id: dog.id).all
+    @friends.each do |friend|
+      @good_dogs << Dog.find_by(id: friend.following_id)
+    end
+    @good_dogs
+  end
+
+  def find_bad_dogs(dog)
+    @bad_dogs = []
+    @enemies = DogConnection.where(relationship_status: -1, dog_id: dog.id).all
+    @enemies.each do |enemy|
+      @bad_dogs << Dog.find_by(id: enemy.following_id)
+    end
+    @bad_dogs
+  end
+
+  def text_users
+    neighborhood = gen_neighborhood
+    @users = User.where(receive_notices: true)
   end
 end
 
