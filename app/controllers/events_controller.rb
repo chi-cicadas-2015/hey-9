@@ -26,7 +26,6 @@ class EventsController < ApplicationController
   end
 
   def create
-
     location_event = params['event']['location'].gsub(" ", "+")
       url = URI.parse("https://maps.googleapis.com/maps/api/geocode/json?address=#{location_event}&key=AIzaSyDj8b8ELTA9Zq9pW7IY1L4TSUX0PClr06M")
       response = Net::HTTP.get_response(url)
