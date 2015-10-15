@@ -29,27 +29,26 @@ $(document).ready(function(){
   changeWeather("#weather-card");
   changeWeather("#weather-card2");
 
-  $("#location").on("submit", function(event){
-    event.preventDefault();
-		$.ajax({
-			method: "POST",
-			url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs",
-			success: function(response) {
-        console.log(response);
-        var id = $('#user_id').attr('name');
-        console.log(id);
-        $.ajax({
-          method: "PUT",
-          url: "/users/" + id.toString(),
-          dataType: "json",
-          data: response,
-          success: function(response) {
+  // $("#location_sync").on("click", function(event){
+  //   event.preventDefault();
 
-            }
-          })
-				}
-	  	})
-    })
+  //   $.ajax({
+  //     method: "POST",
+  //     url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs",
+  //     success: function(response) {
+  //       console.log(response)
+
+  //       $.ajax({
+  //         method: "POST",
+  //         url: "/sessions/sync_location",
+  //         data: response,
+  //         success: function(response) {
+
+  //           }
+  //         })
+  //       }
+  //     })
+  //   })
 
   $("#add-friend").on("click", function(event){
     event.preventDefault();
@@ -134,3 +133,4 @@ function changeWeather(card){
   }
 };
 
+// AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk

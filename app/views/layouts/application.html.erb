@@ -7,6 +7,7 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
 
   <%= javascript_include_tag 'application' %>
+
   <%= csrf_meta_tags %>
      <style type="text/css">
       html, body { height: 100%; margin: 0; padding: 0; }
@@ -89,7 +90,28 @@
       <% end %>
         </div>
     </nav>
+    <script type="text/javascript">
+      $(window).load(function(event){
+    event.preventDefault();
 
+    $.ajax({
+      method: "POST",
+      url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs",
+      success: function(response) {
+        console.log(response)
+
+        $.ajax({
+          method: "POST",
+          url: "/users/sync_location",
+          data: response,
+          success: function(response) {
+
+            }
+          })
+        }
+      })
+    })
+    </script>
 <%= yield %>
 
 </body>
