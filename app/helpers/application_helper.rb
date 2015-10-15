@@ -46,17 +46,14 @@ module ApplicationHelper
         end
       end
     end
-
     return @events
   end
 
-  def convert_time(time_num)
-    hour = (time_num / 1000000) % 100
-    minute = (time_num / 10000) % 100
-    second = (time_num / 100) % 100
-    millisecond = (time_num % 100) * 10
-
-    time = "#{hour}:#{minute}:#{second}"
+  def text_users
+    p "#{current_user.lat}, #{current_user.lng}"
+    location = [current_user.lat, current_user.lng]
+    neighborhood = Geokit::Bounds.from_point_and_radius(location, 1)
+    @users = User.where(receive_notices: true).within(2, :origin => neighborhood).all
   end
 end
 
