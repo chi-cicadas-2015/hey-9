@@ -60,6 +60,24 @@ module ApplicationHelper
     end
   end
 
+  def find_good_dogs(dog)
+    @good_dogs = []
+    @friends = DogConnection.where(relationship_status: 1, dog_id: dog.id).all
+    @friends.each do |friend|
+      @good_dogs << Dog.find_by(id: friend.following_id)
+    end
+    @good_dogs
+  end
+
+  def find_bad_dogs(dog)
+    @bad_dogs = []
+    @enemies = DogConnection.where(relationship_status: -1, dog_id: dog.id).all
+    @enemies.each do |enemy|
+      @bad_dogs << Dog.find_by(id: enemy.following_id)
+    end
+    @bad_dogs
+  end
+
   def convert_time(time_num)
     hour = (time_num / 1000000) % 100
     minute = (time_num / 10000) % 100

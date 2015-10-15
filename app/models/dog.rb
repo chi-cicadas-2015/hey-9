@@ -20,5 +20,27 @@ class Dog < ActiveRecord::Base
     connections.collect{|connection| connection.dog}
   end
 
+  def self.search(query)
+    where("name like ?", "#{query}")
+  end
+
+   def find_good_dogs
+    @good_dogs = []
+    @friends = DogConnection.where(relationship_status: 1, dog_id: self.id).all
+    @friends.each do |friend|
+      @good_dogs << Dog.find_by(id: friend.following_id)
+    end
+    @good_dogs
+   end
+
+  def find_bad_dogs()
+    @bad_dogs = []
+    @enemies = DogConnection.where(relationship_status: -1, dog_id: self.id).all
+    @enemies.each do |enemy|
+      @bad_dogs << Dog.find_by(id: enemy.following_id)
+    end
+    @bad_dogs
+  end
+
 end
 

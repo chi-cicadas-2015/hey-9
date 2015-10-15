@@ -11,14 +11,4 @@ class EventInvitationsController < ApplicationController
   	@event_invitation.destroy
   	redirect_to 'events/index'
   end
-
-  # private
-
-  # def event_invitation_params
-  #   p "****************"
-  #   p params
-  #   p "****************"
-  #   params.require(:event_invitation).permit(:event_id, :invitee_id)
-  # end
-
 end
