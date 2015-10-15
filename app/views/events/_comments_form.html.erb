@@ -1,6 +1,8 @@
-<%= form_for [commentable, Comment.new] do |f| %>
-  <div class="form-group">
-    <%= f.text_area :content, class: "form-control", placeholder: "Add a comment" %>
-  </div>
-  <%= f.submit class: "btn btn-primary" %>
-<% end %>
+<div class="row">
+  <%= form_for [commentable, Comment.new], :html => {:class => "col s12"} do |f| %>
+    <div class="input-field col s12">
+      <%= f.text_area :content, :class => "materialize-textarea", placeholder: "Add a comment" %>
+    </div>
+    <%= f.submit(:class => "btn", :value => "Comment")%>
+  <% end %>
+</div>

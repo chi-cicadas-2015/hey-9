@@ -24,11 +24,13 @@ $(document).ready(function(){
   $('.modal-trigger').leanModal();
   $('.modal-trigger2').leanModal();
   $('.modal-trigger3').leanModal();
+  $('.modal-trigger4').leanModal();
+
   $('.parallax').parallax();
   $('.datepicker').pickadate({selectMonths: true, selectYears: 15});
   changeWeather("#weather-card");
   changeWeather("#weather-card2");
-
+  $('.fixed-action-btn').openFAB();
 
 
   $("#add-friend").on("click", function(event){
@@ -43,26 +45,6 @@ $(document).ready(function(){
       }
     })
   })
-
-
-
-  // http://api.jquery.com/jQuery.noConflict/
-  // var $j = jQuery.noConflict();
-  // $("#event_event_start").datepicker({
-  //   changeMonth: true,
-  //     onSelect: function( selectedDate ) {
-  //       $( "#event_event_end" ).datepicker( "option", "minDate", selectedDate );
-  //     },
-  //     onClose:function(){
-  //       $( "#event_event_end" ).datepicker("show");
-  //     }
-  //   });
-  //   $( "#event_event_end" ).datepicker({
-  //     changeMonth: true,
-  //   });
-
-
-
 })
 
 function changeWeather(card){
@@ -87,4 +69,3 @@ function changeWeather(card){
   }
 };
 
-// AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk
