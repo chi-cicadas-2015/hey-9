@@ -64,7 +64,7 @@ class MessagesController < ApplicationController
 
   def build_presenter
     @presenter_messages = []
-    Message.last(5).each do |message|
+    Message.order(created_at: :desc).first(5).each do |message|
       message_hash = {
         content: message.content,
         author: message.author.username,
@@ -76,7 +76,7 @@ class MessagesController < ApplicationController
         }
       }
 
-      message.comments.last(3).each do |comment|
+      message.comments.order(created_at: :desc).first(3).each do |comment|
           message_hash[:comments] << { content: comment.content, commenter: comment.commenter.username }
       end
 
