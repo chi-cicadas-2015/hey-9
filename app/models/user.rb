@@ -26,4 +26,12 @@ class User < ActiveRecord::Base
     usernames.map!{ |username|
       self.find_by_username(username)}
   end
+
+  def check_new_messages
+    convos = self.direct_conversations.uniq
+    user_messages = self.private_messages.length
+    total_messages = 0
+    convos.each {|convo| total_messages += convo.private_messages.length}
+    user_messages.fdiv(total_messages)
+  end
 end

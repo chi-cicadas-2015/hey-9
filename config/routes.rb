@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get "/" => 'home#index'
   post "/send_text_message" =>"text_messages#send_text_message"
 
+  get "/users/check_messages" => "users#check_messages"
+
   resources :sessions, only: [:new, :create, :destroy]
 
   # concern :commentable do
