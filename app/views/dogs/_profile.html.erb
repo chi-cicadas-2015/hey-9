@@ -5,7 +5,7 @@
      <%= image_tag dog.avatar.url(:medium) %>
     </div>
     <div id="twilio-messaging">
-      <%= button_to "Send text message", send_text_message_path(text_users,dog.name) %>
+      <%= button_to "Send text message", send_text_message_path(:user_numbers => text_users, :dog => dog.name) %>
     </div>
     <div class="col s8">
       <ul class="collapsible" data-collapsible="accordion">

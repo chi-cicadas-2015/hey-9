@@ -56,15 +56,21 @@ module ApplicationHelper
       @connection << dog.dog_connections
     end
     @connection.each do |connection|
-      @friends << Dog.find_by(id: connection.following_id )
+      @friends << Dog.find_by(id: connection.following_id)
     end
   end
 
+  def location_get
+      location = [current_user.lat, current_user.lng]
+  end
+
+  def gen_neighborhood
+    neighborhood = Geokit::Bounds.from_point_and_radius(location_get, 1)
+  end
+
   def text_users
-    p "#{current_user.lat}, #{current_user.lng}"
-    location = [current_user.lat, current_user.lng]
-    neighborhood = Geokit::Bounds.from_point_and_radius(location, 1)
-    @users = User.where(receive_notices: true).within(2, :origin => neighborhood).all
+    neighborhood = gen_neighborhood
+    @users = User.where(receive_notices: true)
   end
 end
 
