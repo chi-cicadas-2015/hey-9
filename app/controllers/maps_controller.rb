@@ -13,7 +13,7 @@ class MapsController < ApplicationController
           @local_dogs << dog
         end
       end
-
+      "**************#{@user.lat}"
         @current_user_lat = @user.lat
         @current_user_lng = @user.lng
 

@@ -46,8 +46,36 @@ module ApplicationHelper
         end
       end
     end
+    @events
+  end
 
-    return @events
+  def find_friends
+    @connection = []
+    @friends = []
+    current_user.dogs.each do |dog|
+      @connection << dog.dog_connections
+    end
+    @connection.each do |connection|
+      @friends << Dog.find_by(id: connection.following_id )
+    end
+  end
+
+  def find_good_dogs(dog)
+    @good_dogs = []
+    @friends = DogConnection.where(relationship_status: 1, dog_id: dog.id).all
+    @friends.each do |friend|
+      @good_dogs << Dog.find_by(id: friend.following_id)
+    end
+    @good_dogs
+  end
+
+  def find_bad_dogs(dog)
+    @bad_dogs = []
+    @enemies = DogConnection.where(relationship_status: -1, dog_id: dog.id).all
+    @enemies.each do |enemy|
+      @bad_dogs << Dog.find_by(id: enemy.following_id)
+    end
+    @bad_dogs
   end
 
   def convert_time(time_num)

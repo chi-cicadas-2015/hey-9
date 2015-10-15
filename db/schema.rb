@@ -60,8 +60,9 @@ ActiveRecord::Schema.define(version: 20151013164106) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer  "creator_id",  null: false
+    t.integer  "creator_id",                  null: false
     t.string   "location"
+
     t.float    "lat"
     t.float    "lng"
     t.datetime "event_start", null: false
