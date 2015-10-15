@@ -1,10 +1,20 @@
-<h1>MAP GOES HERE</h1>
 <div class="card teal lighten-4">
   <p class="center"><%= event.description %></p>
 </div>
 <div class="divider"></div>
 <div class="row">
   <div class="col s12 l4">
+    <% if current_user.id == event.creator_id %>
+      <a class="waves-effect waves-light btn modal-trigger4" href="#modal4">Edit Event</a>
+      <div id="modal4" class="modal">
+        <div class="modal-content">
+          <%= render partial: "form"%>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+      </div>
+    <% end %>
     <h4>Address: </h4>
     <h5><%= event.location %></h5>
     <h4>Day: </h4>
@@ -21,22 +31,16 @@
     <% end %>
   </div>
   <div class="col s12 l4">
-    <% if dog_events(current_user.dogs).include?(event) %>
-      <a class="btn-floating btn-large waves-effect waves-light red"></a>
-        <div class="fixed-action-btn">
-    <a class="btn-floating btn-large red">
-      <i class="large material-icons">+</i>
-    </a>
     <% current_user.dogs.each do |dog| %>
-    <ul>
-      <li><a class="btn-floating red">
-        <%= link_to "#{dog.name}",  event_event_invitations_path(:event_id => params[:id], :invitee_id => dog.id), :method => :post %>
-      </a></li>
+      <% if !event.invitees.include?(dog)%>
+          <a class="dropdown-button btn" href="#" data-activates="dropdown10">Join Event</a>
+      <% end %>
     <% end %>
-     
-  </div>
-        
-    <% end %>
+        <ul id="dropdown10" class="dropdown-content">
+        <% current_user.dogs.each do |dog| %>
+        <li><%= link_to "#{dog.name}",  event_event_invitations_path(:event_id => params[:id], :invitee_id => dog.id), :method => :post %></li>
+        <% end %>
+      </ul>
     <h5>Attending</h5>
     <div class="row">
       <div class="col s8 m4 l2 green-text">
@@ -45,7 +49,6 @@
         <% end %>
       </div>
     </div>
-    
-    </div>
   </div>
 </div>
+
