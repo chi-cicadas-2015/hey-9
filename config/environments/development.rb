@@ -38,7 +38,7 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
    :storage => :s3,
-   :bucket => 'imageuploadstorage_dev',
+   :bucket => 'imageuploadstorage',
    :url => ':s3_domain_url',
    :path => "/pieces/:id/:style/:basename.:extension",
    :s3_credentials => "#{Rails.root}/config/aws.yml"
