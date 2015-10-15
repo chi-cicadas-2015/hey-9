@@ -27,12 +27,13 @@
     <a class="btn-floating btn-large red">
       <i class="large material-icons">+</i>
     </a>
+    <% current_user.dogs.each do |dog| %>
     <ul>
-      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-    </ul>
+      <li><a class="btn-floating red">
+        <%= link_to "#{dog.name}",  event_event_invitations_path(:event_id => params[:id], :invitee_id => dog.id), :method => :post %>
+      </a></li>
+    <% end %>
+     
   </div>
         
     <% end %>

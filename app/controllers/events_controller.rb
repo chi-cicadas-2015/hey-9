@@ -18,10 +18,7 @@ class EventsController < ApplicationController
       end
        @events.sort!{|a,b| a.created_at <=> b.created_at}
     end
-<<<<<<< HEAD
-=======
 
->>>>>>> master
   end
 
   def new

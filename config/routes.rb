@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :comments, module: :events
-    resources :event_inventations, only: [:create, :destroy]
+    resources :event_invitations, only: [:create, :destroy]
   end
 
   resources :maps, only: [:index]
