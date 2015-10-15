@@ -23,16 +23,6 @@
 <div>
   <%= image_tag @user.avatar.url(:thumb) %>
 </div>
-<div class="location_sync">
-  <form id = "location">
-    <input type="hidden" id="user_id" name="<%= @user.id %>" >
-    <input type="submit" value="Sync Location" >
-  </form>
-</div>
-
-<div id="forecast_data">
-  <%= @forecast_data %>
-</div>
 
 <div id="twilio-messaging">
   <%= button_to "Send text message", send_text_message_path() %>

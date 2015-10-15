@@ -31,6 +31,29 @@ Rails.application.routes.draw do
   resources :maps, only: [:index]
   get '/maps/data' => 'maps#data'
 
+  post '/users/sync_location' => 'users#sync_location'
+  # concern :commentable do
+  #   resources :comments, shallow: true, except: [:show, :index]
+  # end
+
+  # concern :messageable do
+  #   resources :messages
+  # end
+
+  # resources :users do
+  #   resources :dogs, :neighborhoods
+  #   resources :messages, concerns: :commentable
+  #   resources :direct_conversations, concerns: :messageable
+
+  #   resources :dogs, shallow: true do
+  #     resources :events, concerns: :commentable
+  #     resources :dog_connections, :event_invitations
+  #   end
+
+  # end
+
+  # resources :message_board, concerns: :messageable
+
   # get 'users/new' => 'users#new'
 
 
