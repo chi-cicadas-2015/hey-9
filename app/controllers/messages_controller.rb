@@ -3,46 +3,7 @@ class MessagesController < ApplicationController
   before_action :require_login
 
   def index
-
-    @presenter_messages = []
-    Message.last(5).each do |message|
-      message_hash = {}
-      comments = []
-      message.comments.last(3).each do |comment|
-        comment_hash = { comment: comment, commenter: comment.commenter.username }
-        comments << comment_hash
-
-        comments_hash = {
-          comments: comments,
-          comment_form: {
-            action: message_comments_path(comment.message),
-            :csrf_param => request_forgery_protection_token,
-            :csrf_token => form_authenticity_token
-            }
-        }
-      end
-
-      message_hash = {
-        message: message,
-        author: message.author.username,
-        comments: comments
-      }
-
-      p "MESSAGE HASH:"
-      p message_hash
-      @presenter_messages << message_hash
-    end
-
-    @presenter = {
-      messages: @presenter_messages,
-      form: {
-        action: messages_path,
-        :csrf_param => request_forgery_protection_token,
-        :csrf_token => form_authenticity_token
-      }
-    }
-
-    p "PRESENTER:"
+    @presenter = build_presenter
     p @presenter
 
     @user = current_user
@@ -81,13 +42,7 @@ class MessagesController < ApplicationController
     p @message
     if request.xhr?
 
-      data = []
-      Message.last(5).each do |message|
-        message_hash = { message: message, author: message.author.username, comments: message.comments }
-        data << message_hash
-      end
-
-      render :json => data
+      render :json => build_presenter[:messages]
     else
       redirect_to :back, notice: "Your message was successfully posted."
     end
@@ -104,6 +59,38 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:content)
+  end
+
+  def build_presenter
+    @presenter_messages = []
+    Message.last(5).each do |message|
+      message_hash = {
+        content: message.content,
+        author: message.author.username,
+        comments: [],
+        comment_form: {
+          action: message_comments_path(message),
+          :csrf_param => request_forgery_protection_token,
+          :csrf_token => form_authenticity_token
+        }
+      }
+
+      message.comments.last(3).each do |comment|
+          message_hash[:comments] << { content: comment.content, commenter: comment.commenter.username }
+      end
+
+      @presenter_messages << message_hash
+
+    end
+
+    {
+      messages: @presenter_messages,
+      form: {
+        action: messages_path,
+        :csrf_param => request_forgery_protection_token,
+        :csrf_token => form_authenticity_token
+      }
+    }
   end
 
 end

@@ -1,17 +1,17 @@
 var CommentBox = React.createClass({
-
-  // getInitialState: function () {
-  //   return JSON.parse(this.props.presenter);
+  // getInitialState: function() {
+  //   return this.props.comments;
   // },
 
   // handleMessageSubmit: function ( formData, action ) {
+  // var comment_form = this.props.comment_form;
   //   $.ajax({
   //     data: formData,
   //     url: action,
   //     type: "POST",
   //     dataType: "json",
   //     success: function ( data ) {
-  //       this.setState({ messages: data });
+  //       this.setState({ comments: data, comment_form: comment_form });
   //     }.bind(this)
   //   });
   // },
@@ -20,7 +20,8 @@ var CommentBox = React.createClass({
     return (
       <div className="comment-box">
         <CommentList comments={ this.props.comments } />
-        <CommentForm form={ this.props.comments.comment_form } />
+        <CommentForm comment_form={ this.props.comment_form } />
+
       </div>
     );
   }
