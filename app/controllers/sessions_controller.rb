@@ -5,7 +5,9 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:session][:email])
-
+    if request.xhr?
+      p "yoooooooooo"
+    end
     if @user != nil
       session[:user_id] = @user.id
       redirect_to "/users/#{@user.id}"
@@ -19,9 +21,5 @@ class SessionsController < ApplicationController
     redirect_to "/"
   end
 
-  def sync_location
-    if request.xhr?
-      p "yoooooooooo"
-    end
-  end
+
 end

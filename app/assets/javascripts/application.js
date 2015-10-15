@@ -16,34 +16,6 @@
 
 //= require cloudinary
 //= require_tree .
-// $(document).ready(function(){
-// 	$.cloudinary.config({ cloud_name: 'dj3bgluad', api_key: '255366543837721'})
-
-//     $('#fileupload').fileupload({
-//         dataType: 'json',
-
-//         add: function (e, data) {
-//         	console.log(data);
-//         	console.log("hey");
-//             data.context = $('<button/>').text('Upload')
-//                 .appendTo(document.body)
-//                 .click(function () {
-//                     data.context = $('<p/>').text('Uploading...').replaceAll($(this));
-//                     data.submit();
-//                 });
-//         },
-//         done: function (e, data) {
-//             data.context.text('Upload finished.');
-//         }
-//     });
-
-
-
-// 	var image = $.cloudinary.image(response.public_id + '.jpg', { width: 120, height: 80, crop: 'fill' });
-// 	console.log(image)
-
-// 	})
-
 //= require materialize-sprockets
 //= require_tree .
 
@@ -53,33 +25,29 @@ $(document).ready(function(){
   $('.modal-trigger2').leanModal();
   $('.parallax').parallax();
   $('.datepicker').pickadate({selectMonths: true, selectYears: 15});
+  changeWeather("#weather-card");
+  changeWeather("#weather-card2");
 
-  var summary = $("#summary").text();
+  // $("#location_sync").on("click", function(event){
+  //   event.preventDefault();
 
-  if(summary.includes("Clear")){
-    $("#weather-card").addClass("yellow");
-    Materialize.fadeInImage("#weather-card");
-  }
+  //   $.ajax({
+  //     method: "POST",
+  //     url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs",
+  //     success: function(response) {
+  //       console.log(response)
 
+  //       $.ajax({
+  //         method: "POST",
+  //         url: "/sessions/sync_location",
+  //         data: response,
+  //         success: function(response) {
 
-  $("#location_sync").on("click", function(event){
-    event.preventDefault();
-    $.ajax({
-      method: "POST",
-      url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk",
-      success: function(response) {
-
-        $.ajax({
-          method: "POST",
-          url: "/sessions",
-          data: response,
-          success: function(response) {
-
-            }
-          })
-        }
-      })
-    })
+  //           }
+  //         })
+  //       }
+  //     })
+  //   })
 
   $("#add-friend").on("click", function(event){
     event.preventDefault();
@@ -93,10 +61,75 @@ $(document).ready(function(){
       }
     })
   })
-  $("#pet-stores").on("click", function(){
-    console.log($(this).attr('name'))
+  // $("#pet-stores").on("click", function(){
+  //   console.log("whatup")
 
-  });
+
+  // });
+
+
+  // http://api.jquery.com/jQuery.noConflict/
+  // var $j = jQuery.noConflict();
+  // $("#event_event_start").datepicker({
+  //   changeMonth: true,
+  //     onSelect: function( selectedDate ) {
+  //       $( "#event_event_end" ).datepicker( "option", "minDate", selectedDate );
+  //     },
+  //     onClose:function(){
+  //       $( "#event_event_end" ).datepicker("show");
+  //     }
+  //   });
+  //   $( "#event_event_end" ).datepicker({
+  //     changeMonth: true,
+  //   });
+
+  // https://github.com/jonthornton/jquery-timepicker
+  // $("#event-button").on("click", function(){
+  //      var eventLocation = $("#event-map").attr('name');
+  //      console.log('yooooooo')
+  //     var lat
+  //     var lng
+  //     $.ajax({
+  //       method: "POST",
+  //       dataType: 'json',
+  //       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + eventLocation + "&key=AIzaSyDj8b8ELTA9Zq9pW7IY1L4TSUX0PClr06M",
+  //       success: function(response) {
+  //         lat = response.results[0].geometry.location.lat
+  //         lng = response.results[0].geometry.location.lng
+  //       $.ajax({
+  //         method: "POST",
+  //         url: "/events",
+  //         data: response,
+  //         success: function(response) {
+  //             console.log(response)
+  //           }
+  //         })
+  //       }
+  //     })
+  // })
 
 })
 
+function changeWeather(card){
+  var inner = $(card);
+  var summary = $(inner).text();
+
+  if(summary.includes("Clear")){
+    $(inner).addClass("light-blue lighten-3");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Sunny")){
+    $(inner).addClass("yellow");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Cloudy")){
+    $(inner).addClass("grey lighten-1");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Rain")){
+    $(inner).addClass("grey");
+    Materialize.fadeInImage(inner);
+  } else if (summary.includes("Storm")){
+    $(inner).addClass("grey darken-1");
+    Materialize.fadeInImage(inner);
+  }
+};
+
+// AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk

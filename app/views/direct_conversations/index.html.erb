@@ -1,6 +1,11 @@
 <div class="container">
   <h1 class="center">Your Direct Conversations</h1>
-  <%= render partial: "form", locals: { direct_conversation: DirectConversation.new} %>
-
-  <%= render partial: "conversation", collection: @direct_conversations, as: :direct_conversation %>
+  <div>
+    <div class="new_convo_form">
+      <%= render partial: "form", locals: { direct_conversation: DirectConversation.new} %>
+    </div>
+    <div class="convo_list">
+      <%= render partial: "conversation", collection: @direct_conversations, as: :direct_conversation %>
+    </div>
+  </div>
 </div>
