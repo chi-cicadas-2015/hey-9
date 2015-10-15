@@ -52,24 +52,23 @@ ActiveRecord::Schema.define(version: 20151013164106) do
   end
 
   create_table "event_invitations", force: :cascade do |t|
-    t.integer  "event_id",                        null: false
-    t.integer  "invitee_id",                      null: false
-    t.string   "rsvp_status", default: "pending"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.integer  "event_id",   null: false
+    t.integer  "invitee_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "events", force: :cascade do |t|
     t.integer  "creator_id",                  null: false
     t.string   "location"
-
     t.float    "lat"
     t.float    "lng"
-    t.datetime "event_start", null: false
-    t.datetime "event_end",   null: false
-    t.text     "description", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "event_start",                 null: false
+    t.datetime "event_end",                   null: false
+    t.text     "description",                 null: false
+    t.boolean  "public",      default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -96,6 +95,7 @@ ActiveRecord::Schema.define(version: 20151013164106) do
     t.decimal  "lat",                 precision: 20, scale: 16
     t.decimal  "lng",                 precision: 20, scale: 16
     t.boolean  "receive_notices"
+    t.string   "phone_number"
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
     t.string   "avatar_file_name"
