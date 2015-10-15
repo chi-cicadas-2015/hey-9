@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <%= image_tag @user.avatar.url(:thumb) %>
+    <%= image_tag @user.avatar.url(:thumb, :class => "circle responsive-img") %>
   </div>
   <div class="row">
     <%= form_for(:user, :html =>{:class => "col s12"}) do |f| %>
