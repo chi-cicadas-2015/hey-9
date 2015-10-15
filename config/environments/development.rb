@@ -38,14 +38,14 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
    :storage => :s3,
-   :bucket => 'imageuploadstorage',
+   :bucket => 'imageuploadstorage_dev',
    :url => ':s3_domain_url',
    :path => "/pieces/:id/:style/:basename.:extension",
    :s3_credentials => "#{Rails.root}/config/aws.yml"
  }
 
-  Paperclip.options[:command_path] = "/usr/local/bin/"
- 
+  Paperclip.options[:command_path] = "/usr/local/bin/convert"
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
