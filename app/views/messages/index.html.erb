@@ -6,10 +6,13 @@
                         { presenter: @presenter.to_json,
                           current_user_id: current_user.id } ) %>
 
-    <%= render partial: "message", collection: @messages %>
+<!--
+  <%= render partial: "message", collection: @messages %>
   <% if @current_user %>
     <%= render partial: "messages/form" %>
   <% end %>
+
+ -->
 
   </div>
 </div>

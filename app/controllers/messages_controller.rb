@@ -8,24 +8,24 @@ class MessagesController < ApplicationController
     Message.last(5).each do |message|
       message_hash = {}
       comments = []
-      message.comments.each do |comment|
+      message.comments.last(3).each do |comment|
         comment_hash = { comment: comment, commenter: comment.commenter.username }
         comments << comment_hash
-      end
 
-      comments_data = {
-        comments: comments,
-        # comment_form: {
-        #   action: message_comments_path,
-        #   :csrf_param => request_forgery_protection_token,
-        #   :csrf_token => form_authenticity_token
-        # }
-      }
+        comments_hash = {
+          comments: comments,
+          comment_form: {
+            action: message_comments_path(comment.message),
+            :csrf_param => request_forgery_protection_token,
+            :csrf_token => form_authenticity_token
+            }
+        }
+      end
 
       message_hash = {
         message: message,
         author: message.author.username,
-        comments: comments_data
+        comments: comments
       }
 
       p "MESSAGE HASH:"

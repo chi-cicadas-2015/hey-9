@@ -10,20 +10,19 @@ var CommentForm = React.createClass({
     }
 
     // submit
-    var formData = $( this.refs.form.getDOMNode() ).serialize();
-    this.props.onMessageSubmit( formData, this.props.form.action );
+    var formData = $( this.refs.comment_form.getDOMNode() ).serialize();
+    this.props.onMessageSubmit( formData, this.props.comment_form.action );
 
     // reset form
     this.refs.content.getDOMNode().value = "";
   },
   render: function () {
     return (
-      <form ref="form" className="message-form" action={ this.props.form.action } accept-charset="UTF-8" method="post" onSubmit={ this.handleSubmit }>
-        <p><input type="hidden" name={ this.props.form.csrf_param } value={ this.props.form.csrf_token } /></p>
-        <p><input type="hidden" name="current_user_id" value={this.props.current_user_id} /></p>
-        <p><input type="hidden" name="message_id" value={this.props.message.id} /></p>
-        <p><textarea ref="content" name="message[content]" placeholder="Message here..." /></p>
-        <p><button type="submit">Post message</button></p>
+      <form ref="form" className="comment-form" action={ this.props.comment_form.action }  method="post" onSubmit={ this.handleSubmit }>
+      //   <p><input type="hidden" name={ this.props.comment_form.csrf_param } value={ this.props.cooment_form.csrf_token } /></p>
+        <p><input type="hidden" name="message_id" value={this.props.commentable_id} /></p>
+        <p><textarea ref="content" name="comment[content]" placeholder="Comments here..." /></p>
+        <p><button type="submit">Post comments</button></p>
       </form>
     )
   }
