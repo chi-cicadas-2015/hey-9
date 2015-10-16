@@ -5,11 +5,7 @@ class DogsController < ApplicationController
      if session[:user_id] != nil
       @forecast_data = forecast_data
       @user = User.find(session[:user_id])
-      if params[:search]
-        @dogs = Dog.search(params[:search]).order("created_at DESC")
-      else
-        @dogs = @user.dogs
-      end
+      @dogs = @user.dogs
      else
         redirect_to "/sessions/new"
      end
