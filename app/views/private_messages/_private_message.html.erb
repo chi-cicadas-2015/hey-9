@@ -1,9 +1,9 @@
 <% if message.content %>
   <ul class="collection">
     <% if message.user.username == current_user.username %>
-      <li class="collection-item right"><p style="border-radius: 8px;" class="indigo lighten-4">you: <%= message.content %><br>Sent on: <%= message.created_at.strftime('%c') %></p></li>
+      <li class="collection-item right"><p style="border-radius: 8px;" class="indigo lighten-4"><b>you:</b> <%= message.content %><br><b>Sent on:</b> <%= message.created_at.strftime('%c') %></p></li>
     <% else %>
-      <li class="collection-item left"><p style="border-radius: 8px;" class="amber lighten-4"><%= message.user.username %>: <%= message.content %><br>Sent on: <%= message.created_at.strftime('%c') %></p></li>
+      <li class="collection-item left"><p style="border-radius: 8px;" class="amber lighten-4"><b><%= message.user.username %>:</b> <%= message.content %><br><b>Sent on:</b> <%= message.created_at.strftime('%c') %></p></li>
     <% end %>
   </ul>
 <% end %>

@@ -90,6 +90,17 @@ module ApplicationHelper
     neighborhood = gen_neighborhood
     @users = User.where(receive_notices: true)
   end
+
+  def search(query)
+    dogs = Dog.all
+    @found_dogs = []
+    dogs.each do |dog|
+      if dog.name.downcase == query.downcase
+        @found_dogs << dog
+      end
+    end
+    @found_dogs
+  end
 end
 
 

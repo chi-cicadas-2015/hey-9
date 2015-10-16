@@ -20,10 +20,6 @@ class Dog < ActiveRecord::Base
     connections.collect{|connection| connection.dog}
   end
 
-  def self.search(query)
-    where("name like ?", "#{query}")
-  end
-
    def find_good_dogs
     @good_dogs = []
     @friends = DogConnection.where(relationship_status: 1, dog_id: self.id).all

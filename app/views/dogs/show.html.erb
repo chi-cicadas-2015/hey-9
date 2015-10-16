@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="card black">
+    <div class="card light-blue">
       <div class="card-content white-text">
         <span class="card-title">About Me</span>
         <p><%= @dog.bio %></p>
@@ -22,14 +22,14 @@
     </div>
   </div>
   <div class="row">
-    <div class="card black">
+    <div class="card light-blue">
       <div class="card-content white-text">
         <span class="card-title">Dogs <%= @dog.name %> Follows</span>
         <ul class="collection">
           <% @dog.followings.each do |friend| %>
             <li class="collection-item avatar">
               <a href="/dogs/<%= friend.id %>">
-
+                <%= image_tag friend.avatar.url(:small, :class => "circle responsive-img") %>
                 <span class="title"><%=friend.name%></span>
               </a>
             </li>

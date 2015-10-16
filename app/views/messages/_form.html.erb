@@ -1,8 +1,8 @@
-<div>
+<div class="row">
 <%= form_for :message do |f| %>
-  <div class="form-group">
-    <%= f.text_area :content, class: "form-control", placeholder: "Post a new message" %>
+  <div class="input-field col s12">
+    <%= f.text_area :content, class: "materialize-textarea", placeholder: "Post a new message" %>
   </div>
-  <%= f.submit class: "btn btn-primary", value: "Post message" %>
+  <%= f.submit class: "btn light-blue", value: "Post message" %>
 <% end %>
 </div>
