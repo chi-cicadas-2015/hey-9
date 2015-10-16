@@ -1,8 +1,8 @@
-<ul class="collection">
-  <% commentable.comments.each do |comment| %>
-    <p>
-      <%= comment.content %> -
-      <%= comment.commenter.username %>
-    </p>
-  <% end %>
-</ul>
+<% commentable.comments.each do |comment| %>
+  <li class="collection-item teal lighten-5">
+    <p class="grey-text text-darken-3"><%= comment.content %> - <%= comment.commenter.username %></p>
+    <p class="grey-text text-darken-3">Posted on <%= comment.created_at.strftime("%m/%d/%Y at %r") %></p>
+  </li>
+  <div class="divider"></div>
+<% end %>
+

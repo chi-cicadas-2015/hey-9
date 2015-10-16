@@ -1,7 +1,14 @@
-<div class="conversation">
-  <h3><%= direct_conversation.subject %></h3>
-  <p>...A conversation between <%= direct_conversation.participants(current_user) %></p>
-  <div>
+<li>
+  <div style="padding-top:5px;"class="collapsible-header light-blue lighten-4">
+  <h4><%= direct_conversation.subject %></h4>
+  <% direct_conversation.participants.each do |user| %>
+    <div class="chip">
+      <img src="<%= image_url('user.avatar')%>" alt="Contact Person">
+      <%= user.username %>
+    </div>
+  <% end %>
+  </div>
+  <div class="collapsible-body">
     <div class="pm_list">
       <%= render partial: "private_messages/private_message", collection: direct_conversation.private_messages, as: :message %>
     </div>
@@ -9,4 +16,4 @@
       <%= render partial: "private_messages/form", locals: {direct_conversation: direct_conversation, private_message: PrivateMessage.new} %>
     </div>
   </div>
-</div>
+</li>

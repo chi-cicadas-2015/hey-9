@@ -1,13 +1,19 @@
 <div class="section">
-  <ul class="collapsible" data-collapsible="accordion">
+  <ul class="collapsible popout" data-collapsible="accordion">
     <li>
-      <div class="collapsible-header">
-        <h5 class="truncate"><%= message.content%></h5>
+      <div class="collapsible-header light-blue lighten-4">
+        <h4 style="padding-top:10px;"class="truncate grey-text text-darken-3"><%= message.content%></h4>
       </div>
       <div class="collapsible-body">
-        <div class="textarea"><%= message.content %></div>
+        <div class="card center">
+          <h5 class="grey-text text-darken-3"><%= message.content %></h5>
+          <h6 class="grey-text text-darken-3">Posted by: <%= message.author.username %> on <%= message.created_at.strftime("%m/%d/%Y at %r") %></h6>
+        </div>
+        <div class="divider"></div>
         <% if message.comments %>
+          <ul class="collection">
           <%= render partial: "comments/comments", locals: {commentable: message} %>
+          </ul>
         <% end %>
         <% if @current_user %>
           <%= render partial: "comments/form", locals: {commentable: message} %>

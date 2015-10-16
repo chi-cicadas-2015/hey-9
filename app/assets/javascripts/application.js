@@ -49,6 +49,8 @@ $(document).ready(function(){
   $('.modal-trigger2').leanModal();
   $('.modal-trigger3').leanModal();
   $('.modal-trigger4').leanModal();
+  $('.modal-trigger5').leanModal();
+
 
   $('.parallax').parallax();
   $('.datepicker').pickadate({selectMonths: true, selectYears: 15});
