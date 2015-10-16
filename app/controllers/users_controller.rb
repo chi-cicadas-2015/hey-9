@@ -67,6 +67,13 @@ class UsersController < ApplicationController
 
       render :show
     else
+
+      if params[:receive_notices] == 0
+        @user.receive_notices = false
+      else params[:not_receive_notices] == 0
+        @user.receive_notices = true
+      end
+
       if @user.update_attributes(user_params)
           redirect_to "/users/#{@user.id}"
       else
@@ -101,6 +108,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-      params.require(:user).permit(:username, :email, :password, :avatar)
+      params.require(:user).permit(:username, :email, :password, :avatar, :phone_number)
   end
 end
