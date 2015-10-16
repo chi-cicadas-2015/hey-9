@@ -2,10 +2,14 @@ class DogsController < ApplicationController
   include ApplicationHelper
 
   def index
-     if session[:user_id] != nil
+     if current_user
       @forecast_data = forecast_data
-      @user = User.find(session[:user_id])
-      @dogs = @user.dogs
+      @user = current_user
+      if params[:search]
+        @dogs = Dog.search(params[:search]).order("created_at DESC")
+      else
+        @dogs = @user.dogs
+      end
      else
         redirect_to "/sessions/new"
      end
