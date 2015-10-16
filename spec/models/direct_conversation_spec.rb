@@ -3,7 +3,7 @@ require 'rails_helper'
 describe DirectConversation do
   context "associations" do
     before {
-      @user = User.create!(username: "Wyeth", email: "wyeth@wyeth", password: "123",location: {:latitude=> 41.878114,:longitude=> -87.629798})
+      @user = User.create!(username: "chris", email: "chris@email.com", password: "password", :lat=> 41.890192,:lng=> -87.637224, receive_notices: false)
       @direct_conversation = DirectConversation.create!(subject: "what up")
       @private_message = PrivateMessage.create!(user: @user, conversation: @direct_conversation)
     }

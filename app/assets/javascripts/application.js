@@ -20,6 +20,30 @@
 //= require_tree .
 
 $(document).ready(function(){
+$( "span.badge" ).removeClass("new badge").addClass( "badge");
+  var badge = $("#message_ratio").val();
+  var interval = setInterval(function() {
+    $.ajax({
+      url: "/users/check_messages",
+      data: badge,
+      dataType: "json",
+      success: function(messageData){
+        var newNumber = messageData.new_msg_ratio;
+        var badgeState = messageData.new_badge;
+        console.log(newNumber);
+        console.log(badgeState);
+        $("#message_ratio").val().number = newNumber;
+        if (badgeState === true)
+          $( "span.badge" ).removeClass("badge").addClass( "new badge");
+      }
+    });
+  }, 5000);
+  if (location.pathname == "/direct_conversations")
+    $( "span.badge" ).removeClass("new badge").addClass( "badge");
+});
+
+
+$(document).ready(function(){
   $('.button-collapse').sideNav({edge: "left"});
   $('.modal-trigger').leanModal();
   $('.modal-trigger2').leanModal();

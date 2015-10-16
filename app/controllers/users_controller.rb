@@ -7,6 +7,17 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def check_messages
+    if request.xhr?
+      old_msg_ratio = params[:number] || 0
+      new_msg_ratio = current_user.check_new_messages
+      @response =
+        {"new_msg_ratio" => current_user.check_new_messages,
+        "new_badge" => new_msg_ratio < old_msg_ratio}
+      render json: @response
+    end
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
