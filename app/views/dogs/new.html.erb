@@ -1,21 +1,30 @@
 <div class="container">
   <div class="row">
+    <div class="col s12">
+      <h3 class="left">Register Your Dog</h3>
+    </div>
     <%= form_for(:dog, url: user_dogs_path(@user.id), :html => {:class => "col s12"}) do |f| %>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s6 center">
           <%= f.label :name %>
           <%= f.text_field :name %>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s6 center">
           <%= f.label :bio %>
-          <%= f.text_field :bio %>
+          <%= f.text_area :bio, :class => "materialize-textarea" %>
         </div>
       </div>
-          <%= f.file_field :avatar, :value => "upload picture" %>
+      <div class="file-field input-field avatar">
+        <div class="btn light-blue">
+          <span>Upload Profile Picture</span>
+          <%= f.file_field :avatar %>
+        </div>
+        <input class="file-path validate" type="text"/>
+      </div>
       <%= f.hidden_field :owner_id, :value => current_user.id %>
-      <%= f.submit %>
+      <%= f.submit :class => "btn light-blue", :value => "Register Dog"%>
     <% end %>
   </div>
 </div>

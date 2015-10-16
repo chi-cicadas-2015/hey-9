@@ -1,10 +1,15 @@
 <div class="container">
- <%= form_tag(dogs_path, :method => "get", class: "navbar-form", id: "search-form") do %>
+  <%= form_tag(dogs_path, :method => "get", class: "navbar-form", id: "search-form") do %>
     <div class="input-append">
       <%= text_field_tag :search, params[:search], class: "span2", placeholder: "Find Dogs" %>
-      <button class="btn" type="submit" value="search"><i class="icon-search"></i></button>
+      <button class="btn light-blue" type="submit" value="search"><i class="material-icons left">search</i>Search All Dogs</button>
     </div>
+  <% end %>
+  <% if @found_dogs %>
+    <% @found_dogs.each do |dog|%>
+      <a href="/dogs/<%= dog.id%>"><%= dog.name %></a>
     <% end %>
+  <% end %>
   <h1 class="center"><%= @user.username %>'s Pack</h1>
   <div class="row">
     <div class="col s12 m6 l4">
@@ -49,15 +54,12 @@
   </div>
   <div class="row">
     <div class="col s12 center">
-      <a class="waves-effect waves-light btn modal-trigger2" href="#modal2">Add New Dog To Pack</a>
+      <a class="btn light-blue modal-trigger2" href="#modal2">Add New Dog To Pack</a>
     </div>
     <div id="modal2" class="modal">
       <div class="modal-content">
         <h4>Add Dog</h4>
         <%= render partial: "new"%>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
       </div>
     </div>
   </div>

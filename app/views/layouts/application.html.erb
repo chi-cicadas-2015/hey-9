@@ -5,6 +5,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <%= stylesheet_link_tag 'application', media: 'all' %>
 
@@ -22,10 +23,10 @@
 
 </head>
 <body>
-  <nav style=""class="black">
+  <nav style="height:100px;" class="brown lighten-1">
     <% if current_user != nil %>
       <%= form_for :session, url: session_path(session), method: "delete" do |f| %>
-      <%= f.submit value: "Logout", :class => "right col s1 white-text btn-flat" %>
+        <%= f.submit value: "Logout", :class => "right col s1 white-text btn-flat" %>
       <% end %>
     <div>
       <ul id="nav-mobile" class="right hide-on-med-and-down">

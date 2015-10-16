@@ -1,5 +1,8 @@
 <div class="container">
   <div class="row">
+    <div class="col s12">
+      <h3 class="left">Register For A New Account</h3>
+    </div>
     <%= form_for(@user, :html => { :class => "col s12" }) do |f| %>
       <div class="row">
         <div class="input-field col s6">
@@ -19,9 +22,14 @@
           <%= f.label :password %>
         </div>
       </div>
-          <%= f.file_field :avatar, :value => "upload picture" %>
-  
-      <%= f.submit(:class => "btn", :value => "Register")%>
+      <div class="file-field input-field avatar">
+        <div class="btn light-blue">
+          <span>Upload Profile Picture</span>
+          <%= f.file_field :avatar %>
+        </div>
+        <input class="file-path validate" type="text"/>
+      </div>
+      <%= f.submit(:class => "btn light-blue", :value => "Register")%>
     <% end %>
   </div>
 </div>

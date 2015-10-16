@@ -6,7 +6,13 @@ class DogsController < ApplicationController
       @forecast_data = forecast_data
       @user = current_user
       if params[:search]
-        @dogs = Dog.search(params[:search]).order("created_at DESC")
+        @found_dogs = search(params[:search])
+        if @found_dogs.length == 1
+          redirect_to "/dogs/#{@found_dogs[0].id}"
+        else
+          dog = @found_dogs.sample
+          redirect_to "/dogs/#{dog.id}"
+        end
       else
         @dogs = @user.dogs
       end
@@ -61,7 +67,7 @@ class DogsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @user = User.find_by(id: session[:user_id])
     @dog = Dog.find_by(id: params[:id])
     if @user.id != session[:user_id]

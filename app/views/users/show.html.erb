@@ -1,43 +1,45 @@
 <div class="container">
-  <div class="row">
-    <div class="col s12 m6 l4">
-      <a href="#!" onclick="Materialize.showStaggeredList('#staggered-test')"><img src="../assets/dog-friends.jpg" class="circle hoverable"/></a>
-      <ul id="staggered-test">
-        <li class="" style="transform: translateX(0px); opacity: 0;">
-          <h5><a class="light-blue-text" href="/users/<%= @user.id %>/dogs">Manage Dogs</a></h5>
-        </li>
-      </ul>
-    </div>
-    <div class="col s12 m6 l4">
-      <a href="#!" onclick="Materialize.showStaggeredList('#staggered-test2')"><img src="../assets/human-dog.jpg"class="circle hoverable"/></a>
-      <ul id="staggered-test2">
-        <li class="" style="transform: translateX(0px); opacity: 0;">
-          <h5><a style="text-transform: capitalize;"class="waves-effect waves-light btn-flat modal-trigger3 light-blue-text" href="#edit-modal">Edit Your Account</a></h5>
-        </li>
-        <li class="" style="transform: translateX(0px); opacity: 0;">
-          <h5><a class="light-blue-text" href="/messages">Community Messages</a></h5>
-        </li>
-        <li class="" style="transform: translateX(0px); opacity: 0;">
-          <h5><a class="light-blue-text" href="/direct_conversations">Private Messages</a></h5>
-        </li>
-        <li class="" style="transform: translateX(0px); opacity: 0;">
-          <h5><a class="light-blue-text" href="/events">Events</a></h5>
-        </li>
-      </ul>
-    </div>
-    <div class="col s12 m6 l4">
-      <a href="#!" onclick="Materialize.showStaggeredList('#staggered-test3')"><img src="../assets/dog_map_1.jpg" class="circle hoverable"/></a>
-      <ul id ="staggered-test3">
-        <li class="" style="transform: translateX(0px); opacity: 0;">
-          <h5><a class="light-blue-text" href="/maps/dog_parks">Dog Parks</a></h5>
-        </li>
-        <li class="" style="transform: translateX(0px); opacity: 0;">
-          <h5><a class="light-blue-text" href="/maps/pet_stores">Pet Stores</a></h5>
-        </li>
-        <li class="" style="transform: translateX(0px); opacity: 0;">
-          <h5><a class="light-blue-text" href="/maps">Closest Dogs</a></h5>
-        </li>
-      </ul>
+  <div class="section">
+    <div class="row">
+      <div class="col s12 m6 l4">
+        <a href="#!" onclick="Materialize.showStaggeredList('#staggered-test')"><img src="<%= image_url('dog-friends.jpg') %>" class="circle hoverable responsive-img"/></a>
+        <ul id="staggered-test">
+          <li class="" style="transform: translateX(0px); opacity: 0;">
+            <h5><a class="light-blue-text" href="/users/<%= @user.id %>/dogs">Manage Dogs</a></h5>
+          </li>
+        </ul>
+      </div>
+      <div class="col s12 m6 l4">
+        <a href="#!" onclick="Materialize.showStaggeredList('#staggered-test2')"><img src="<%= image_url('human-dog.jpg') %>"class="circle hoverable responsive-img"/></a>
+        <ul id="staggered-test2">
+          <li class="" style="transform: translateX(0px); opacity: 0;">
+            <h5><a style="text-transform: capitalize;"class="waves-effect waves-light btn-flat modal-trigger3 light-blue-text" href="#edit-modal">Edit Your Account</a></h5>
+          </li>
+          <li class="" style="transform: translateX(0px); opacity: 0;">
+            <h5><a class="light-blue-text" href="/messages">Community Messages</a></h5>
+          </li>
+          <li class="" style="transform: translateX(0px); opacity: 0;">
+            <h5><a class="light-blue-text" href="/direct_conversations">Private Messages</a></h5>
+          </li>
+          <li class="" style="transform: translateX(0px); opacity: 0;">
+            <h5><a class="light-blue-text" href="/events">Events</a></h5>
+          </li>
+        </ul>
+      </div>
+      <div class="col s12 m6 l4">
+        <a href="#!" onclick="Materialize.showStaggeredList('#staggered-test3')"><img src="<%= image_url('dog_map_1.jpg') %>" class="circle hoverable responsive-img"/></a>
+        <ul id ="staggered-test3">
+          <li class="" style="transform: translateX(0px); opacity: 0;">
+            <h5><a class="light-blue-text" href="/maps/dog_parks">Dog Parks</a></h5>
+          </li>
+          <li class="" style="transform: translateX(0px); opacity: 0;">
+            <h5><a class="light-blue-text" href="/maps/pet_stores">Pet Stores</a></h5>
+          </li>
+          <li class="" style="transform: translateX(0px); opacity: 0;">
+            <h5><a class="light-blue-text" href="/maps">Closest Dogs</a></h5>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

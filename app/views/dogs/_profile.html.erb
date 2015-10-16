@@ -4,13 +4,10 @@
     <div class="col s4">
      <%= image_tag dog.avatar.url(:medium, :class => "circle responsive-img") %>
     </div>
-    <div id="twilio-messaging">
-      <%= button_to "Send text message", send_text_message_path(:user_numbers => text_users, :dog => dog.name) %>
-    </div>
     <div class="col s8">
       <ul class="collapsible" data-collapsible="accordion">
       <li>
-        <div class="collapsible-header">Dogs <%= dog.name %> Follows</div>
+        <div class="collapsible-header" style="padding-left: 45px;">Dogs <%= dog.name %> Follows</div>
         <div class="collapsible-body">
           <ul class="collection">
             <% dog.find_good_dogs do |dog| %>
@@ -24,26 +21,23 @@
         </div>
       </li>
       <li>
-        <div class="collapsible-header">Edit <%= dog.name %></div>
+        <div class="collapsible-header" style="padding-left: 45px;">Edit <%= dog.name %></div>
         <div class="collapsible-body">
           <%= render partial: "edit", locals: {dog: dog} %>
         </div>
       </li>
       <li>
-        <div class="collapsible-header"><a class="modal-trigger" href="#modal1">Remove <%= dog.name %> From Pack</a></div>
-        <div class="collapsible-body">
-          <div id="modal1" class="modal">
-            <div class="modal-content">
-              <h4>Are you sure you want to remove <%= dog.name %> from your pack?</h4>
-            </div>
-            <div class="modal-footer">
-              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-            </div>
-          </div>
+        <div class="collapsible-header">
+          <%= form_for :dog, url: dog_path(dog), method: "delete" do |f| %>
+            <%= f.submit value: "Remove From Pack", :class => "btn-flat", :style => "text-transform: capitalize;" %>
+          <% end %>
         </div>
       </li>
     </ul>
     </div>
+  </div>
+  <div id="twilio-messaging">
+    <%= button_to "Send Emergency Alert", send_text_message_path(:user_numbers => text_users, :dog => dog.name), :class => "btn red" %>
   </div>
 </div>
 <div class="divider"></div>
