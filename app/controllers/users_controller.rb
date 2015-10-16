@@ -67,8 +67,6 @@ class UsersController < ApplicationController
 
       render :show
     else
-      p "PARAMS:"
-      logger.info(params)
 
       if params[:receive_notices] == 0
         @user.receive_notices = false
