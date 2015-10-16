@@ -1,9 +1,8 @@
 <div class="container">
-  <h1 class="center">Your Direct Conversations</h1>
+  <h3 class="center">Your Messages</h1>
   <div>
     <div class="new_convo_form">
-      <h3>Send a new private message</h3>
-      <a class="waves-effect waves-light btn modal-trigger" href="#modal5">New Message</a>
+      <a class="btn tooltipped modal-trigger" data-position="top" data-delay="50" data-tooltip="Send a new message" href="#modal5">New Message</a>
       <div id="modal5" class="modal">
         <div class="modal-content">
           <%= render partial: "form", locals: { direct_conversation: DirectConversation.new} %>
