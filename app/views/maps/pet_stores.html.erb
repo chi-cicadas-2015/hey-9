@@ -1,10 +1,19 @@
 <div id="pet-stores-map" ></div>
-
-<% @store_names.each_with_index do |store, index| %>
-  <h3><%= @alphabet[index]%>. <%= store %> </h3>
-  <p><%= @store_addresses[index] %></p>
-  <%= @pic %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col s12 l6 offset-l3">
+      <ul class="collection">
+        <% @store_names.each_with_index do |store, index| %>
+          <li class="collection-item">
+            <h5><%= @alphabet[index]%>. <%= store %> </h5>
+            <p><%= @store_addresses[index] %></p>
+          </li>
+          <%= @pic %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
   <h3></h3>
     <div id="store-names", name="<%= @store_names %>">
     </div>

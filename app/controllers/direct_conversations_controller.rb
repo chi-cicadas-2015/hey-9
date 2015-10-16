@@ -58,13 +58,3 @@ class DirectConversationsController < ApplicationController
   end
 
 end
-
-# def create
-#   @direct_conversation = DirectConversation.new(direct_conversation_params)
-#     recipient_user = User.find_by_username(recipient_params[:recipient])
-#     add_recipient = recipient_user.private_messages.new(conversation: @direct_conversation)
-#     private_message = current_user.private_messages.new( private_message_params.merge(conversation: @direct_conversation))
-#     add_recipient.save
-#     private_message.save
-#     redirect_to :back
-# end
