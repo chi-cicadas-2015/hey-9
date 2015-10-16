@@ -5,22 +5,19 @@
 <div class="row">
   <div class="col s12 l4">
     <% if current_user.id == event.creator_id %>
-      <a class="waves-effect waves-light btn modal-trigger4" href="#modal4">Edit Event</a>
+      <a class="btn light-blue modal-trigger4" href="#modal4">Edit Event</a>
       <div id="modal4" class="modal">
         <div class="modal-content">
           <%= render partial: "form"%>
         </div>
-        <div class="modal-footer">
-          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-        </div>
       </div>
     <% end %>
     <h4>Address: </h4>
-    <h5><%= event.location %></h5>
+    <p><%= event.location %></p>
     <h4>Day: </h4>
-    <h5><%= event.event_start.strftime("%A, %B %d, %Y")%></h5>
+    <p><%= event.event_start.strftime("%A, %B %d, %Y")%></p>
     <h4>Time: </h4>
-    <h5> <%= event.event_start.strftime("%I:%M%p")%> - <%= event.event_end.strftime("%I:%M%p") %></h5>
+    <p> <%= event.event_start.strftime("%I:%M%p")%> - <%= event.event_end.strftime("%I:%M%p") %></p>
   </div>
   <div class="col s12 l4">
     <% if event.comments %>
@@ -33,7 +30,7 @@
   <div class="col s12 l4">
     <% current_user.dogs.each do |dog| %>
       <% if !event.invitees.include?(dog)%>
-          <a class="dropdown-button btn" href="#" data-activates="dropdown10">Join Event</a>
+          <a class="dropdown-button btn light-blue" href="#" data-activates="dropdown10">Join Event</a>
       <% end %>
     <% end %>
         <ul id="dropdown10" class="dropdown-content">
@@ -45,7 +42,7 @@
     <div class="row">
       <div class="col s8 m4 l2 green-text">
         <% event.invitees.uniq.each do |dog|%>
-            <h6><%= link_to "#{dog.name}", dog_path(dog) %></h6>
+            <h5><%= link_to "#{dog.name}", dog_path(dog) %></h5>
         <% end %>
       </div>
     </div>

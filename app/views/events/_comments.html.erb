@@ -1,8 +1,8 @@
 <ul class="collection">
   <% commentable.comments.each do |comment| %>
     <li class="collection-item">
-      <h6><%= comment.content %></h6>
-      <h6><%= comment.commenter.username %></h6>
+      <p><%= comment.content %></p>
+      <p><%= comment.commenter.username %></p>
     </li>
   <% end %>
 </ul>

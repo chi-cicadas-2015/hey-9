@@ -2,7 +2,9 @@
   <h1><%= dog.name %></h1>
   <div class="row">
     <div class="col s4">
-     <%= image_tag dog.avatar.url(:medium, :class => "circle responsive-img") %>
+      <a href="/dogs/<%= dog.id %>">
+        <%= image_tag dog.avatar.url(:medium, :class => "circle responsive-img") %>
+      </a>
     </div>
     <div class="col s8">
       <ul class="collapsible" data-collapsible="accordion">
@@ -10,11 +12,11 @@
         <div class="collapsible-header" style="padding-left: 45px;">Dogs <%= dog.name %> Follows</div>
         <div class="collapsible-body">
           <ul class="collection">
-            <% dog.find_good_dogs do |dog| %>
+            <% find_good_dogs(dog).each do |friend| %>
               <li class="collection-item avatar">
-                <a href="/dogs/<%= friend.id %>">
-                  <span class="title"><%=dog.name%></span>
-                </a>
+                <%= image_tag dog.avatar.url(:small, :class => "circle responsive-img") %>
+                <span><a href="/dogs/<%= friend.id %>"><%=friend.name%>
+                </a></span>
               </li>
             <% end %>
           </ul>
@@ -37,7 +39,7 @@
     </div>
   </div>
   <div id="twilio-messaging">
-    <%= button_to "Send Emergency Alert", send_text_message_path(:user_numbers => text_users, :dog => dog.name), :class => "btn red" %>
+    <%= button_to "Send Emergency Alert", send_text_message_path(:user_numbers => text_users, :dog => dog.name), :class => "btn red"%>
   </div>
 </div>
 <div class="divider"></div>
