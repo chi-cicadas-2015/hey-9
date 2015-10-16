@@ -3,20 +3,11 @@
 </div>
 
 <div class="container">
-  <h1>This is <%= @user.username %>'s Event<h1>
+  <h4>This is <%= @user.username %>'s Event</h4>
+  <h5><a href="/direct_conversation">Send <%= @user.username %> a private message</a></h5>
   <div id='event-lng' name="<%= @event.lng %>">
 
 
-  </div>
-
-
-  <div class="section">
-   <% if @event.comments %>
-     <%= render partial: "events/comments", locals: {commentable: @event} %>
-   <% end %>
-   <% if @current_user %>
-      <%= render partial: "events/comments_form", locals: {commentable: @event} %>
-    <% end %>
   </div>
 
   <%= render partial: "event_show", locals: {event: @event} %>

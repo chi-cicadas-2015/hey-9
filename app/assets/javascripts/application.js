@@ -20,15 +20,41 @@
 //= require_tree .
 
 $(document).ready(function(){
+$( "span.badge" ).removeClass("new badge").addClass( "badge");
+  var badge = $("#message_ratio").val();
+  var interval = setInterval(function() {
+    $.ajax({
+      url: "/users/check_messages",
+      data: badge,
+      dataType: "json",
+      success: function(messageData){
+        var newNumber = messageData.new_msg_ratio;
+        var badgeState = messageData.new_badge;
+        console.log(newNumber);
+        console.log(badgeState);
+        $("#message_ratio").val().number = newNumber;
+        if (badgeState === true)
+          $( "span.badge" ).removeClass("badge").addClass( "new badge");
+      }
+    });
+  }, 5000);
+  if (location.pathname == "/direct_conversations")
+    $( "span.badge" ).removeClass("new badge").addClass( "badge");
+});
+
+
+$(document).ready(function(){
   $('.button-collapse').sideNav({edge: "left"});
   $('.modal-trigger').leanModal();
   $('.modal-trigger2').leanModal();
   $('.modal-trigger3').leanModal();
+  $('.modal-trigger4').leanModal();
+
   $('.parallax').parallax();
   $('.datepicker').pickadate({selectMonths: true, selectYears: 15});
   changeWeather("#weather-card");
   changeWeather("#weather-card2");
-
+  $('.fixed-action-btn').openFAB();
 
 
   $("#add-friend").on("click", function(event){
@@ -43,26 +69,6 @@ $(document).ready(function(){
       }
     })
   })
-
-
-
-  // http://api.jquery.com/jQuery.noConflict/
-  // var $j = jQuery.noConflict();
-  // $("#event_event_start").datepicker({
-  //   changeMonth: true,
-  //     onSelect: function( selectedDate ) {
-  //       $( "#event_event_end" ).datepicker( "option", "minDate", selectedDate );
-  //     },
-  //     onClose:function(){
-  //       $( "#event_event_end" ).datepicker("show");
-  //     }
-  //   });
-  //   $( "#event_event_end" ).datepicker({
-  //     changeMonth: true,
-  //   });
-
-
-
 })
 
 function changeWeather(card){
@@ -87,4 +93,3 @@ function changeWeather(card){
   }
 };
 
-// AIzaSyC8_pBC2fS1wrte8fb97qRZ6jevl2NjyKk
