@@ -32,15 +32,15 @@ describe UsersController do
         end
    end
 
-   describe "GET #edit" do
-    before{
-         @user = User.create!(username: "wyeth", email: "wyeth@wyeth", password: "123")
-    }
-    it "should render the edit user page" do
-        session[:user_id] = @user.id
-        get :edit, {id: @user.id}
-        expect(response).to render_template(:edit)
-    end
-   end
+   # describe "GET #edit" do
+   #  before{
+   #       @user = User.create!(username: "wyeth", email: "wyeth@wyeth", password: "123")
+   #  }
+   #  it "should render the edit user page" do
+   #      session[:user_id] = @user.id
+   #      get :edit, {id: @user.id}
+   #      expect(response).to render_template(:edit)
+   #  end
+   # end
 end
 

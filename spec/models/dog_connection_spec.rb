@@ -3,8 +3,8 @@ require 'rails_helper'
 describe DogConnection do
   context "associations" do
     before {
-      @user1 = User.create!(username: "larissa", email: "larissa@larissa", password: "123",location: {:latitude=> 41.878114,:longitude=> -87.629798})
-      @user2 = User.create!(username: "chris", email: "chris@chris", password: "123",location: {:latitude=> 41.878114,:longitude=> -87.629798})
+      @user1 = User.create!(username: "larissa", email: "larissa@email.com", password: "123", :lat=> 41.890192,:lng=> -87.637224, receive_notices: false)
+      @user2 = User.create!(username: "chris", email: "chris@email.com", password: "password", :lat=> 41.890192,:lng=> -87.637224, receive_notices: false)
       @dog1 = Dog.create!(name: "Kira", owner: @user1)
       @dog2 = Dog.create!(name: "fluffy", owner: @user2)
       @dog_connection = DogConnection.create!(dog: @dog1, following: @dog2)}
