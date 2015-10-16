@@ -2,10 +2,18 @@
   <h1 class="center">Your Direct Conversations</h1>
   <div>
     <div class="new_convo_form">
-      <%= render partial: "form", locals: { direct_conversation: DirectConversation.new} %>
+      <h3>Send a new private message</h3>
+      <a class="waves-effect waves-light btn modal-trigger" href="#modal5">New Message</a>
+      <div id="modal5" class="modal">
+        <div class="modal-content">
+          <%= render partial: "form", locals: { direct_conversation: DirectConversation.new} %>
+        </div>
+      </div>
     </div>
     <div class="convo_list">
-      <%= render partial: "conversation", collection: @direct_conversations, as: :direct_conversation %>
+      <ul class="collapsible popout" data-collapsible="accordion">
+        <%= render partial: "conversation", collection: @direct_conversations, as: :direct_conversation %>
+      </div>
     </div>
   </div>
 </div>
