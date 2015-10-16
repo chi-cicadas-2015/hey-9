@@ -3,7 +3,7 @@
     <%= image_tag @user.avatar.url(:thumb, :class => "circle responsive-img") %>
   </div>
   <div class="row">
-    <%= form_for(:user, :html =>{:class => "col s12"}) do |f| %>
+    <%= form_for(@user, :html =>{:class => "col s12"}) do |f| %>
       <div class="row">
         <div class="input-field col s6">
           <%= f.label :username %>
@@ -14,6 +14,25 @@
         <div class="input-field col s6">
           <%= f.label :email %>
           <%= f.text_field :email, :placeholder => @user.email %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+
+          <% if @user.receive_notices == false %>
+            <%= check_box_tag :receive_notices %>
+            <%= label_tag :receive_notices, "Receive Notices" %>
+          <% else %>
+            <%= check_box_tag :not_receive_notices %>
+            <%= label_tag :not_receive_notices, "Stop receiving notices" %>
+          <% end %>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.label :phone_number %>
+          <%= f.text_field :phone_number, :placeholder => @user.phone_number %>
         </div>
       </div>
       <%= f.submit(:class => "btn", :value => "Edit") %>
