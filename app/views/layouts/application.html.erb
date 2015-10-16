@@ -21,13 +21,20 @@
     </style>
 
 </head>
-  <body>
+<body>
     <nav class="black">
       <% if current_user != nil %>
         <%= form_for :session, url: session_path(session), method: "delete" do |f| %>
         <%= f.submit value: "Logout", :class => "right col s1 white-text btn-flat" %>
         <% end %>
+            <div>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/direct_conversations" id="message_ratio" value= <%= @number %>>Messages<span class="badge"></span></a></li>
+                </ul>
+            </div>
+
             <a href="/users/<%= current_user.id %>" class="brand-logo center">Hey-9</a>
+
           </div>
           <ul id="slide-out" class="side-nav">
           <li class="no-padding">
