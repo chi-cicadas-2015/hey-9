@@ -9,11 +9,6 @@ describe EventsController do
     set_user_session(@creator) # session[:user_id] = @creator.id
   }
 
-  describe "GET #index" do
-    it "assigns a collection of events to @events"
-    it "renders the index view"
-
-  end
 
   describe "GET #show" do
     it "assigns the requested event to @event" do
