@@ -4,9 +4,6 @@
     <div class="col s4">
      <%= image_tag dog.avatar.url(:medium, :class => "circle responsive-img") %>
     </div>
-    <div id="twilio-messaging">
-      <%= button_to "Send text message", send_text_message_path(:user_numbers => text_users, :dog => dog.name) %>
-    </div>
     <div class="col s8">
       <ul class="collapsible" data-collapsible="accordion">
       <li>

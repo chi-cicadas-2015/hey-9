@@ -36,7 +36,6 @@ class DogsController < ApplicationController
       if session[:user_id] != nil
         @dog = Dog.find(params[:id])
         @user = User.find_by(id: @dog.owner_id)
-        "******************#{@user.lat}"
       else
         redirect_to "/sessions/new"
       end
@@ -76,7 +75,6 @@ class DogsController < ApplicationController
   def sync_location
      if session[:user_id]
       if request.xhr?
-        'YOOOOOOOOOO'
        lat = params['location']['lat'].to_f
        lng = params['location']['lat'].to_f
        @user = User.find_by(id: current_user.id)
@@ -90,7 +88,6 @@ class DogsController < ApplicationController
   private
 
   def dog_params
-    # p "************#{params[:avatar]}"
     params.require(:dog).permit(:name, :bio, :owner_id, :avatar)
   end
 end
