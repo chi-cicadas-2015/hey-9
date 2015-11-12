@@ -58,7 +58,7 @@ class MapsController < ApplicationController
     @user = User.find_by(id: current_user.id)
     @current_user_lat = @user.lat
     @current_user_lng = @user.lng
-    parksUri = URI.parse("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{@user.lat},#{@user.lng}&radius=2000&keyword=dogparks&key=AIzaSyCX0zgiH5c-ezhGHS679V2hWO7rQbenKbg")
+    parksUri = URI.parse("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{@user.lat},#{@user.lng}&radius=2000&keyword=dogparks&key=#{Rails.application.secrets.google_api_key}")
       parks_response = Net::HTTP.get_response(parksUri)
       parks_body = JSON.parse(parks_response.body)
       park_names = []
@@ -86,7 +86,7 @@ class MapsController < ApplicationController
     @user = User.find_by(id: current_user.id)
     @current_user_lat = @user.lat
     @current_user_lng = @user.lng
-       url = URI.parse("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{@user.lat},#{@user.lng}&radius=2000&keyword=pet&types=pet_store&key=AIzaSyCX0zgiH5c-ezhGHS679V2hWO7rQbenKbg")
+       url = URI.parse("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{@user.lat},#{@user.lng}&radius=2000&keyword=pet&types=pet_store&key=#{Rails.application.secrets.google_api_key}")
       response = Net::HTTP.get_response(url)
       body = JSON.parse(response.body)
       store_names = []

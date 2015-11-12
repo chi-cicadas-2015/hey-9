@@ -35,10 +35,10 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-
+ # Amazon Web Services
  config.paperclip_defaults = {
    :storage => :s3,
-   :bucket => 'imageuploadstorage',
+   :bucket => 'hey-9',
    :url => ':s3_domain_url',
    :path => "/pieces/:id/:style/:basename.:extension",
    :s3_credentials => "#{Rails.root}/config/aws.yml"

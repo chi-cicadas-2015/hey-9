@@ -100,7 +100,7 @@
 <script type="text/javascript">
     $.ajax({
       method: "POST",
-      url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCxHSsHvEIld84HHYj5nvetfW6cV7gYNAs",
+      url: "https://www.googleapis.com/geolocation/v1/geolocate?key=<%= Rails.application.secrets.google_api_key %> ",
       success: function(response) {
 
         $.ajax({
