@@ -6,6 +6,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
 
   <%= stylesheet_link_tag 'application', media: 'all' %>
 
@@ -20,7 +21,7 @@
          #dogs-map { height: 50%;width: 100%;}
          #pet-stores-map { height: 50%;width: 100%;}
       h1, h2, h3, h4, h5, h6{
-        font-family: Souses, PoetsenOne, Trebuchet, sans-serif;
+        font-family: 'Bangers', cursive, sans-serif;
       }
     </style>
 
@@ -31,7 +32,10 @@
       <%= form_for :session, url: session_path(session), method: "delete" do |f| %>
         <%= f.submit value: "Logout", :class => "right col s1 white-text btn-flat", :style => "margin-top:70px;text-transform: capitalize;" %>
       <% end %>
-      <a href="/users/<%= current_user.id %>" class="brand-logo center"><img style="height:100px;width: 150px;"src="<%= image_url('hey-9_logo2.png') %>"/></a>
+      <li class="right" style="margin-top:56px;margin-right:20px;list-style:none;"><a href="/direct_conversations" id="message_ratio" value= <%= @number %>>Messages<span class="badge"></span></a></li>
+      <div class="left hide-on-small-only">
+        <a href="/users/<%= current_user.id %>" class="brand-logo"><img style="height:100px;width: 150px;"src="<%= image_url('hey-9_logo2.png') %>"/></a>
+      </div>
     </div>
       <ul id="slide-out" class="side-nav">
         <li class="no-padding">
@@ -74,24 +78,6 @@
             </li>
           </ul>
         </li>
-      </ul>
-      <ul class="left hide-on-med-and-down">
-        <li><a class="dropdown-button" href="#!" data-activates="dropdown1" data-beloworigin="true" style="margin-top: 50px;">Dog Portal<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
-        <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="/users/<%= current_user.id %>/dogs" class="light-blue-text">Manage Dogs</a></li>
-        </ul>
-        <li><a class="dropdown-button" href="#!" data-activates="dropdown2" data-beloworigin="true" style="margin-top: 50px;">Owner Portal<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
-        <ul id='dropdown2' class='dropdown-content'>
-          <li><a href="/messages" class="light-blue-text">NewsFeed</a></li>
-          <li><a href="/direct_conversations" id="message_ratio" value= "<%= @number %>" class="light-blue-text">Messages<span class="badge"></span></a></li>
-          <li><a href="/events" class="light-blue-text">Events</a></li>
-        </ul>
-        <li><a class="dropdown-button" href="#!" data-activates="dropdown3" data-beloworigin="true" style="margin-top: 50px;">Resources<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
-        <ul id='dropdown3' class='dropdown-content'>
-          <li><a href="/maps/pet_stores" class="light-blue-text">Pet Stores</a></li>
-          <li><a href="/maps/dog_parks" class="light-blue-text">Dog Parks</a></li>
-          <li><a href="/maps" class="light-blue-text">Closest Dogs</a></li>
-        </ul>
       </ul>
       <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     </div>
