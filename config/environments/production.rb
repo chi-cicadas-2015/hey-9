@@ -76,7 +76,6 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
     :storage => :s3,
-    :bucket => 'hey-9',
     :url => ":s3_domain_url",
     :path => "/pieces/:id/:style/:basename.:extension",
     :s3_credentials => {
