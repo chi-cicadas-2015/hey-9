@@ -1,14 +1,14 @@
 require 'date'
 
-User.delete_all
-Dog.delete_all
-DogConnection.delete_all
-Event.delete_all
-EventInvitation.delete_all
-Comment.delete_all
-Message.delete_all
-PrivateMessage.delete_all
-DirectConversation.delete_all
+# User.delete_all
+# Dog.delete_all
+# DogConnection.delete_all
+# Event.delete_all
+# EventInvitation.delete_all
+# Comment.delete_all
+# Message.delete_all
+# PrivateMessage.delete_all
+# DirectConversation.delete_all
 
 comments =
   ["I'm there! See you soon :)",
@@ -30,21 +30,22 @@ potential_messages =
     "Lalalala. Just another day here with the pooch!"
   ]
 
-users = User.create!([
-  {username: "larissa", email: "larissa@email.com", password: "password",:lat=> 41.878114,:lng => -87.629798, receive_notices: false},
-  {username: "chris", email: "chris@email.com", password: "password", :lat=> 41.890192,:lng=> -87.637224, receive_notices: false},
-  {username: "alexis", email: "alexis@email.com", password: "password", :lat=> 41.890929,:lng=> -87.632222, receive_notices: false},
-  {username: "rodica", email: "rodica@email.com", password: "password", :lat=> 0,:lng=> 0, receive_notices: true, phone_number: "+17735579323"},
-  {username: "wyeth", email: "wyeth@email.com", password: "password", :lat=> 0,:lng=> 0, receive_notices: false},
-  {username: "altrodica", email: "rodica@gmail.com", password: "password", :lat=> 0,:lng=> 0, receive_notices: false, phone_number: "7735579323"},
-  ])
+# users = User.create!([
+#   {username: "larissa", email: "larissa@email.com", password: "password",:lat=> 41.889513,:lng => -87.654387, receive_notices: false, phone_number: "+12175525388"},
+#   {username: "chris", email: "chris@email.com", password: "password", :lat=> 41.889514,:lng=> -87.654388, receive_notices: false, phone_number: "+16308636281"},
+#   {username: "alexis", email: "alexis@email.com", password: "password", :lat=> 41.889515,:lng=> -87.654387, receive_notices: false, phone_number: "+13125663831"},
+#   {username: "rodica", email: "rodica@email.com", password: "password", :lat=> 41.889513,:lng=> -87.654389, receive_notices: true, phone_number: "+17735579323"},
+#   {username: "wyeth", email: "wyeth@email.com", password: "password", :lat=> 41.889515,:lng=> -87.654389, receive_notices: false, phone_number: "+16082876330"}
+#   ])
+
+users = [User.find_by_username("alexis"), User.find_by_username("chris"), User.find_by_username("larissa"), User.find_by_username("rodica"), User.find_by_username("wyeth")]
 
 dogs = Dog.create!([
-  {name: "Kira", :owner => User.find_by_username("alexis"), bio: "I am a cuddly beagle who loves to chase squirrels."},
-  {name: "LaSalle", :owner => User.find_by_username("larissa"), bio: "I am an excellent pitbull mix who looks like a chocolate lab and loves to play with other dogs."},
-  {name: "Hoss", :owner => User.find_by_username("wyeth"), bio: "I am a big sweetheart, a bloodhound who's always on the chase."},
-  {name: "Sophie", :owner => User.find_by_username("rodica"), bio: "I am a friendly and sociable mastiff."},
-  {name: "Stella", :owner => User.find_by_username("chris"), bio: "I am playful and energetic staffordshire terrier."},
+  # {name: "Kira", :owner => User.find_by_username("alexis"), bio: "I am a cuddly beagle who loves to chase squirrels."},
+  # {name: "LaSalle", :owner => User.find_by_username("larissa"), bio: "I am an excellent pitbull mix who looks like a chocolate lab and loves to play with other dogs."},
+  # {name: "Hoss", :owner => User.find_by_username("wyeth"), bio: "I am a big sweetheart, a bloodhound who's always on the chase."},
+  # {name: "Sophie", :owner => User.find_by_username("rodica"), bio: "I am a friendly and sociable mastiff."},
+  # {name: "Stella", :owner => User.find_by_username("chris"), bio: "I am playful and energetic staffordshire terrier."},
   {name: "Fluffy", :owner => users.sample, bio: "I'm a powerful but good-natured chow-chow."},
   {name: "Batman", :owner => users.sample, bio: "I am a squeaky and excitable boston terrier. I love tennis balls and being carried around."},
   {name: "BeBop", :owner => users.sample, bio: "I am happy bull terrier who like friends and fun."},
@@ -137,28 +138,28 @@ end
 
 
 messages = 5.times.map do
-  Message.create!(author: users.sample, lat: 41.878114, lng: -87.629798, :content => potential_messages.sample)
+  Message.create!(author: users.sample, lat: 41.889513, lng: -87.654387, :content => potential_messages.sample)
 end
 
 messages = 5.times.map do
-  Message.create!(author: users.sample, lat: 0, lng: 1, :content => potential_messages.sample)
+  Message.create!(author: users.sample, lat: 41.889514, lng: -87.654388, :content => potential_messages.sample)
 end
 
 messages = 5.times.map do
-  Message.create!(author: users.sample, lat: 2, lng: 0, :content => potential_messages.sample)
+  Message.create!(author: users.sample, lat: 41.889513, lng: -87.654389, :content => potential_messages.sample)
 end
 
 messages = 5.times.map do
-  Message.create!(author: users.sample, lat: 41.878114, lng: -87.629798, :content => potential_messages.sample)
+  Message.create!(author: users.sample, lat: 41.889515, lng: -87.654387, :content => potential_messages.sample)
 end
 
 messages = 5.times.map do
-  Message.create!(author: users.sample, lat: 0, lng: 1, :content => potential_messages.sample)
+  Message.create!(author: users.sample, lat: 41.889515, lng: -87.654389, :content => potential_messages.sample)
 end
 
-messages = 5.times.map do
-  Message.create!(author: users.sample, lat: 2, lng: 0, :content => potential_messages.sample)
-end
+# messages = 5.times.map do
+#   Message.create!(author: users.sample, lat: 2, lng: 0, :content => potential_messages.sample)
+# end
 
 # messages = 25.times.map do
 #   Message.create!(author: users.sample, lat: 0, lng: 0, :content => potential_messages.sample)

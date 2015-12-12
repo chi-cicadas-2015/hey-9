@@ -14,7 +14,6 @@
           <ul class="collection">
             <% find_good_dogs(dog).each do |friend| %>
               <li class="collection-item avatar">
-                <%= image_tag dog.avatar.url(:small, :class => "circle responsive-img") %>
                 <span><a href="/dogs/<%= friend.id %>"><%=friend.name%>
                 </a></span>
               </li>

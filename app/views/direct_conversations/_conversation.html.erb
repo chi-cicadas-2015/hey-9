@@ -3,7 +3,6 @@
   <h4><%= direct_conversation.subject %></h4>
   <% direct_conversation.participants.each do |user| %>
     <div class="chip">
-      <img src="<%= image_url('user.avatar')%>" alt="Contact Person">
       <%= user.username %>
     </div>
   <% end %>

@@ -19,10 +19,10 @@ config/initializers/secret_token.rb
 ###############################################################################################
 # Ignore specific config files
 ###############################################################################################
-config/aws.yml
-config/secrets.yml
-config/cloudinary.yml
-config/application.yml
+/config/aws.yml
+/config/secrets.yml
+/config/cloudinary.yml
+/config/application.yml
 
 
 ## Environment normalisation:

@@ -7,9 +7,7 @@
         <% @local_dogs.each_with_index do |dog, index| %>
           <% @user = User.find_by(id: dog.owner_id) %>
           <li class="collection-item">
-          <%= image_tag dog.avatar.url(:medium, :class => "circle responsive-img") %>
           <a href="/dogs/<%= dog.id %>" ><h5><%= @alphabet[index]%>. <%= dog.name %> </h5></a>
-            <%= image_tag @user.avatar.url(:thumb, :class => "circle responsive-img") %>
           <h5><a href="/direct_conversations"> Send a message to <%= dog.name %>'s owner: <%= @user.username %></a></h5>
           </li>
         <% end %>
